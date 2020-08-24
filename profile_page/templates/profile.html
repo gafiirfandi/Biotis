@@ -1,0 +1,99 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+    
+<head>
+    <title>My Awesome Login Page</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+</head>
+<!--Coded with love by Mutiullah Samim-->
+<body>
+
+	<div class="container">
+        <div class="picture-container">
+            <div class="picture">
+                <img src="{% static 'person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
+                <input type="file" id="wizard-picture" class="">
+            </div>
+            <h6 class="">Choose Picture</h6>
+    
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-storage.js"></script>
+
+
+    <script type="text/javascript">
+
+    var a = "{{nama}}"
+
+    console.log(a);
+
+
+
+    </script>
+    <script>
+        console.log()
+
+        $(document).ready(function(){
+          // Prepare the preview for profile picture
+            $("#wizard-picture").change(function(){
+                readURL(this);
+            });
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        var firebaseConfig = {
+        apiKey: "AIzaSyBhOm2zX5FMqmcsouo3D4OiBDVPVoqYf7M",
+        authDomain: "biotis-5bbc4.firebaseapp.com",
+        databaseURL: "https://biotis-5bbc4.firebaseio.com",
+        projectId: "biotis-5bbc4",
+        storageBucket: "biotis-5bbc4.appspot.com",
+        messagingSenderId: "427181721162",
+        appId: "1:427181721162:web:1ee957725b13573ffb88b3",
+        measurementId: "G-N273BFKCTX"
+    };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+
+
+    var filebut = document.getElementById('wizard-picture');
+
+    filebut.addEventListener('change', function(e) {
+        
+        var file = e.target.files[0];
+        document.getElementById('wizardPicturePreview').src = file;
+        var storageRef = firebase.storage().ref('profile_picture/' + file.name);
+
+        storageRef.put(file);
+    });
+    </script>
+   
+</body>
+
+
+</html>

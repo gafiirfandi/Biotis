@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'profile_page',
+    'login',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'biotis.urls'
@@ -84,6 +87,15 @@ DATABASES = {
         'PORT' : '5432'
     }
 }
+
+PRODUCTION = os.environ.get('DATABASE_URL') is not None
+if PRODUCTION:
+    # KALAU SUDAH BERJALAN, kamu bisa uncomment bagian DEBUG, ALLOWED_HOSTS, dan DATABASES.
+    # For increased security.
+    #DEBUG = False
+    #ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'NAMA_APP.herokuapp.com']
+    #DATABASES['default'] = dj_database_url.config()
+    SECURE_SSL_REDIRECT = True
 
 
 # Password validation
