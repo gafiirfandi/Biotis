@@ -1,4 +1,29 @@
-/*Profile Pic Start*/
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+
+html,body{
+  font-family: 'Rubik', sans-serif;
+  background:#fdfdfd;
+  height: 100%;
+  width: 100%;
+  
+}
+
+
+::selection {
+    color: white;
+    background: #2AA153;
+  }
+
+nav {
+    height: 130px;
+    background-color: white;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.05);
+}
+
+a {color: #303030;}
+a:hover {color: #303030; text-decoration: none;}
+
 .picture-container{
     position: relative;
     cursor: pointer;
@@ -46,4 +71,5 @@
     width: 100%;
     
 }
-/*Profile Pic End*/
+
+
