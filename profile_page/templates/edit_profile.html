@@ -10,6 +10,7 @@
 <head>
     <title>My Awesome Login Page</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
@@ -78,6 +79,8 @@
                 {{ form.nama_atasan }}
             </div>
         </div>
+
+        
     
       <div class="form-group row">
       <label class="col-sm-1 col-form-label"></label>
@@ -99,6 +102,8 @@
     <script type="text/javascript">
 
         var email = "{{email}}"
+
+        var image = document.getElementById("wizardPicturePreview");
 
         console.log()
 
@@ -133,6 +138,13 @@
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
 
+        var storage = firebase.storage();
+        var imgRef = storage.ref('users/'+email+'/profile.jpg')
+
+        imgRef.getDownloadURL().then(function(url){
+            image.src = url;
+           
+        })
 
 
     var filebut = document.getElementById('wizard-picture');
@@ -145,6 +157,17 @@
 
         storageRef.put(file);
     });
+
+    var storage = firebase.storage();
+    var imgRef = storage.ref('users/'+email+'/profile.jpg')
+    var imagesrc = "a";
+    imgRef.getDownloadURL().then(function(url){
+        imagesrc = url;
+        
+    })
+
+
+
     </script>
    
 </body>

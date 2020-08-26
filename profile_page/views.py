@@ -58,7 +58,8 @@ def profile(request):
     if 'logged_in' not in request.session or not request.session['logged_in']:
         return redirect('login:loginPage')
     else:
-        email = request.session['email']
+
+        email = request.session['email'] 
         cursor = connection.cursor()
         cursor.execute("SELECT username FROM PENGGUNA WHERE email = '"+email+"';")
         username = cursor.fetchone()
