@@ -1,1 +1,77 @@
 @import "base.css";
+.judul1{
+    margin-top: 50px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+
+.tanggal1{
+    margin-top:-20px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #828282;
+
+}
+
+.tanggal2{
+    margin-top:-5px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #828282;
+
+}
+
+
+
+.card-link{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+
+    color: #00AD33;
+}
+.karyawan{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+
+
+    color: #828282;
+
+}
+
+.info1{
+    border: black;
+}
+
+.colorbutton{
+    background:#00AD33 ;
+}
+
+th , td{
+font-family: Rubik;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+color: #828282;
+
+text-align: center;
+}
+
+
