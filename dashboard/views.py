@@ -12,3 +12,7 @@ def buatLaporan(request):
         'form': form
         }
     return render(request, "buatLaporan.html", args)
+
+
+def detailLaporan(request):
+    return render(request, 'detailLaporan.html')

@@ -74,4 +74,31 @@ color: #828282;
 text-align: center;
 }
 
+/* Page detail Laporan */
+.judulimage{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 17px;
+
+
+    color: #828282;
+
+}
+.detail{
+    
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.card-columns{
+    color: #828282;
+    font-family: Rubik;
+
+    
+
+}
+
+
 
