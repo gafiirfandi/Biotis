@@ -16,3 +16,5 @@ def buatLaporan(request):
 
 def detailLaporan(request):
     return render(request, 'detailLaporan.html')
+
+

@@ -1,4 +1,13 @@
 @import "base.css";
+
+.detailLaporanbody{
+    background: white;
+}
+
+.dashboardutama{
+    background: white;
+
+}
 .judul1{
     margin-top: 50px;
     font-family: Rubik;
@@ -83,7 +92,7 @@ text-align: center;
     line-height: 17px;
 
 
-    color: #828282;
+    color: black;
 
 }
 .detail{
@@ -99,6 +108,8 @@ text-align: center;
     
 
 }
-
+.judulbox{
+    color: #333333;
+}
 
 
