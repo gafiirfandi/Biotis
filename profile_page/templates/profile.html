@@ -1,0 +1,143 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>BIOTIS
+        Profile
+    </title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+
+
+</head>
+<body>
+
+    <nav class="navbar fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="/dashboard">
+            <img src="{% static 'img/biotis.jpg' %}" width="100px" alt="">
+          </a>
+          <div class="row justify-items-end">
+            
+            <div style="width: 20px;"></div>
+            <a class="mybutton" style="font-size: 20px;">{{ username }}<p style="color: rgb(112, 161, 39);">{{role}}</p></a>
+            
+          </div>
+        </div>
+    </nav>
+    <nav></nav>
+
+    <div class="container mt-5">
+        <div class="card p-4">
+
+            <div class="text-center">
+                <h1>Profil Pengguna</h1>
+            </div>
+            <div class="text-center"> 
+                <div class="container">
+                    <div class="picture-container">
+                        <div class="picture">
+                            <img src="{% static 'img/person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mt-4 row">
+                <h4 class="col-3">Nama Lengkap</h4>
+                <h4 class="col-6">: {{ username }}</h4>
+            </div>
+            <div class="mt-4 row">
+                <h4 class="col-3">Email</h4>
+                <h4 class="col-6">: {{ email }}</h4>
+            </div>
+            <div class="mt-4 row">
+                <h4 class="col-3">NO. HP</h4>
+                <h4 class="col-6">: {{ no_hp }}</h4>
+            </div>
+            <div class="mt-4 row">
+                <h4 class="col-3">Alamat</h4>
+                <h4 class="col-6">: {{ alamat }}</h4>
+            </div>
+            <div class="mt-4 row">
+                <h4 class="col-3">Jabatan</h4>
+                <h4 class="col-6">: {{ jabatan }}</h4>
+            </div>
+            <div class="mt-4 row">
+                <h4 class="col-3">Nama Atasan</h4>
+                <h4 class="col-6">: {{ nama_atasan }}</h4>
+            </div>
+            
+            
+
+            <div class="text-center mt-3 row">
+                <div class="col-6">
+                    <a href="{% url 'dashboard:dashboard' %}" class="btn btn-outline-dark mt-1">Return Home</a>
+                </div>
+                <div class="col-6">
+                    <a href="/profile/edit/" class="btn btn-outline-dark mt-1">Edit Profile</a>
+                </div>
+            </div>
+            
+           
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-storage.js"></script>
+
+    <script type="text/javascript">
+
+        var email = "{{email}}"
+
+        var image = document.getElementById("wizardPicturePreview");
+
+        var firebaseConfig = {
+        apiKey: "AIzaSyBhOm2zX5FMqmcsouo3D4OiBDVPVoqYf7M",
+        authDomain: "biotis-5bbc4.firebaseapp.com",
+        databaseURL: "https://biotis-5bbc4.firebaseio.com",
+        projectId: "biotis-5bbc4",
+        storageBucket: "biotis-5bbc4.appspot.com",
+        messagingSenderId: "427181721162",
+        appId: "1:427181721162:web:1ee957725b13573ffb88b3",
+        measurementId: "G-N273BFKCTX"
+    };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        var storage = firebase.storage();
+        var imgRef = storage.ref('users/'+email+'/profile.jpg')
+
+        imgRef.getDownloadURL().then(function(url){
+            image.src = url;
+           
+        })
+     
+        console.log(image.src)
+        
+    
+    </script>
+</body>
+</html>
+
