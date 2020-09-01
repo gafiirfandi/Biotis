@@ -33,111 +33,76 @@
           </div>
         </div>
     </nav>
-    <nav></nav>
+
+ 
 
 
 
 <div class="d-flex flex-column">
     <div class="p-2 judul1">
-    <h1>Edit Profile</h1>
-  </div>
-    
-
-
+        <h1>Edit Profile</h1>
+    </div>   
 </div>
 
 
 
 
-    <div class="col-md-12 pageeditprofile">
-        <!-- <h4>Django CRUD (Create Read Update Delete) Example - Bootstrap Datatable</h4>  -->
-    
-     <form method="POST" class="post-form">
-       {% csrf_token %}
-            
-                
-
-                <div class="container ">
-                    <div class="picture-container">
-                        <div class="picture">
-                            <img src="{% static 'person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
-                            <input type="file" id="wizard-picture" class="">
-                        </div>
-                        <h6 class="">Choose Picture</h6>
-                
-                    </div>
-
-                    <div class="container justify-content-center align-items-center tempattable">
-                        <div class="table-responsive">
-                            <table class="table  table-hover">
-                                                    <tr class="box">
-                                                        <td class="text-muted">Nama Lengkap</td>
-                                                        <td>:</td>
-                                                        <td >{{ form.nama_lengkap }}</td>
-                                                    </tr>
-
-            
-
-
-                                                    <tr class="box">
-                                                        <td class="text-muted">Nomor HP</td>
-                                                        <td>:</td>
-                                                        <td >{{ form.no_hp }}</td>
-                                                    </tr>
-
-                                                    <tr class="box">
-                                                        <td class="text-muted">Alamat</td>
-                                                        <td>:</td>
-                                                        <td >{{ form.alamat }}</td>
-                                                    </tr>
-
-
-                                                    <tr class="box">
-                                                        <td class="text-muted">Jabatan</td>
-                                                        <td>:</td>
-                                                        <td > {{ form.jabatan }}</td>
-                                                    </tr>
-
-                                                    <tr class="box">
-                                                        <td class="text-muted">Nama Atasan</td>
-                                                        <td>:</td>
-                                                        <td >{{ form.nama_atasan }}</td>
-                                                    </tr>
-
-
-                            </table>
-
-                            <div class="d-flex justify-content-center mt-3 login_container">
-                               <button type="submit" class="btn btn-success mt-1">Submit</button>
-                          </div>
-                        </div>
-
-
-
-
-
-
-
-
-
-                    </div>
-
-
-           
-    
-       
-
+        <div class="col-md-12 pageeditprofile">
+            <!-- <h4>Django CRUD (Create Read Update Delete) Example - Bootstrap Datatable</h4>  -->
         
-    
-      
-       
-     </form>
-     </div>
+            <form method="POST" class="post-form">
+            {% csrf_token %}
+                    
+                        
 
-     
+                        <div class="container ">
+                            <div class="picture-container">
+                                <div class="picture">
+                                    <img src="{% static 'person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
+                                    <input type="file" id="wizard-picture" class="">
+                                </div>
+                                <h6 class="">Choose Picture</h6>
+                        
+                            </div>
 
+                            <div class="container justify-content-center align-items-center tempattable">
+                                <div class="table-responsive">
+                                    <table class="table  table-hover">
+                                                            <tr class="box">
+                                                                <td class="text-muted">Nama Lengkap</td>
+                                                                <td>:</td>
+                                                                <td >{{ form.nama_lengkap }}</td>
+                                                            </tr>
+                                                            <tr class="box">
+                                                                <td class="text-muted">Nomor HP</td>
+                                                                <td>:</td>
+                                                                <td >{{ form.no_hp }}</td>
+                                                            </tr>
+                                                            <tr class="box">
+                                                                <td class="text-muted">Alamat</td>
+                                                                <td>:</td>
+                                                                <td >{{ form.alamat }}</td>
+                                                            </tr>
+                                                            <tr class="box">
+                                                                <td class="text-muted">Jabatan</td>
+                                                                <td>:</td>
+                                                                <td > {{ form.jabatan }}</td>
+                                                            </tr>
 
+                                                            <tr class="box">
+                                                                <td class="text-muted">Nama Atasan</td>
+                                                                <td>:</td>
+                                                                <td >{{ form.nama_atasan }}</td>
+                                                            </tr>
 
+                                    </table>
+                                    <div class="d-flex justify-content-center mt-3 login_container">
+                                    <button type="submit" class="btn btn-success mt-1">Submit</button>
+                                </div>
+                                </div>
+                            </div>    
+            </form>
+        </div>
     <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
@@ -211,8 +176,6 @@
         imagesrc = url;
         
     })
-
-
 
     </script>
    
