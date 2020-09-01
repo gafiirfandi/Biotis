@@ -9,89 +9,134 @@
     
 <head>
     <title>My Awesome Login Page</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+
 </head>
 <!--Coded with love by Mutiullah Samim-->
 <body>
 
-    <div class="col-md-12">
+    <nav class="navbar fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="/dashboard">
+            <img src="{% static 'img/biotis.jpg' %}" width="100px" alt="">
+          </a>
+          <div class="row justify-items-end">
+            
+            <div style="width: 20px;"></div>
+            <a class="mybutton" style="font-size: 20px;">{{ username }}<p style="color: rgb(112, 161, 39);">{{role}}</p></a>
+            
+          </div>
+        </div>
+    </nav>
+    <nav></nav>
+
+
+
+<div class="d-flex flex-column">
+    <div class="p-2 judul1">
+    <h1>Edit Profile</h1>
+  </div>
+    
+
+
+</div>
+
+
+
+
+    <div class="col-md-12 pageeditprofile">
         <!-- <h4>Django CRUD (Create Read Update Delete) Example - Bootstrap Datatable</h4>  -->
     
      <form method="POST" class="post-form">
        {% csrf_token %}
-      <div class="container">
-     <br>
-      <div class="form-group row">
-      <label class="col-sm-1 col-form-label"></label>
-      <div class="col-sm-3">
-      <h4>Edit Profile</h4>
-      </div>
-       </div>
+            
+                
 
-       <div class="container">
-        <div class="picture-container">
-            <div class="picture">
-                <img src="{% static 'person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
-                <input type="file" id="wizard-picture" class="">
-            </div>
-            <h6 class="">Choose Picture</h6>
+                <div class="container ">
+                    <div class="picture-container">
+                        <div class="picture">
+                            <img src="{% static 'person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
+                            <input type="file" id="wizard-picture" class="">
+                        </div>
+                        <h6 class="">Choose Picture</h6>
+                
+                    </div>
+
+                    <div class="container justify-content-center align-items-center tempattable">
+                        <div class="table-responsive">
+                            <table class="table  table-hover">
+                                                    <tr class="box">
+                                                        <td class="text-muted">Nama Lengkap</td>
+                                                        <td>:</td>
+                                                        <td >{{ form.nama_lengkap }}</td>
+                                                    </tr>
+
+            
+
+
+                                                    <tr class="box">
+                                                        <td class="text-muted">Nomor HP</td>
+                                                        <td>:</td>
+                                                        <td >{{ form.no_hp }}</td>
+                                                    </tr>
+
+                                                    <tr class="box">
+                                                        <td class="text-muted">Alamat</td>
+                                                        <td>:</td>
+                                                        <td >{{ form.alamat }}</td>
+                                                    </tr>
+
+
+                                                    <tr class="box">
+                                                        <td class="text-muted">Jabatan</td>
+                                                        <td>:</td>
+                                                        <td > {{ form.jabatan }}</td>
+                                                    </tr>
+
+                                                    <tr class="box">
+                                                        <td class="text-muted">Nama Atasan</td>
+                                                        <td>:</td>
+                                                        <td >{{ form.nama_atasan }}</td>
+                                                    </tr>
+
+
+                            </table>
+
+                            <div class="d-flex justify-content-center mt-3 login_container">
+                               <button type="submit" class="btn btn-success mt-1">Submit</button>
+                          </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+           
     
-        </div>
-        </div>
-    
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Nama Lengkap:</label>
-            <div class="col-sm-4">
-                {{ form.nama_lengkap }}
-            </div>
-        </div>
-    
-    
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">NO. HP:</label>
-            <div class="col-sm-4">    
-                {{ form.no_hp }}
-            </select>
-            </div>
-        </div>
-    
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Alamat:</label>
-            <div class="col-sm-4">
-                {{ form.alamat }}
-            </div>
-        </div>
-    
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Jabatan:</label>
-            <div class="col-sm-4">
-                {{ form.jabatan }}
-            </div>
-        </div>
-    
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Nama Atasan:</label>
-            <div class="col-sm-4">
-                {{ form.nama_atasan }}
-            </div>
-        </div>
+       
 
         
     
-      <div class="form-group row">
-      <label class="col-sm-1 col-form-label"></label>
-      <div class="col-sm-3">
-      <button type="submit" class="btn btn-outline-dark">Submit</button>
-          </div>
-        </div>
-        </div>
+      
+       
      </form>
      </div>
+
+     
+
+
 
     <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
 
