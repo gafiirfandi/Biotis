@@ -113,3 +113,20 @@ text-align: center;
 }
 
 
+.buttonlaporan {
+    color: white;
+    background-color: #00AD33;
+    transition: 50ms;
+    border-radius: 10px;
+    padding: 9px;
+    border: none;
+  }
+  
+  .buttonlaporan:hover {
+    background-color: #00AD33;
+    color: black;
+  }
+  
+  .searchbutton1{
+      width: 30%;
+  }

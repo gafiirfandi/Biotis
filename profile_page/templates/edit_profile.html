@@ -11,38 +11,53 @@
     <title>My Awesome Login Page</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
 
 </head>
 <!--Coded with love by Mutiullah Samim-->
-<body>
 
-    <nav class="navbar fixed-top">
-        <div class="container">
-          <a class="navbar-brand" href="/dashboard">
-            <img src="{% static 'img/biotis.jpg' %}" width="100px" alt="">
-          </a>
-          <div class="row justify-items-end">
-            
-            <div style="width: 20px;"></div>
-            <a class="mybutton" style="font-size: 20px;">{{ username }}<p style="color: rgb(112, 161, 39);">{{role}}</p></a>
-            
-          </div>
-        </div>
-    </nav>
+
+<body>
+    <nav class="navbar navbar-expand-lg ">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+          <img  src="{% static 'img/biotis.jpg' %}" class="w3-round" alt=""> 
+        </a>
+    <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+    <div class="dropdown-menu">
+    <a class="nav-link" href="#">{{ username }}
+                <span class="sr-only">(current)</span>
+              </a>
+
+    </div>
+    {% comment %} <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">{{ username }}
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>
+        
+      </ul>
+    </div> {% endcomment %}
+  </div>
+</nav>
+
 
  
 
 
 
-<div class="d-flex flex-column">
-    <div class="p-2 judul1">
-        <h1>Edit Profile</h1>
-    </div>   
-</div>
+    <div class="d-flex flex-column">
+        <div class="p-2 judul1">
+            <h1>Edit Profile</h1>
+        </div>   
+    </div>
 
 
 

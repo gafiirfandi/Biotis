@@ -14,11 +14,7 @@ html,body{
 
 }
 
-.container {
-  height: 100%;
-  width: 100%;
-  padding-top: 20px;
-}
+
 
 .deskripsiprofile{
     padding-top: 50px;
@@ -34,11 +30,7 @@ html,body{
     background: #2AA153;
   }
 
-nav {
-    height: 130px;
-    background-color: white;
-    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.05);
-}
+
 
 #settingimg{
     overflow: hidden;
@@ -51,8 +43,57 @@ nav {
     border-color: #2ca8ff;
 }
 
+/* navbar setting css  */
+.sr-only{
+    background:rgb(244, 244, 244) ;
+}
 
+.dropdown-menu{
+    background:rgb(244, 244, 244) ;
 
+}
+
+.nav-link{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: bold;
+    background:rgb(244, 244, 244) ;
+    color: rgb(242, 200, 79);
+}
+  
+nav{
+    background: rgb(244, 244, 244) ;
+}
+
+.w3-round{
+    border-radius: 50%;
+    max-width: 100px;
+    height: auto;
+
+    margin-left: 2em;
+
+}
+
+.a:hover {
+    color: rgb(244, 199, 72);
+  }
+
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: rgb(243, 201, 83);
+    position: absolute;
+    bottom: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+  
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
 
 
 /* deskripsi profil page*/
@@ -91,5 +132,5 @@ color: #000000;
 }
 
 #about{
-    margin-top: 150px;
+    margin-top: 10px;
 }
