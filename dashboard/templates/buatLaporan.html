@@ -10,9 +10,28 @@
         <h1 class="list_title">Buat Laporan</h1>
         <div class="row justify-content-center">
             <div class="buatLaporan">      
-                <form  method="POST" action="">
+                <form method="POST" action="{% url 'dashboard:buatLaporan' %}" enctype="multipart/form-data">
                 {% csrf_token %}
-                    <div class="buatLaporanForm">{{ form.as_p }}</div>
+                    <div class="buatLaporanForm" id="formDiv">
+                        {{ form.as_p }}
+                        <select name="input_camera" id="input_cam" disabled>
+                            <option value="environment">Rear</option>
+                            <option value="user" selected>Front</option>
+                        </select>
+                        <p><span id="errorMsg"></span></p>
+                        <!-- Stream video via webcam -->
+                        <div class="video-wrap">
+                            <video id="video" playsinline autoplay></video>
+                        </div>
+
+                        <!-- Trigger canvas web API -->
+                        <div class="controller">
+                            <button id="snap">Capture</button>
+                        </div>
+
+                        <!-- Webcam video snapshot -->
+                        <canvas id="canvas" name="image" width="1280" height="720"></canvas>
+                    </div>
                     <br>
                     <input type="submit" value="Create" name="tombol" class="buttonlaporan">
                 </form>
@@ -21,5 +40,6 @@
         <br>
         <br>
 
-</div>    
+</div>
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock content %}

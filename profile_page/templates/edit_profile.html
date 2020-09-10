@@ -120,6 +120,8 @@
                 reader.onload = function (e) {
                     $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
                 }
+                console.log('reader is', reader)
+                console.log('input.files[0]', input.files[0])
                 reader.readAsDataURL(input.files[0]);
             }
         }
@@ -152,6 +154,7 @@
     filebut.addEventListener('change', function(e) {
         
         var file = e.target.files[0];
+        console.log('file is', file)
         document.getElementById('wizardPicturePreview').src = file;
         var storageRef = firebase.storage().ref('users/' + email + '/profile.jpg');
 
