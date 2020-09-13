@@ -1,206 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
-
-
 html,body{
-  font-family: 'Rubik', sans-serif;
-  background:#fdfdfd;
-  height: 100%;
-  width: 100%;
-  
-}
-
-.container {
-  height: 100%;
-  width: 100%;
-}
-
-::selection {
-    color: white;
-    background: #2AA153;
+    font-family: 'Rubik', sans-serif;
+    background:#fdfdfd;
+    height: 100%;
+    width: 100%;
+    
   }
 
-nav {
-    height: 130px;
-    background-color: white;
-    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.05);
+
+  .sr-only{
+    background:rgb(244, 244, 244) ;
 }
 
-a {color: #303030;}
-a:hover {color: #303030; text-decoration: none;}
+.dropdown-menu{
+    background:rgb(244, 244, 244) ;
 
-
-.message {
-    text-align: center; color: #303030; 
-    font-size: 24px; 
-    margin-bottom: 30px;
-    color: #ED6868;
 }
 
-.col {
-    padding-left: 0px;
-    padding-right: 0px;
+.nav-link{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: bold;
+    background:rgb(244, 244, 244) ;
+    color: rgb(242, 200, 79);
 }
-
-.welcome {
-    color: #2AA153;
-}
-
-.divider {height: 100px;}
-.small {height: 30px;}
-
-.header {
   
-    background-position: right;
-    background-size: contain;
-    background-repeat: no-repeat;
-    padding: 60px 0px;
-    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.05);
+nav{
+    background: rgb(244, 244, 244) ;
 }
 
-.title {font-family: 'Jost'; font-size: 24px; margin-top: 30px;}
+.w3-round{
+    border-radius: 50%;
+    max-width: 100px;
+    height: auto;
 
-.menu {
-    /* padding: 30px; */
-    background: white;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-    text-align: center;
-    margin: 15px;
-    border-radius: 15px;
-    transition: 150ms;
+    margin-left: 2em;
+
 }
 
-.menu:hover {box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05), inset 0px 0px 10px rgba(0, 0, 0, 0.25);}
-.menu p {margin-bottom: 0px; font-size: 24px; color: #303030;}
-.menu img {width: 80px; margin-bottom: 20px; margin-top: 30px;}
+.a:hover {
+    color: rgb(244, 199, 72);
+  }
 
-.menu:hover .add_item {
+  nav a::before {
+    content: '';
     display: block;
-}
-
-.add_item {
-    color: white !important;
-    background-color: #2AA153;
+    height: 5px;
+    background: rgb(243, 201, 83);
     position: absolute;
-    top: 40px;
-    left: 40px;
-    font-size: 36px !important;
-    font-weight: 700;
-    line-height: 36px;
-    padding: 0px 10px;
-    border-radius: 5px;
-    border: 0.5px solid #2AA153;
-    display: none;
-    transition: ease;
-}
-
-.add_item:hover {
-    color: #2AA153 !important;
-    background-color: white;
-}
-
-.loginForm .menu {
-    padding: 20px;
-}
-
-.list_title {color: #2AA153; margin: 60px; text-align: center;}
-
-
-.butwhite {
-    background-color: white;
-    border: 0.5px solid #2AA153;
-    color: #2AA153;
-}
-
-.butwhite:hover {
-    background-color: #2AA153;
-    color: white;
-}
-
-.butred {
-    background-color: white;
-    border: 0.5px solid #ED6868;
-    color: #ED6868;
-}
-
-.butred:hover {
-    background-color: #ED6868;
-    color: white;
-}
-
-.login{
-    text-align:center;
-    width:50%;
-}
+    bottom: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
   
-.login input{
-    display:block;
-    margin:20px auto;
-    text-align:center;
-    font-weight:bold;
-    transition:all 300ms ease-in-out;
-}
-  
-.login input[type="text"],.login input[type="password"]{
-    line-height:50px;
-    padding:0 10px;
-    /* border-radius:5px; */
-    /* border:0; */
-    width:50%;
-    /* background:rgba(255,255,255,0.9); */
-    border: 0.5px solid #2AA153 !important;
-}
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
 
-label {
-    color: #303030 !important;
-    font-size: 18px;
-}
 
-.loginForm{
-    color: #2AA153;
-    height: 100%;
-    font-size: 18px;
-    /* letter-spacing: 5px; */
-}
-  
-.login input[type="text"]:focus,.login input[type="password"]:focus{
-    width:80%;
-    /* background:rgba(255,255,255,1); */
-    /* background: #2AA153; */
-    background-color: white;
-    border: 0.5px solid #2AA153;
-    box-shadow: 0px 2px 10px rgba(88, 216, 131, 0.5);
-}
+/* deskripsi profil page*/
+#judul{
+font-family: Rubik;
+font-style: normal;
+font-weight: bold;
 
-.login_back {
-    width: 100%;
-    height: 100vh;
-    background: url('../images/login_back.png'), linear-gradient(119.99deg, #69E393 2.49%, #3EB667 106.57%);
-    /* background-image: url('../images/login_back.png'); */
-    background-size: contain;
-    background-position: right top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: white !important;
-}
 
-.login_back label {
-    color: white !important;
-}
 
-.userName {
-    font-size: 36px;
-}
 
-.buttonlaporan {
-  color: white;
-  background-color: #00AD33;
-  transition: 50ms;
-  border-radius: 10px;
-  padding: 9px;
-  border: none;
-}
-
-.buttonlaporan:hover {
-  background-color: #00AD33;
-  color: black;
+color: #000000;
 }

@@ -1,16 +1,168 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+
+
 {% block title %}
 {% endblock title %}
 
 
 {% block content %}
-<div class="container justify-content-center align-items-center">
-    
-    <br>
-    <br>
-    <a href="/dashboard/buatLaporan" class="buttonlaporan">Buat Laporan</a>
 
-</div>    
+<link rel="stylesheet" type=text/css href="{% static 'css/dashboard.css' %}"/>  
+<div class="main dashboardutama">
+  
+<div class="d-flex flex-column">
+
+  <div class="p-2 judul1">
+    <h1>Dashboard</h1>
+  </div>
+  <div class="p-2 tanggal1" > Selasa,25 agustus 2020</div>
+  <div class="p-2 ">
+    <div class="card card1">
+        <div class="row">
+            <div class="col-sm ">
+                <div class="card-body " >
+                    <h5 class="card-title">20 orang </h5>
+                    <h6 class="card-subtitle mb-2 text-muted karyawan">Karyawan yang belum lapor </h6>         
+                    <a href="#" class="card-link">Lihat selengkapnya >>  </a>
+                  </div>
+            </div>
+            <div class="col-sm ">
+                <div class="card-body ">
+                    <h5 class="card-title">49 </h5>
+                    <h6 class="card-subtitle mb-2 text-muted karyawan">Laporan Menunggu Review </h6>                
+                    <a href="#" class="card-link">Lihat selengkapnya >>  </a>
+                  </div>
+            </div>
+          </div>
+    </div>       
+  </div>
+
+  <div class="p-2 ">
+
+      <div class="input-group search "  style="width: 30%;">
+        <input type="text" class="form-control" placeholder="Search this blog">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" style="background: #00AD33;" >
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+   </div>
+
+   <div class="p-2 tanggal2">Urutkan Berdasarkan: </div>
+
+
+   <div class="d-flex flex-row bd-highlight mb-3">
+    <div class="p-2 bd-highlight">
+      <a class="btn btn-primary colorbutton" href="#" role="button">Tanggal Terbaru</a>
+    </div>
+    <div class="p-2 bd-highlight ">
+      <a class="btn btn-primary colorbutton" href="#" role="button">Tanggal Tertentu   >></a></div>
+    <div class="p-2 bd-highlight ">
+      <a class="btn btn-primary colorbutton" href="#" role="button">Karyawan    >></a></div>
+    </div>
+  </div>
+  
+<!--Table-->
+<table class="table table-hover table-fixed">
+
+  <!--Table head-->
+  <thead>
+    <tr>
+      <th>Foto</th>
+      <th>Tanggal</th>
+      <th>Kondisi Umum</th>
+      <th>Aktivitas Kompetitor</th>
+      <th>Laporan Kegiatan</th>
+      <th>Fokus Produk </th>
+      <th>Lain-lain</th>
+      <th>Penjelasan</th>
+    </tr>
+  </thead>
+  <!--Table head-->
+
+  <!--Table body-->
+  <tbody>
+    <tr >
+      <th scope="row">pict</th>
+      <td>Minggu, 2 Aug 2020</td>
+      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
+      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
+      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
+      <td>Pupuk 82</td>
+      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
+      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
+    </tr>
+    <tr>
+      <th scope="row">pict</th>
+      <td>Senin, 3 Aug 2020</td>
+      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
+      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
+      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
+      <td>Pupuk 82</td>
+      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
+      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
+    </tr>
+    <tr>
+      <th scope="row">pict</th>
+      <td>Selasa, 4 Aug 2020</td>
+      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
+      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
+      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
+      <td>Pupuk 82</td>
+      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
+      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
+    </tr>
+    <tr>
+      <th scope="row">pict</th>
+      <td>Rabu, 5 Aug 2020</td>
+      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
+      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
+      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
+      <td>Pupuk 82</td>
+      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
+      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
+    </tr>
+    <tr>
+      <th scope="row">pict</th>
+      <td>Kamis, 6 Aug 2020</td>
+      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
+      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
+      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
+      <td>Pupuk 82</td>
+      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
+      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
+    </tr>
+    <tr>
+      <th scope="row">pict</th>
+      <td>Jumat, 7 Aug 2020</td>
+      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
+      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
+      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
+      <td>Pupuk 82</td>
+      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
+      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
+    </tr>
+  </tbody>
+  <!--Table body-->
+
+</table>
+<!--Table-->
+
+
+
+
+<div class="container justify-content-center align-items-center">    
+    <br>
+     <br>
+    <a href="/dashboard/buatLaporan" class="buttonlaporan">Buat Laporan</a>
+    <br>
+</div>   
+
+
+</div>
 {% endblock content %}

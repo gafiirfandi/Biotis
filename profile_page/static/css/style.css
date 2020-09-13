@@ -9,70 +9,128 @@ html,body{
   
 }
 
-.container {
-  height: 100%;
-  width: 100%;
+.pageeditprofile{
+    font-family: 'Rubik', sans-serif;
+
 }
+
+
+
+.deskripsiprofile{
+    padding-top: 50px;
+}
+
+.tempatbutton{
+    padding-top: 50px;
+}
+
 
 ::selection {
     color: white;
     background: #2AA153;
   }
 
-nav {
-    height: 130px;
-    background-color: white;
-    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.05);
-}
 
-.picture-container{
-    position: relative;
-    cursor: pointer;
-    text-align: center;
-}
-.picture{
-    width: 106px;
-    height: 106px;
-    background-color: #999999;
-    border: 4px solid #CCCCCC;
-    color: #FFFFFF;
-    border-radius: 50%;
-    margin: 0px auto;
+
+#settingimg{
     overflow: hidden;
     transition: all 0.2s;
     -webkit-transition: all 0.2s;
+
 }
-.picture:hover{
+
+#settingimg:hover{
     border-color: #2ca8ff;
 }
-.content.ct-wizard-green .picture:hover{
-    border-color: #05ae0e;
+
+/* navbar setting css  */
+.sr-only{
+    background:rgb(244, 244, 244) ;
 }
-.content.ct-wizard-blue .picture:hover{
-    border-color: #3472f7;
+
+.dropdown-menu{
+    background:rgb(244, 244, 244) ;
+
 }
-.content.ct-wizard-orange .picture:hover{
-    border-color: #ff9500;
+
+.nav-link{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: bold;
+    background:rgb(244, 244, 244) ;
+    color: rgb(242, 200, 79);
 }
-.content.ct-wizard-red .picture:hover{
-    border-color: #ff3b30;
+  
+nav{
+    background: rgb(244, 244, 244) ;
 }
-.picture input[type="file"] {
-    cursor: pointer;
+
+.w3-round{
+    border-radius: 50%;
+    max-width: 100px;
+    height: auto;
+
+    margin-left: 2em;
+
+}
+
+.a:hover {
+    color: rgb(244, 199, 72);
+  }
+
+  nav a::before {
+    content: '';
     display: block;
-    height: 100%;
-    left: 0;
-    opacity: 0 !important;
+    height: 5px;
+    background: rgb(243, 201, 83);
     position: absolute;
-    top: 0;
-    width: 100%;
+    bottom: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+  
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
+
+
+/* deskripsi profil page*/
+#judul{
+font-family: Rubik;
+font-style: normal;
+font-weight: bold;
+
+
+
+
+color: #000000;
 }
 
-.picture-src{
-    width: 100%;
-    
+/* deskripsi edit profile page*/
+
+.box{
+    background: #fdfdfd;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.judul1{
+    margin-top: 50px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
 }
 
 
+.tempattable{
+    padding-top: 50px;
+}
 
-/*Profile Pic End*/
+#about{
+    margin-top: 10px;
+}

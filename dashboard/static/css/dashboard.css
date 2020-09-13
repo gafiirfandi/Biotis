@@ -1,1 +1,132 @@
 @import "base.css";
+
+.detailLaporanbody{
+    background: white;
+}
+
+.dashboardutama{
+    background: white;
+
+}
+.judul1{
+    margin-top: 50px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+
+.tanggal1{
+    margin-top:-20px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #828282;
+
+}
+
+.tanggal2{
+    margin-top:-5px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #828282;
+
+}
+
+
+
+.card-link{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+
+
+    color: #00AD33;
+}
+.karyawan{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+
+
+    color: #828282;
+
+}
+
+.info1{
+    border: black;
+}
+
+.colorbutton{
+    background:#00AD33 ;
+}
+
+th , td{
+font-family: Rubik;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 17px;
+/* identical to box height */
+color: #828282;
+
+text-align: center;
+}
+
+/* Page detail Laporan */
+.judulimage{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 17px;
+
+
+    color: black;
+
+}
+.detail{
+    
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.card-columns{
+    color: #828282;
+    font-family: Rubik;
+
+    
+
+}
+.judulbox{
+    color: #333333;
+}
+
+
+.buttonlaporan {
+    color: white;
+    background-color: #00AD33;
+    transition: 50ms;
+    border-radius: 10px;
+    padding: 9px;
+    border: none;
+  }
+  
+  .buttonlaporan:hover {
+    background-color: #00AD33;
+    color: black;
+  }
+  
+  .searchbutton1{
+      width: 30%;
+  }

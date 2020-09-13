@@ -9,15 +9,57 @@
     
 <head>
     <title>My Awesome Login Page</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+
 </head>
 <!--Coded with love by Mutiullah Samim-->
-<body>
 
+
+<body>
+    <nav class="navbar navbar-expand-lg ">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+          <img  src="{% static 'img/biotis.jpg' %}" class="w3-round" alt=""> 
+        </a>
+    <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+    <div class="dropdown-menu">
+    <a class="nav-link" href="#">{{ username }}
+                <span class="sr-only">(current)</span>
+              </a>
+
+    </div>
+    {% comment %} <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">{{ username }}
+                <span class="sr-only">(current)</span>
+              </a>
+        </li>
+        
+      </ul>
+    </div> {% endcomment %}
+  </div>
+</nav>
+
+
+ 
+
+
+
+    <div class="d-flex flex-column">
+        <div class="p-2 judul1">
+            <h1>Edit Profile</h1>
+        </div>   
+    </div>
+
+<<<<<<< HEAD
     <div class="col-md-12">
         <!-- <h4>Django CRUD (Create Read Update Delete) Example - Bootstrap Datatable</h4>  -->
     
@@ -84,19 +126,79 @@
                 {{ form.nama_atasan }}
             </div>
         </div>
+=======
+>>>>>>> 923357d3f56551c23955bcc507b8f929d5729751
 
+
+
+        <div class="col-md-12 pageeditprofile">
+            <!-- <h4>Django CRUD (Create Read Update Delete) Example - Bootstrap Datatable</h4>  -->
         
-    
-      <div class="form-group row">
-      <label class="col-sm-1 col-form-label"></label>
-      <div class="col-sm-3">
-      <button type="submit" class="btn btn-outline-dark">Submit</button>
-          </div>
+            <form method="POST" class="post-form">
+            {% csrf_token %}
+                    
+                        
+
+                        <div class="container ">
+                            <div class="picture-container">
+                                <div class="picture">
+                                    <img src="{% static 'person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
+                                    <input type="file" id="wizard-picture" class="">
+                                </div>
+                                <h6 class="">Choose Picture</h6>
+                        
+                            </div>
+
+                            <div class="container justify-content-center align-items-center tempattable">
+                                <div class="table-responsive">
+                                    <table class="table  table-hover">
+                                                            <tr class="box">
+                                                                <td class="text-muted">Nama Lengkap</td>
+                                                                <td>:</td>
+                                                                <td >{{ form.nama_lengkap }}</td>
+                                                            </tr>
+                                                            <tr class="box">
+                                                                <td class="text-muted">Nomor HP</td>
+                                                                <td>:</td>
+                                                                <td >{{ form.no_hp }}</td>
+                                                            </tr>
+                                                            <tr class="box">
+                                                                <td class="text-muted">Alamat</td>
+                                                                <td>:</td>
+                                                                <td >{{ form.alamat }}</td>
+                                                            </tr>
+                                                            <tr class="box">
+                                                                <td class="text-muted">Jabatan</td>
+                                                                <td>:</td>
+                                                                <td > {{ form.jabatan }}</td>
+                                                            </tr>
+
+                                                            <tr class="box">
+                                                                <td class="text-muted">Nama Atasan</td>
+                                                                <td>:</td>
+                                                                <td >{{ form.nama_atasan }}</td>
+                                                            </tr>
+
+                                    </table>
+                                    <div class="d-flex justify-content-center mt-3 login_container">
+                                    <button type="submit" class="btn btn-success mt-1">Submit</button>
+                                </div>
+                                </div>
+                            </div>    
+            </form>
         </div>
-        </div>
+<<<<<<< HEAD
      </form>
      </div>
 
+=======
+    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-storage.js"></script>
+>>>>>>> 923357d3f56551c23955bcc507b8f929d5729751
 
     <script type="text/javascript">
 
@@ -137,11 +239,16 @@
             
             }
         
+<<<<<<< HEAD
        
 
         }
 
     
+=======
+    })
+
+>>>>>>> 923357d3f56551c23955bcc507b8f929d5729751
     </script>
    
 </body>
