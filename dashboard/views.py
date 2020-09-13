@@ -3,6 +3,14 @@ from .forms import buatLaporanForm
 from django.views.decorators.csrf import csrf_exempt
 from collections import namedtuple
 from django.db import connection
+import PIL
+from PIL import Image
+import os
+from io import BytesIO
+import base64
+import re
+import pathlib
+
 
 
 def namedtuplefetchall(cursor):
@@ -20,6 +28,18 @@ def dashboard(request):
         return render(request, 'dashboard.html')
 
 def buatLaporan(request):
+
+    if request.method == 'POST':
+        print('yey')
+        # print(request.POST['imageDataURL'], False)
+        imageDataURL = request.POST['imageDataURL']
+        print(pathlib.Path(__file__).parent.absolute())
+        current_path = pathlib.Path(__file__).parent.absolute()
+        image_data = re.sub('^data:image/.+;base64,', '', imageDataURL)
+        im1 = Image.open(BytesIO(base64.b64decode(image_data)))
+        laporan_path = '/static/img/laporan/a/laporan1.jpg'
+        im1 = im1.save(str(current_path) + laporan_path)
+        
     form = buatLaporanForm()
 	
     args = {
