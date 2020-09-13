@@ -99,43 +99,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
-<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-storage.js"></script>
-
     <script type="text/javascript">
 
         var email = "{{email}}"
 
         var image = document.getElementById("wizardPicturePreview");
 
-        var firebaseConfig = {
-        apiKey: "AIzaSyBhOm2zX5FMqmcsouo3D4OiBDVPVoqYf7M",
-        authDomain: "biotis-5bbc4.firebaseapp.com",
-        databaseURL: "https://biotis-5bbc4.firebaseio.com",
-        projectId: "biotis-5bbc4",
-        storageBucket: "biotis-5bbc4.appspot.com",
-        messagingSenderId: "427181721162",
-        appId: "1:427181721162:web:1ee957725b13573ffb88b3",
-        measurementId: "G-N273BFKCTX"
-    };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-
-        var storage = firebase.storage();
-        var imgRef = storage.ref('users/'+email+'/profile.jpg')
-
-        imgRef.getDownloadURL().then(function(url){
-            image.src = url;
-           
-        })
-     
-        console.log(image.src)
-        
     
     </script>
 </body>

@@ -21,8 +21,8 @@
     <div class="col-md-12">
         <!-- <h4>Django CRUD (Create Read Update Delete) Example - Bootstrap Datatable</h4>  -->
     
-     <form method="POST" class="post-form">
-       {% csrf_token %}
+     <form method="POST" action="{% url 'profile:edit' %}" class="post-form" enctype="multipart/form-data">
+       {% csrf_token %}>
       <div class="container">
      <br>
       <div class="form-group row">
@@ -36,14 +36,19 @@
         <div class="picture-container">
             <div class="picture">
                 <img src="{% static 'person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
-                <input type="file" id="wizard-picture" class="">
+                <input type="file" id="wizard-picture" class="" name="document">
             </div>
             <h6 class="">Choose Picture</h6>
     
         </div>
         </div>
+
+        <div class = "formDiv">
+            <input type="text" name="imageDataURL" id="hiddenInput" value="" hidden>
+
+        </div>
     
-        <div class="form-group row">
+        <div class="form-group row ">
             <label class="col-sm-2 col-form-label">Nama Lengkap:</label>
             <div class="col-sm-4">
                 {{ form.nama_lengkap }}
@@ -92,18 +97,12 @@
      </form>
      </div>
 
-    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-storage.js"></script>
 
     <script type="text/javascript">
 
         var email = "{{email}}"
 
-        var image = document.getElementById("wizardPicturePreview");
+        var image = document.getElementById("wizard-picture");
 
         console.log()
 
@@ -111,7 +110,11 @@
           // Prepare the preview for profile picture
             $("#wizard-picture").change(function(){
                 readURL(this);
+                
             });
+
+            
+
         });
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -119,58 +122,26 @@
 
                 reader.onload = function (e) {
                     $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+                    $('#hiddenInput').attr('value', e.target.result);
+                    
+                    
                 }
+                
+             
                 console.log('reader is', reader)
                 console.log('input.files[0]', input.files[0])
                 reader.readAsDataURL(input.files[0]);
+
+
+                
+            
             }
+        
+       
+
         }
 
-        var firebaseConfig = {
-        apiKey: "AIzaSyBhOm2zX5FMqmcsouo3D4OiBDVPVoqYf7M",
-        authDomain: "biotis-5bbc4.firebaseapp.com",
-        databaseURL: "https://biotis-5bbc4.firebaseio.com",
-        projectId: "biotis-5bbc4",
-        storageBucket: "biotis-5bbc4.appspot.com",
-        messagingSenderId: "427181721162",
-        appId: "1:427181721162:web:1ee957725b13573ffb88b3",
-        measurementId: "G-N273BFKCTX"
-    };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-
-        var storage = firebase.storage();
-        var imgRef = storage.ref('users/'+email+'/profile.jpg')
-
-        imgRef.getDownloadURL().then(function(url){
-            image.src = url;
-           
-        })
-
-
-    var filebut = document.getElementById('wizard-picture');
-
-    filebut.addEventListener('change', function(e) {
-        
-        var file = e.target.files[0];
-        console.log('file is', file)
-        document.getElementById('wizardPicturePreview').src = file;
-        var storageRef = firebase.storage().ref('users/' + email + '/profile.jpg');
-
-        storageRef.put(file);
-    });
-
-    var storage = firebase.storage();
-    var imgRef = storage.ref('users/'+email+'/profile.jpg')
-    var imagesrc = "a";
-    imgRef.getDownloadURL().then(function(url){
-        imagesrc = url;
-        
-    })
-
-
-
+    
     </script>
    
 </body>

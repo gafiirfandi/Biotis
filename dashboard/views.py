@@ -33,6 +33,7 @@ def buatLaporan(request):
         print('yey')
         # print(request.POST['imageDataURL'], False)
         imageDataURL = request.POST['imageDataURL']
+        print(imageDataURL)
         print(pathlib.Path(__file__).parent.absolute())
         current_path = pathlib.Path(__file__).parent.absolute()
         image_data = re.sub('^data:image/.+;base64,', '', imageDataURL)

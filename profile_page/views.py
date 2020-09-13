@@ -2,6 +2,14 @@ from django.shortcuts import render, redirect
 from collections import namedtuple
 from django.db import connection
 from .forms import FormProfile
+import PIL
+from PIL import Image
+import os
+from io import BytesIO
+import base64
+import re
+import pathlib
+from django.core.files.storage import default_storage
 
 
 def namedtuplefetchall(cursor):
@@ -12,12 +20,32 @@ def namedtuplefetchall(cursor):
 
 def editprofile(request):
     cursor = connection.cursor()
+    
     email = request.session['email']
+    folder = str(email) + "/"
     if 'logged_in' not in request.session or not request.session['logged_in']:
         return redirect('login:loginPage')
     else:
         if request.method == 'POST':
-        
+
+            imageDataURL = request.POST['imageDataURL']
+            print(imageDataURL)
+            current_path = pathlib.Path(__file__).parent.absolute()
+            image_data = re.sub('^data:image/.+;base64,', '', imageDataURL)
+            im1 = Image.open(BytesIO(base64.b64decode(image_data)))
+            profile_pic_path = '/static/img/user/'
+            path = str(current_path) + profile_pic_path + email
+            if not(os.path.isdir(path)):
+                os.mkdir(path)
+            path += '/profile'
+            if not(os.path.isdir(path)):
+                os.mkdir(path)
+            path += '/profile.jpg'
+            print(path)
+
+
+            im1 = im1.save(path)
+
             nama_lengkap = request.POST.get("nama_lengkap")
             no_hp = request.POST.get("no_hp")
             alamat = request.POST.get("alamat")
@@ -44,8 +72,8 @@ def editprofile(request):
                 cursor.execute("SELECT nama_atasan FROM profile where email = '"+email+"';")
                 nama_atasan = cursor.fetchone()[0]
 
-            update_sql = "UPDATE profile set nama_lengkap = %s, no_hp = %s, alamat = %s, jabatan = %s, nama_atasan = %s WHERE email = '"+email+"';"
-            record_to_update = [(nama_lengkap, no_hp, alamat, jabatan, nama_atasan)]
+            update_sql = "UPDATE profile set nama_lengkap = %s, no_hp = %s, alamat = %s, jabatan = %s, nama_atasan = %s, foto_profile = %s WHERE email = '"+email+"';"
+            record_to_update = [(nama_lengkap, no_hp, alamat, jabatan, nama_atasan, path)]
             cursor.executemany(update_sql, record_to_update)
             
             return redirect("profile:profile")
