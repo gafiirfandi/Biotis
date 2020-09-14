@@ -12,6 +12,13 @@ import pathlib
 from django.core.files.storage import default_storage
 
 
+def pil2datauri(img):
+    #converts PIL image to datauri
+    data = BytesIO()
+    img.save(data, "JPEG")
+    data64 = base64.b64encode(data.getvalue())
+    return u'data:img/jpeg;base64,'+data64.decode('utf-8')
+
 def namedtuplefetchall(cursor):
     "Return all rows from a cursor as a namedtuple"
     desc = cursor.description
@@ -22,14 +29,12 @@ def editprofile(request):
     cursor = connection.cursor()
     
     email = request.session['email']
-    folder = str(email) + "/"
     if 'logged_in' not in request.session or not request.session['logged_in']:
         return redirect('login:loginPage')
     else:
         if request.method == 'POST':
 
             imageDataURL = request.POST['imageDataURL']
-            print(imageDataURL)
             current_path = pathlib.Path(__file__).parent.absolute()
             image_data = re.sub('^data:image/.+;base64,', '', imageDataURL)
             im1 = Image.open(BytesIO(base64.b64decode(image_data)))
@@ -41,9 +46,7 @@ def editprofile(request):
             if not(os.path.isdir(path)):
                 os.mkdir(path)
             path += '/profile.jpg'
-            print(path)
-
-
+    
             im1 = im1.save(path)
 
             nama_lengkap = request.POST.get("nama_lengkap")
@@ -79,8 +82,14 @@ def editprofile(request):
             return redirect("profile:profile")
         else:
             form = FormProfile()
+            cursor.execute("SELECT foto_profile FROM PROFILE WHERE email = '"+email+"';")
+            foto_profile = cursor.fetchone()
+
+            if foto_profile:
+                img = Image.open(foto_profile[0])
+                data_url = pil2datauri(img)
             
-            return render(request, 'edit_profile.html', {'form':form, 'email':email})
+            return render(request, 'edit_profile.html', {'form':form, 'email':email, 'foto_profile':data_url})
 
 def profile(request):
     if 'logged_in' not in request.session or not request.session['logged_in']:
@@ -103,7 +112,16 @@ def profile(request):
         nama_atasan = cursor.fetchone()
         cursor.execute("SELECT role FROM PROFILE WHERE email = '"+email+"';")
         role = cursor.fetchone()
+        cursor.execute("SELECT foto_profile FROM PROFILE WHERE email = '"+email+"';")
+        foto_profile = cursor.fetchone()
+
+        img = Image.open(foto_profile[0])
+
+        data_url = pil2datauri(img)
+
+        
+        
 
 
         return render(request, 'profile.html', {'username':username[0], 'email':email, 'nama_lengkap':nama_lengkap[0], 'no_hp':no_hp[0], 
-        'alamat':alamat[0], 'jabatan':jabatan[0], 'nama_atasan':nama_atasan[0], 'role':role[0]})
+        'alamat':alamat[0], 'jabatan':jabatan[0], 'nama_atasan':nama_atasan[0], 'role':role[0], 'foto_profile':data_url})

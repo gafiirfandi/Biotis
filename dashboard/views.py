@@ -31,7 +31,6 @@ def dashboard(request):
 def buatLaporan(request):
 
     if request.method == 'POST':
-        print('yey')
         # print(request.POST['imageDataURL'], False)
         kondisi_umum = request.POST['kondisi_umum']
         aktivitas_kompetitor = request.POST['aktivitas_kompetitor']
@@ -40,12 +39,6 @@ def buatLaporan(request):
         lain_lain = request.POST['lain_lain']
         deskripsi_foto = request.POST['deskripsi_foto']
         imageDataURL = request.POST['imageDataURL']
-<<<<<<< HEAD
-        print(imageDataURL)
-=======
-
->>>>>>> 923357d3f56551c23955bcc507b8f929d5729751
-        print(pathlib.Path(__file__).parent.absolute())
         current_path = pathlib.Path(__file__).parent.absolute()
         image_data = re.sub('^data:image/.+;base64,', '', imageDataURL)
         im1 = Image.open(BytesIO(base64.b64decode(image_data)))
