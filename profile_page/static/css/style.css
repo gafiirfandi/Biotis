@@ -6,7 +6,16 @@ html,body{
   background:#fdfdfd;
   height: 100%;
   width: 100%;
+  overflow: hidden;
   
+}
+
+.card{
+    align-items: center;
+}
+
+.container{
+    padding-top: 20px;
 }
 
 .pageeditprofile{
@@ -65,6 +74,7 @@ nav{
     background: rgb(244, 244, 244) ;
 }
 
+
 .w3-round{
     border-radius: 50%;
     max-width: 100px;
@@ -72,6 +82,10 @@ nav{
 
     margin-left: 2em;
 
+}
+
+.picture-src{
+    max-width: 50px;
 }
 
 .a:hover {
