@@ -6,26 +6,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter&family=Noto+Sans&display=swap');
 
 html,body{
-    background: white;
     font-family: 'Rubik', sans-serif;
     height:100%;
     width: 100%;
 }
 
-.container-fluid{
-    height: 100%;
-    width: 100%;
+.buatlaporan{
+    background: rgba(241, 250, 245, 1);
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
-.mainRow {
-    height: 100%;
-    width: 100%;
-    margin: 0;
+textarea{
+    align-items: center;
+}
+
+.formfield{
+    display: block;
 }
 
 .form-control{
     text-align:center;
     width:100%;
+    
 }
   
 .form-control input{
@@ -46,7 +49,7 @@ html,body{
     background:rgba(255,255,255,0.9);
 }
 
-.form-controlForm{
+.form-control Form{
     color: white;
     height: 100%;
     letter-spacing: 5px;
@@ -82,4 +85,36 @@ html,body{
 label{
     justify-content: center;
     display: flex;
+}
+
+.wrapper{
+    text-align: center;
+}
+
+.buttonlaporan {
+    color: white;
+    background-color: #00AD33;
+    transition: 50ms;
+    border-radius: 10px;
+    padding: 9px;
+    border: none;
+}
+  
+.buttonlaporan:hover {
+background-color: #00AD33;
+color: black;
+}
+
+#input_cam{
+    color: white;
+    background-color: #00AD33;
+    transition: 50ms;
+    border-radius: 10px;
+    padding: 9px;
+    border: none;
+}
+
+#input_cam:hover {
+    background-color: #00AD33;
+    color: black;
 }

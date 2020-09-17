@@ -8,13 +8,15 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/buatLaporan.css' %}">
-<div class="container justify-content-center align-items-center">
+
+<div class="main buatlaporan">
+
+    <div class="container justify-content-center align-items-center">
         <h1 class="list_title">Buat Laporan</h1>
-        <div class="row justify-content-center">
-            <div class="buatLaporan">      
+            <div class="row justify-content-center formfield">
                 <form method="POST" action="{% url 'dashboard:buatLaporan' %}" enctype="multipart/form-data">
                 {% csrf_token %}
-                    <div class="buatLaporanForm" id="formDiv">
+                    
                         {{ form.as_p }}
                         <select name="input_camera" id="input_cam" disabled>
                             <option value="environment">Rear</option>
@@ -27,21 +29,27 @@
                         </div>
 
                         <!-- Trigger canvas web API -->
-                        <div class="controller">
-                            <button id="snap">Capture</button>
+                        <div class="wrapper">
+                            <div class="controller">
+                                <button class="buttonlaporan">Ambil Foto</button>
+                            </div>
                         </div>
 
                         <!-- Webcam video snapshot -->
                         <canvas id="canvas" name="image" width="1280" height="720"></canvas>
-                    </div>
+
                     <br>
-                    <input type="submit" value="Create" name="tombol" class="buttonlaporan">
+                    <div class="container justify-content-center align-items-center">
+                        <div class="wrapper">
+                            <input type="submit" value="Buat Laporan" name="tombol" class="buttonlaporan">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
         <br>
         <br>
+    </div>
 
-</div>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock content %}

@@ -2,13 +2,21 @@
 
 
 .detailLaporanbody{
-    background: white;
+    background: rgba(241, 250, 245, 1);
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .dashboardutama{
     background: rgba(241, 250, 245, 1);
     padding-left: 30px;
     padding-right: 30px;
+    padding-bottom: 80px;
+}
+
+.row1{
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .judul1{
@@ -121,6 +129,9 @@ text-align: center;
     color: #333333;
 }
 
+.wrapper{
+    text-align: center;
+}
 
 .buttonlaporan {
     color: white;
