@@ -8,7 +8,10 @@
 <html>
     
 <head>
-    <title>My Awesome Login Page</title>
+    <title>BIOTIS
+        Profile
+    </title>
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -71,7 +74,7 @@
             <div class="container ">
                 <div class="picture-container">
                     <div class="picture">
-                        {% if foto_profile %}
+                        {% if data_url %}
                         <img src="{{foto_profile}}" class="picture-src" id="wizardPicturePreview" title="">
                         {% else %}
                         <img src="{% static 'img/person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
