@@ -58,7 +58,11 @@
                         <div class="card bg-white">
                             <div class="card-title my-5">
                                 <div class="media">
-                                    <img src="{{foto_profile}}" width="200" height="200" class=" img-fluid rounded-top mx-5 d-none d-lg-block" >
+                                    {% if data_url %}
+                                    <img src="{{foto_profile}}" class="picture-src" id="wizardPicturePreview" title="">
+                                    {% else %}
+                                    <img src="{% static 'img/person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
+                                    {% endif %}
                                     <div class="media-body">
                                         <h3 class="display-4 ml-5" id="judul"> Profil </h3>
                                         <p class="text-muted ml-5"> Karyawan / Admin </p>
