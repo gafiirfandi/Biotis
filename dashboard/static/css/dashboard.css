@@ -5,11 +5,12 @@
 }
 
 .dashboardutama{
-    background: white;
-
+    background: rgba(241, 250, 245, 1);
+    padding-left: 30px;
+    padding-right: 30px;
 }
+
 .judul1{
-    margin-top: 50px;
     font-family: Rubik;
     font-style: normal;
     font-weight: 500;
@@ -39,7 +40,9 @@
 
 }
 
-
+.card1{
+    border-radius: 15px;
+}
 
 .card-link{
     font-family: Rubik;
@@ -47,10 +50,15 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
-
-
     color: #00AD33;
 }
+
+.rowCard{
+    column-gap: 20px;
+}
+
+
+
 .karyawan{
     font-family: Rubik;
     font-style: normal;
