@@ -10,12 +10,16 @@ html,body{
   
 }
 
-.card{
-    align-items: center;
+.profilePage{
+    background: rgba(241, 250, 245, 1);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 80px;
+    padding-top: 50px;
 }
 
-.container{
-    padding-top: 20px;
+.card{
+    align-items: center;
 }
 
 .pageeditprofile{
@@ -23,16 +27,14 @@ html,body{
 
 }
 
-
-
 .deskripsiprofile{
     padding-top: 50px;
 }
 
 .tempatbutton{
     padding-top: 50px;
+    white-space: nowrap;
 }
-
 
 ::selection {
     color: white;
@@ -62,18 +64,6 @@ html,body{
 
 }
 
-.nav-link{
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: bold;
-    background:rgb(244, 244, 244) ;
-    color: rgb(242, 200, 79);
-}
-  
-nav{
-    background: rgb(244, 244, 244) ;
-}
-
 
 .w3-round{
     border-radius: 50%;
@@ -87,27 +77,6 @@ nav{
 .picture-src{
     max-width: 50px;
 }
-
-.a:hover {
-    color: rgb(244, 199, 72);
-  }
-
-  nav a::before {
-    content: '';
-    display: block;
-    height: 5px;
-    background: rgb(243, 201, 83);
-    position: absolute;
-    bottom: -.75em;
-    left: 0;
-    right: 0;
-    transform: scale(0, 1);
-    transition: transform ease-in-out 250ms;
-  }
-  
-  nav a:hover::before {
-    transform: scale(1,1);
-  }
 
 
 /* deskripsi profil page*/

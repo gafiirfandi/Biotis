@@ -1,71 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+
 html,body{
-    font-family: 'Rubik', sans-serif;
-    background:white;
-    height: 100%;
-    width: 100%;
+  font-family: 'Rubik', sans-serif;
+  background:#fdfdfd;
+  height: 100%;
+  width: 100%;
+  
+}
+
+
+::selection {
+    color: white;
+    background: #2AA153;
   }
 
 
-  .sr-only{
-    background:rgb(244, 244, 244) ;
-}
 
-.dropdown-menu{
-    background:rgb(244, 244, 244) ;
+a {color: #303030;}
+a:hover {color: #303030; text-decoration: none;}
 
+.picture-container{
+    position: relative;
+    cursor: pointer;
+    text-align: center;
 }
-
-.nav-link{
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: bold;
-    background:rgb(244, 244, 244) ;
-    color: rgb(242, 200, 79);
-}
-  
-nav{
-    background: rgb(244, 244, 244) ;
-}
-
-.w3-round{
+.picture{
+    width: 166px;
+    height: 166px;
+    background-color: #999999;
+    border: 4px solid #CCCCCC;
+    color: #FFFFFF;
     border-radius: 50%;
-    max-width: 100px;
-    height: auto;
-
-    margin-left: 2em;
-
+    margin: 0px auto;
+    overflow: hidden;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+}
+.picture:hover{
+    border-color: #2ca8ff;
+}
+.content.ct-wizard-green .picture:hover{
+    border-color: #05ae0e;
+}
+.content.ct-wizard-blue .picture:hover{
+    border-color: #3472f7;
+}
+.content.ct-wizard-orange .picture:hover{
+    border-color: #ff9500;
+}
+.content.ct-wizard-red .picture:hover{
+    border-color: #ff3b30;
+}
+.picture input[type="file"] {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0 !important;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
-.a:hover {
-    color: rgb(244, 199, 72);
-  }
-
-  nav a::before {
-    content: '';
-    display: block;
-    height: 5px;
-    background: rgb(243, 201, 83);
-    position: absolute;
-    bottom: -.75em;
-    left: 0;
-    right: 0;
-    transform: scale(0, 1);
-    transition: transform ease-in-out 250ms;
-  }
-  
-  nav a:hover::before {
-    transform: scale(1,1);
-  }
-
-
-/* deskripsi profil page*/
-#judul{
-font-family: Rubik;
-font-style: normal;
-font-weight: bold;
-
-
-
-
-color: #000000;
+.picture-src{
+    width: 100%;
+    
 }
