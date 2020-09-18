@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+
+html,body{
+  font-family: 'Rubik', sans-serif;
+  background:#fdfdfd;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  
+}
+
+.profilePage{
+    background: rgba(241, 250, 245, 1);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 80px;
+    padding-top: 50px;
+}
+
+.pageeditprofile{
+    background: rgba(241, 250, 245, 1);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 80px;
+
+}
+
+.card{
+    align-items: center;
+}
+
+.pageeditprofile{
+    font-family: 'Rubik', sans-serif;
+
+}
+
+.deskripsiprofile{
+    padding-top: 50px;
+}
+
+.tempatbutton{
+    padding-top: 50px;
+    white-space: nowrap;
+}
+
+::selection {
+    color: white;
+    background: #2AA153;
+  }
+
+
+
+#settingimg{
+    overflow: hidden;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+
+}
+
+#settingimg:hover{
+    border-color: #2ca8ff;
+}
+
+/* navbar setting css  */
+.sr-only{
+    background:rgb(244, 244, 244) ;
+}
+
+.dropdown-menu{
+    background:rgb(244, 244, 244) ;
+
+}
+
+
+.w3-round{
+    border-radius: 50%;
+    max-width: 100px;
+    height: auto;
+
+    margin-left: 2em;
+
+}
+
+.picture-src{
+    max-width: 50px;
+}
+
+
+/* deskripsi profil page*/
+#judul{
+font-family: Rubik;
+font-style: normal;
+font-weight: bold;
+
+
+
+
+color: #000000;
+}
+
+/* deskripsi edit profile page*/
+
+.box{
+    background: #fdfdfd;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+.judul1{
+    margin-top: 50px;
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+
+.tempattable{
+    padding-top: 50px;
+}
+
+.table-responsive{
+    /* border-style: solid; */
+    border: 1px solid #ccc!important;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+}
+
+#about{
+    margin-top: 10px;
+}
