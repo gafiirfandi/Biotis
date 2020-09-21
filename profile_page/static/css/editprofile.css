@@ -3,11 +3,8 @@
 
 html,body{
   font-family: 'Rubik', sans-serif;
-  background:#fdfdfd;
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  
 }
 
 .profilePage{
