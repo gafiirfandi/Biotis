@@ -9,6 +9,7 @@ app_name = 'dashboard'
 
 urlpatterns = [
     path('', dashboard, name='dashboard'),
-    path('detailLaporan', detailLaporan, name='detailLaporan'),
+    path('detailLaporan/<int:id>', detailLaporan, name='detailLaporan'),
     path('buatLaporan', buatLaporan, name="buatLaporan"),
 ]
+

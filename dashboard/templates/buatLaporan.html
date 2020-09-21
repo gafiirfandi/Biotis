@@ -14,7 +14,7 @@
     <div class="container justify-content-center align-items-center">
         <h1 class="list_title">Buat Laporan</h1>
             <div class="row justify-content-center formfield">
-                <form method="POST" action="{% url 'dashboard:buatLaporan' %}" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'dashboard:buatLaporan' %}" enctype="multipart/form-data" id="formDiv">
                 {% csrf_token %}
                     
                         {{ form.as_p }}
@@ -31,7 +31,7 @@
                         <!-- Trigger canvas web API -->
                         <div class="wrapper">
                             <div class="controller">
-                                <button class="buttonlaporan">Ambil Foto</button>
+                                <button class="buttonlaporan" id="snap">Ambil Foto</button>
                             </div>
                         </div>
 
