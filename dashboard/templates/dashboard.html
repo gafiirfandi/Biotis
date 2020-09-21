@@ -87,7 +87,7 @@
 
   <!--Table body-->
   <tbody>
-    <tr >
+    <tr>
       <th scope="row">pict</th>
       <td>Minggu, 2 Aug 2020</td>
       <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
@@ -97,56 +97,19 @@
       <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
       <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
     </tr>
+
+    {% for laporan in data %}
     <tr>
-      <th scope="row">pict</th>
-      <td>Senin, 3 Aug 2020</td>
-      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
-      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
-      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
-      <td>Pupuk 82</td>
-      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
+      <th scope="row"><img class='foto_thumbnail' src={% static laporan.foto %}/></th>
+      <td>{{laporan.waktu}}</td>
+      <td>{{laporan.kondisi}}</td>
+      <td>{{laporan.kompetitor}}</td>
+      <td>{{laporan.laporan}}</td>
+      <td>{{laporan.fokus_produk}}</td>
+      <td>{{laporan.lain_lain}}</td>
       <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
     </tr>
-    <tr>
-      <th scope="row">pict</th>
-      <td>Selasa, 4 Aug 2020</td>
-      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
-      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
-      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
-      <td>Pupuk 82</td>
-      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
-      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
-    </tr>
-    <tr>
-      <th scope="row">pict</th>
-      <td>Rabu, 5 Aug 2020</td>
-      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
-      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
-      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
-      <td>Pupuk 82</td>
-      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
-      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
-    </tr>
-    <tr>
-      <th scope="row">pict</th>
-      <td>Kamis, 6 Aug 2020</td>
-      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
-      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
-      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
-      <td>Pupuk 82</td>
-      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
-      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
-    </tr>
-    <tr>
-      <th scope="row">pict</th>
-      <td>Jumat, 7 Aug 2020</td>
-      <td>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</td>
-      <td>PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</td>
-      <td>Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan....</td>
-      <td>Pupuk 82</td>
-      <td>Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun...</td>
-      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
-    </tr>
+    {% endfor %}
   </tbody>
   <!--Table body-->
 

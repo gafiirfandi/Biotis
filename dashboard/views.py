@@ -11,6 +11,8 @@ from io import BytesIO
 import base64
 import re
 import pathlib
+from django.conf import settings
+
 
 
 
@@ -26,7 +28,41 @@ def dashboard(request):
     else:
         cursor = connection.cursor()
         
-        return render(request, 'dashboard.html')
+        cursor.execute('SELECT path_foto from laporan;')
+        foto = cursor.fetchall()
+
+        cursor.execute('SELECT waktu from laporan;')
+        waktu = cursor.fetchall()
+
+        cursor.execute('SELECT kondisi from laporan;')
+        kondisi = cursor.fetchall()
+    
+        cursor.execute('SELECT kompetitor from laporan;')
+        kompetitor = cursor.fetchall()
+
+        cursor.execute('SELECT laporan from laporan;')
+        laporan = cursor.fetchall()
+
+        cursor.execute('SELECT fokus_produk from laporan;')
+        fokus_produk = cursor.fetchall()
+
+        cursor.execute('SELECT other from laporan;')
+        lain_lain = cursor.fetchall()
+
+        cursor.execute('SELECT count(*) from laporan;')
+        size = cursor.fetchone()[0]
+
+        data = []
+
+        for i in range(size):
+            data.append({'foto': foto[i][0], 'waktu': waktu[i][0], 'kondisi': kondisi[i][0], 'kompetitor': kompetitor[i][0], 'laporan': laporan[i][0], 'fokus_produk': fokus_produk[i][0], 'lain_lain':lain_lain[i][0]})
+
+        print(data)
+
+        print(30* '-')
+        
+                    
+        return render(request, 'dashboard.html', {'data': data})
 
 def buatLaporan(request):
 
@@ -39,16 +75,23 @@ def buatLaporan(request):
         lain_lain = request.POST['lain_lain']
         deskripsi_foto = request.POST['deskripsi_foto']
         imageDataURL = request.POST['imageDataURL']
-        current_path = pathlib.Path(__file__).parent.absolute()
+        # current_path = pathlib.Path(__file__).parent.absolute()
+        current_path = settings.BASE_DIR
+        # print(current_path)
         image_data = re.sub('^data:image/.+;base64,', '', imageDataURL)
         im1 = Image.open(BytesIO(base64.b64decode(image_data)))
 
-        laporan_path = '/static/img/user' # {email}/{date}/laporan1.jpg
+        laporan_path = '/staticfiles/img/user' # {email}/{date}/laporan1.jpg
+        # laporan_path = 'img/user'
         email = request.session['email']
 
         cursor = connection.cursor()
         cursor.execute("SELECT max(id_file) FROM laporan;")
         id_file = cursor.fetchone()[0]
+
+        cursor.execute("SELECT now();")
+        waktu = cursor.fetchone()[0]
+
         # print('id_file' + str(id_file))
         if id_file is None:
             id_file = 1
@@ -61,14 +104,16 @@ def buatLaporan(request):
         path += '/laporan'
         if not(os.path.isdir(path)):
             os.mkdir(path)
-        path += '/' + str(date.today())
+        date_today = date.today()
+        path += '/' + str(date_today)
         if not(os.path.isdir(path)):
             os.mkdir(path)
         path += '/laporan' +str(id_file) + '.jpg'
         print(path)
         im1 = im1.save(path)
+        static_path = 'img/user' + '/' + email + '/laporan' + '/' + str(date_today) + '/laporan' +str(id_file) + '.jpg'
 
-        cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+path+"');")
+        cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+static_path+"', '"+str(waktu)+"');")
         
         
         

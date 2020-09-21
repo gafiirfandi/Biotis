@@ -87,8 +87,8 @@ def editprofile(request):
 
             data_url_bool = False
             if foto_profile[0] != None:
-                img = Image.open(foto_profile[0])
-                data_url = pil2datauri(img)
+                
+                data_url = foto_profile[0]
                 data_url_bool = True
             else:
                 data_url = ""
