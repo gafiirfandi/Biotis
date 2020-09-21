@@ -56,10 +56,6 @@ def dashboard(request):
 
         for i in range(size):
             data.append({'foto': foto[i][0], 'waktu': waktu[i][0], 'kondisi': kondisi[i][0], 'kompetitor': kompetitor[i][0], 'laporan': laporan[i][0], 'fokus_produk': fokus_produk[i][0], 'lain_lain':lain_lain[i][0]})
-
-        print(data)
-
-        print(30* '-')
         
                     
         return render(request, 'dashboard.html', {'data': data})
@@ -109,7 +105,6 @@ def buatLaporan(request):
         if not(os.path.isdir(path)):
             os.mkdir(path)
         path += '/laporan' +str(id_file) + '.jpg'
-        print(path)
         im1 = im1.save(path)
         static_path = 'img/user' + '/' + email + '/laporan' + '/' + str(date_today) + '/laporan' +str(id_file) + '.jpg'
 
