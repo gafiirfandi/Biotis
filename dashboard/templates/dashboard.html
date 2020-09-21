@@ -102,7 +102,7 @@
       <td>{{laporan.laporan}}</td>
       <td>{{laporan.fokus_produk}}</td>
       <td>{{laporan.lain_lain}}</td>
-      <td ><a href="/dashboard/detailLaporan" class="card-link">Lihat Lebih >>  </a></td>
+      <td ><a href="{% url 'dashboard:detailLaporan' id=laporan.id_file %}" class="card-link">Lihat Lebih >>  </a></td>
     </tr>
     {% endfor %}
   </tbody>

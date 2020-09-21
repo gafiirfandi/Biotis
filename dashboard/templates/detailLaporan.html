@@ -17,11 +17,11 @@
 <div class="container">
 
     <div class="p-2 judul1">
-      <h2>Nama Karyawan</h2>
+      <h2>{{ username }}</h2>
     </div>
   <div class="p-2 tanggal1" >  
-    <p>15:45</p>
-    <p style="margin-top: -15px;">Minggu, 2 Agustus 2020</p>
+    <p>{{time}}</p>
+    <p style="margin-top: -15px;">{{date}}</p>
   </div>
   <div class="p-2 "></div>
   <div class="p-2 "></div>
@@ -35,7 +35,7 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="http://via.placeholder.com/250x250" alt="First slide">
+                <img src="{% static data.path_foto %}" alt="First slide">
             </div>
             <div class="carousel-item">
                 <img src="http://via.placeholder.com/250x250" alt="Second slide">
@@ -69,7 +69,7 @@
         <p class="judulbox">Kondisi Umum :</p>
         <div class="card bg-light">
           <div class="card-body detail ">
-              <p>Melakukan penyortiran 20 buah pupuk ke kontainer B123GH</p>
+              <p>{{ data.kondisi }}</p>
             <p class="card-text"></p>
           </div>
         </div>
@@ -78,7 +78,7 @@
         <div class="card bg-light">
           <div class="card-body detail ">
             
-            <p class="card-text">PT Bangun Karya sedang membangun kontainer untuk menampung bantuan dari pemerintah sebanyak 190 ton fertilizer</p>
+            <p class="card-text">{{ data.kompetitor }}</p>
           </div>
         </div>
 
@@ -86,7 +86,7 @@
         <div class="card bg-light">
           <div class="card-body detail">
             
-            <p class="card-text">Penyortiran sudah dilakukan sampai tahap 7, menunggu kepastian dari Pak Eka atas kerja sama yang dia lakukan dengan PT Angkasa Pura mengenai penyediaan lahan dan pupuk</p>
+            <p class="card-text">{{ data.laporan }}</p>
           </div>
         </div>
 
@@ -94,7 +94,7 @@
         <div class="card bg-light">
           <div class="card-body detail">
             
-            <p class="card-text">Pupuk 82</p>
+            <p class="card-text">{{ data.fokus_produk }}</p>
           </div>
         </div>
 
@@ -102,7 +102,7 @@
         <div class="card bg-light">
           <div class="card-body detail">
             
-            <p class="card-text">Saran dari anak-anak Pak Fendi, kalau perlu dari pusat harus udah bisa cairin dana buat bikin lahan baru. Soalnya PT Bangun Karya lagi buka lahan besar-besaran di Jambi</p>
+            <p class="card-text">{{ data.other }}</p>
           </div>
         </div>
 

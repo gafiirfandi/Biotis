@@ -12,6 +12,7 @@ import base64
 import re
 import pathlib
 from django.conf import settings
+from datetime import datetime
 
 
 
@@ -49,13 +50,16 @@ def dashboard(request):
         cursor.execute('SELECT other from laporan;')
         lain_lain = cursor.fetchall()
 
+        cursor.execute('SELECT id_file from laporan;')
+        id_file = cursor.fetchall()
+
         cursor.execute('SELECT count(*) from laporan;')
         size = cursor.fetchone()[0]
 
         data = []
 
         for i in range(size):
-            data.append({'foto': foto[i][0], 'waktu': waktu[i][0], 'kondisi': kondisi[i][0], 'kompetitor': kompetitor[i][0], 'laporan': laporan[i][0], 'fokus_produk': fokus_produk[i][0], 'lain_lain':lain_lain[i][0]})
+            data.append({'foto': foto[i][0], 'waktu': waktu[i][0], 'kondisi': kondisi[i][0], 'kompetitor': kompetitor[i][0], 'laporan': laporan[i][0], 'fokus_produk': fokus_produk[i][0], 'lain_lain':lain_lain[i][0], 'id_file': id_file[i][0]})
         
                     
         return render(request, 'dashboard.html', {'data': data})
@@ -76,8 +80,9 @@ def buatLaporan(request):
         # print(current_path)
         image_data = re.sub('^data:image/.+;base64,', '', imageDataURL)
         im1 = Image.open(BytesIO(base64.b64decode(image_data)))
+        print(current_path)
 
-        laporan_path = '/staticfiles/img/user' # {email}/{date}/laporan1.jpg
+        laporan_path = '/dashboard/static/img/user' # {email}/{date}/laporan1.jpg
         # laporan_path = 'img/user'
         email = request.session['email']
 
@@ -85,7 +90,7 @@ def buatLaporan(request):
         cursor.execute("SELECT max(id_file) FROM laporan;")
         id_file = cursor.fetchone()[0]
 
-        cursor.execute("SELECT now();")
+        cursor.execute("SELECT now() AT TIME ZONE 'Asia/Jakarta';")
         waktu = cursor.fetchone()[0]
 
         # print('id_file' + str(id_file))
@@ -113,6 +118,7 @@ def buatLaporan(request):
         
         
     form = buatLaporanForm()
+    print(settings.BASE_DIR)
 	
     args = {
         'form': form
@@ -120,7 +126,45 @@ def buatLaporan(request):
     return render(request, "buatLaporan.html", args)
 
 
-def detailLaporan(request):
-    return render(request, 'detailLaporan.html')
+def detailLaporan(request, id):
+
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM laporan WHERE id_file='" + str(id) + "';")
+
+    detail_data = namedtuplefetchall(cursor)[0]
+
+    cursor.execute("SELECT email FROM laporan WHERE id_file='" + str(id) + "';")
+    email = cursor.fetchone()[0]
+
+    cursor.execute("SELECT username FROM pengguna WHERE email='" + email + "';")
+    username = cursor.fetchone()[0]
+
+    cursor.execute("SELECT waktu from laporan;")
+    oldate = cursor.fetchall()
+
+    print(oldate)
+
+    print(detail_data[9])
+    timestamptz = detail_data[9]
+    # 2020-09-21 07:21:12.232818+00:00
+    time = timestamptz.strftime("%H:%M")
+
+
+    date = timestamptz.strftime("%A, %d %B %Y")
+
+
+    # format_time = '%y-%m-%d %H:%M:%S.%f'
+    # d = datetime.datetime.strptime(s, e)
+    # print(datetime.datetime.strftime(d, '%Y-%m-%d %H:%M:%S:%f'))
+
+    # time = datetime.strptime(str(detail_data[9]), "%Y/%m/%d %H:%M:%S.%f")
+    # print(time)
+
+    # date = datetime.strptime(str(detail_data[9]), "%A, %e %B %Y")
+    # print(date)
+
+
+
+    return render(request, 'detailLaporan.html', {'data': detail_data, 'username': username, 'date': date, 'time': time})
 
 
