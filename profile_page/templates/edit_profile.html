@@ -1,75 +1,31 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html>
-    
-<head>
-    <title>BIOTIS
-        Profile
-    </title>
-
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
-
-</head>
-<!--Coded with love by Mutiullah Samim-->
-
-
-<body>
-    <nav class="navbar navbar-expand-lg ">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-          <img  src="{% static 'img/biotis.jpg' %}" class="w3-round" alt=""> 
-        </a>
-    <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
-    <div class="dropdown-menu">
-    <a class="nav-link" href="#">{{ username }}
-                <span class="sr-only">(current)</span>
-              </a>
-
-    </div>
-    {% comment %} <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">{{ username }}
-                <span class="sr-only">(current)</span>
-              </a>
-        </li>
-        
-      </ul>
-    </div> {% endcomment %}
-  </div>
-</nav>
-
-
- 
 
 
 
-    <div class="d-flex flex-column">
-        <div class="p-2 judul1">
-            <h1>Edit Profile</h1>
-        </div>   
-    </div>
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/editprofile.css' %}">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous"> -->
 
 
         <div class="col-md-12 pageeditprofile">
             <!-- <h4>Django CRUD (Create Read Update Delete) Example - Bootstrap Datatable</h4>  -->
+
+            <div class="row justify-content-center">
+                <div class="p-2 judul1">
+                    <h1>Edit Profile</h1>
+                </div>   
+            </div>
         
             <form method="POST" class="post-form" action="{% url 'profile:edit' %}" enctype="multipart/form-data">
             {% csrf_token %}
-        
-            
 
             <div class="container ">
                 <div class="picture-container">
@@ -121,10 +77,10 @@
                                                 </tr>
 
                         </table>
+                    </div>
                         <div class="d-flex justify-content-center mt-3 login_container">
-                        <button type="submit" class="btn btn-success mt-1">Submit</button>
-                    </div>
-                    </div>
+                            <button type="submit" class="btn btn-success mt-1">Submit</button>
+                        </div>
                 </div>    
             </form>
         </div>
@@ -164,19 +120,12 @@
                 console.log('input.files[0]', input.files[0])
                 reader.readAsDataURL(input.files[0]);
 
-
-                
-            
             }
-        
-       
 
         }
 
-    
     </script>
    
 </body>
-
-
 </html>
+{% endblock content %}

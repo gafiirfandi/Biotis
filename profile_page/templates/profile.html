@@ -1,55 +1,17 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 {% load static %}
-<head>
-    <meta charset="UTF-8">
-    <title>BIOTIS
-        Profile
-    </title>
-
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
-
-
-</head>
-<body>
-<nav class="navbar navbar-expand-lg ">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-         <img  src="{% static 'img/biotis.jpg' %}" class="w3-round" alt=""> 
-        </a>
-
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">{{ username }}
-                      <span class="sr-only">(current)</span>
-                    </a>
-              </li>
-              
-            </ul>
-          </div> 
-        <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="sr-only">Toggle Dropdown</span>
-          </button> 
-            <div class="dropdown-menu">
-                <a class="nav-link" href="#">{{ username }}
-                            
-                </a>
-            </div>
-   </div>
-</nav>
 
 
 
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<div class="main profilePage">
     <div id="About">
         <div class="container">
             <div class="row">
@@ -137,7 +99,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
 
 
@@ -220,4 +182,5 @@
     </script>
 </body>
 </html>
+{% endblock content %}
 
