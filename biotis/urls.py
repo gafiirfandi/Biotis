@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -23,3 +24,4 @@ urlpatterns = [
     path('', include('login.urls')),
     path('dashboard/', include(('dashboard.urls', 'dashboard'), namespace='dashboard')),
 ]
+
