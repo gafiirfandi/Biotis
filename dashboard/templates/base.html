@@ -1,3 +1,6 @@
+
+<!------ Include the above in your HEAD tag ---------->
+
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
@@ -9,7 +12,8 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+    {% block jquery %}
+    {% endblock jquery %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/buatLaporan.css' %}">
 
@@ -24,12 +28,12 @@
           <div class="row justify-items-end">
             
             <div style="width: 20px;"></div>
-            <a href="/profile" class="mybutton" style="font-size: 20px;">Iqbal<p style="color: rgb(112, 161, 39);">Admin</p></a>
+            <a href="/profile" class="mybutton" style="font-size: 20px;">{{ username }}<p style="color: rgb(112, 161, 39);">{{ role }}</p></a>
             
           </div>
         </div>
     </nav>
-    <nav></nav>
+    
 
 {% block content %}
 {% endblock %}  

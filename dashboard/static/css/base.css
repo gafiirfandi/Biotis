@@ -22,7 +22,7 @@ html,body{
 a {color: #303030;}
 a:hover {color: #303030; text-decoration: none;}
 
-.picture-container{
+/* .picture-container{
     position: relative;
     cursor: pointer;
     text-align: center;
@@ -68,4 +68,4 @@ a:hover {color: #303030; text-decoration: none;}
 .picture-src{
     width: 100%;
     
-}
+} */

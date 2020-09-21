@@ -23,11 +23,18 @@ def namedtuplefetchall(cursor):
     return [nt_result(*row) for row in cursor.fetchall()]
 
 def dashboard(request):
+    email = request.session['email']
     if 'logged_in' not in request.session or not request.session['logged_in']:
         return redirect('login:loginPage')
     else:
         cursor = connection.cursor()
         
+        cursor.execute("SELECT username from pengguna where email = '"+email+"';")
+        username = cursor.fetchone()[0]
+
+        cursor.execute("SELECT role from profile where email = '"+email+"';")
+        role = cursor.fetchone()[0]
+
         cursor.execute('SELECT path_foto from laporan;')
         foto = cursor.fetchall()
 
@@ -58,7 +65,7 @@ def dashboard(request):
             data.append({'foto': foto[i][0], 'waktu': waktu[i][0], 'kondisi': kondisi[i][0], 'kompetitor': kompetitor[i][0], 'laporan': laporan[i][0], 'fokus_produk': fokus_produk[i][0], 'lain_lain':lain_lain[i][0]})
         
                     
-        return render(request, 'dashboard.html', {'data': data})
+        return render(request, 'dashboard.html', {'data': data, 'username':username, 'role':role})
 
 def buatLaporan(request):
 
