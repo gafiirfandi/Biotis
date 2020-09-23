@@ -6,13 +6,13 @@ from django import forms
 
 
 class CreateUserForm(forms.Form):
-	email = forms.CharField(max_length = 50)
-	password = forms.CharField(widget=forms.PasswordInput)
+	email = forms.EmailField(required=True, max_length=100)
+	password = forms.CharField(required=True, widget=forms.PasswordInput, min_length=8)
 	username = forms.CharField(max_length = 20)
 
 
 class Login(forms.Form):
-	password = forms.CharField(widget=forms.PasswordInput)
+	password = forms.CharField(required=True, widget=forms.PasswordInput)
 	username = forms.CharField(max_length = 20)
 
 

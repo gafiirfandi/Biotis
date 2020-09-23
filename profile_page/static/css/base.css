@@ -17,11 +17,9 @@ html,body{
     background: #2AA153;
 }
 
-
-
 a {color: #303030;}
 a:hover {color: #303030; text-decoration: none;}
-
+/* 
 .picture-container{
     position: relative;
     cursor: pointer;
@@ -68,4 +66,4 @@ a:hover {color: #303030; text-decoration: none;}
 .picture-src{
     width: 100%;
     
-}
+} */

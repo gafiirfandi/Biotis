@@ -7,13 +7,18 @@
 {% block title %}
 {% endblock title %}
 
+{% block jquery %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock jquery %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/editprofile.css' %}">
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous"> -->
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
 
         <div class="col-md-12 pageeditprofile">
             <!-- <h4>Django CRUD (Create Read Update Delete) Example - Bootstrap Datatable</h4>  -->
@@ -31,7 +36,7 @@
                 <div class="picture-container">
                     <div class="picture">
                         {% if data_url %}
-                        <img src="{{foto_profile}}" class="picture-src" id="wizardPicturePreview" title="">
+                        <img src="{% static foto_profile %}" class="picture-src" id="wizardPicturePreview" title="">
                         {% else %}
                         <img src="{% static 'img/person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
                         {% endif %}
@@ -102,19 +107,15 @@
                 readURL(this);
                 
             });
-
-            
-
         });
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+                    $('#wizardPicturePreview').attr('src', e.target.result);
                     $('#hiddenInput').attr('value', e.target.result);
-                    
-                    
+                    console.log("ini dia", document.getElementById("hiddenInput").value)
                 }
                 console.log('reader is', reader)
                 console.log('input.files[0]', input.files[0])

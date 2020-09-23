@@ -10,6 +10,8 @@ import base64
 import re
 import pathlib
 from django.core.files.storage import default_storage
+from django.conf import settings
+
 
 
 def pil2datauri(img):
@@ -46,6 +48,8 @@ def editprofile(request):
             if not(os.path.isdir(path)):
                 os.mkdir(path)
             path += '/profile.jpg'
+
+            static_path = 'img/user/'+email+'/profile/profile.jpg'
     
             im1 = im1.save(path)
 
@@ -76,7 +80,7 @@ def editprofile(request):
                 nama_atasan = cursor.fetchone()[0]
 
             update_sql = "UPDATE profile set nama_lengkap = %s, no_hp = %s, alamat = %s, jabatan = %s, nama_atasan = %s, foto_profile = %s WHERE email = '"+email+"';"
-            record_to_update = [(nama_lengkap, no_hp, alamat, jabatan, nama_atasan, path)]
+            record_to_update = [(nama_lengkap, no_hp, alamat, jabatan, nama_atasan, static_path)]
             cursor.executemany(update_sql, record_to_update)
             
             return redirect("profile:profile")
@@ -87,14 +91,12 @@ def editprofile(request):
 
             data_url_bool = False
             if foto_profile[0] != None:
-                
-                data_url = foto_profile[0]
                 data_url_bool = True
-            else:
-                data_url = ""
+            
+                
 
             
-            return render(request, 'edit_profile.html', {'form':form, 'email':email, 'foto_profile':data_url, 'data_url':data_url_bool})
+            return render(request, 'edit_profile.html', {'form':form, 'email':email, 'foto_profile':foto_profile[0], 'data_url':data_url_bool})
 
 def profile(request):
     if 'logged_in' not in request.session or not request.session['logged_in']:
@@ -123,15 +125,8 @@ def profile(request):
         
         data_url_bool = False
         if foto_profile[0] != None:
-            img = Image.open(foto_profile[0])
-            data_url = pil2datauri(img)
             data_url_bool = True
-        else:
-            data_url = ""
-
-        
-        
-
+    
 
         return render(request, 'profile.html', {'username':username[0], 'email':email, 'nama_lengkap':nama_lengkap[0], 'no_hp':no_hp[0], 
-        'alamat':alamat[0], 'jabatan':jabatan[0], 'nama_atasan':nama_atasan[0], 'role':role[0], 'foto_profile':data_url, 'data_url':data_url_bool})
+        'alamat':alamat[0], 'jabatan':jabatan[0], 'nama_atasan':nama_atasan[0], 'role':role[0], 'foto_profile':foto_profile[0], 'data_url':data_url_bool})

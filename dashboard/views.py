@@ -13,9 +13,6 @@ import re
 import pathlib
 from django.conf import settings
 from datetime import datetime
-import time
-
-
 
 
 def namedtuplefetchall(cursor):
@@ -25,40 +22,33 @@ def namedtuplefetchall(cursor):
     return [nt_result(*row) for row in cursor.fetchall()]
 
 def dashboard(request):
-    timer = time.time()
     if 'logged_in' not in request.session or not request.session['logged_in']:    
         return redirect('login:loginPage')
     else:
         cursor = connection.cursor()
-        print(time.time() - timer)
-        print('connection built')
         if request.method == "POST":            
-            print('request called.')
-            cursor.execute('SELECT * from laporan WHERE is_reviewed = \'true\';')
-            print('cursor executed')
-            print(time.time() - timer)
+            cursor.execute('SELECT * from laporan WHERE is_reviewed = \'false\';')
         else:
-            print('request called.')
-            print(time.time() - timer)
             cursor.execute('SELECT * from laporan;')
-            print('cursor executed')
-            print(time.time() - timer)
 
-        data = namedtuplefetchall(cursor)
-        print('data fetched')
-        print(time.time() - timer)
+        data_query = namedtuplefetchall(cursor)
+        cursor.execute('SELECT count(*) from laporan;')
 
-        # cursor.execute('SELECT count(*) from laporan;')
-        # print('2nd cursor executed')
-        # print(time.time() - timer)
 
-        # size = cursor.fetchone()[0]
-        # print('size fetched and ready to go')
-        # print(time.time() - timer)
-                
-        # return render(request, 'base.html')
+        data = []
+        for item in data_query:
+            timestamptz = item[9]
+            print(timestamptz)
+            time = timestamptz.strftime("%H:%M")
+            date = timestamptz.strftime("%A, %d %b %Y")
+            print(time)
+            print(date)
+            data.append({'item': item, 'time': time, 'date': date})
+
+        print(data)
+        size = cursor.fetchone()[0]
         return render(request, 'dashboard.html', {'data': data})
-        # return render(request, 'dashboard.html')
+
 
 def buatLaporan(request):
 
@@ -110,6 +100,7 @@ def buatLaporan(request):
         static_path = 'img/user' + '/' + email + '/laporan' + '/' + str(date_today) + '/laporan' +str(id_file) + '.jpg'
 
         cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+static_path+"', '"+str(waktu)+"');")
+        return redirect('dashboard:dashboard')
         
         
         
@@ -125,6 +116,16 @@ def buatLaporan(request):
 def detailLaporan(request, id):
 
     cursor = connection.cursor()
+
+    if request.method == 'POST':
+        review_action = request.POST.get('checkbox-1', False)
+        if review_action == 'on':
+            cursor.execute("UPDATE laporan SET is_reviewed = 'true' WHERE id_file='" + str(id) + "';")
+        else:
+            cursor.execute("UPDATE laporan SET is_reviewed = 'false' WHERE id_file='" + str(id) + "';")
+        
+
+    
     cursor.execute("SELECT * FROM laporan WHERE id_file='" + str(id) + "';")
 
     detail_data = namedtuplefetchall(cursor)[0]
@@ -135,31 +136,9 @@ def detailLaporan(request, id):
     cursor.execute("SELECT username FROM pengguna WHERE email='" + email + "';")
     username = cursor.fetchone()[0]
 
-    cursor.execute("SELECT waktu from laporan;")
-    oldate = cursor.fetchall()
-
-    print(oldate)
-
-    print(detail_data[9])
     timestamptz = detail_data[9]
-    # 2020-09-21 07:21:12.232818+00:00
     time = timestamptz.strftime("%H:%M")
-
-
     date = timestamptz.strftime("%A, %d %B %Y")
-
-
-    # format_time = '%y-%m-%d %H:%M:%S.%f'
-    # d = datetime.datetime.strptime(s, e)
-    # print(datetime.datetime.strftime(d, '%Y-%m-%d %H:%M:%S:%f'))
-
-    # time = datetime.strptime(str(detail_data[9]), "%Y/%m/%d %H:%M:%S.%f")
-    # print(time)
-
-    # date = datetime.strptime(str(detail_data[9]), "%A, %e %B %Y")
-    # print(date)
-
-
 
     return render(request, 'detailLaporan.html', {'data': detail_data, 'username': username, 'date': date, 'time': time})
 

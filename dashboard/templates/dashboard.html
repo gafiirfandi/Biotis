@@ -48,8 +48,8 @@
 
     <div class="p-2 ">
 
-        <div class="input-group search "  style="width: 30%;">
-          <input type="text" class="form-control" placeholder="Search this blog">
+        <div class="input-group search "  style="width: 50%;">
+          <input type="text" class="form-control" placeholder="Search this dashboard">
           <div class="input-group-append">
             <button class="btn btn-secondary" type="button" style="background: #00AD33;" >
               <i class="fa fa-search"></i>
@@ -98,14 +98,14 @@
 
     {% for laporan in data %}
     <tr>
-      <th scope="row"><img class='foto_thumbnail' src={% static laporan.path_foto %}/></th>
-      <td>{{laporan.waktu}}</td>
-      <td>{{laporan.kondisi}}</td>
-      <td>{{laporan.kompetitor}}</td>
-      <td>{{laporan.laporan}}</td>
-      <td>{{laporan.fokus_produk}}</td>
-      <td>{{laporan.other}}</td>
-      <td ><a href="{% url 'dashboard:detailLaporan' id=laporan.id_file %}" class="card-link">Lihat Lebih >>  </a></td>
+      <th scope="row"><img class='foto_thumbnail' src={% static laporan.item.path_foto %}/></th>
+      <td>{{laporan.date}}<br>{{laporan.time}}</td>
+      <td>{{laporan.item.kondisi}}</td>
+      <td>{{laporan.item.kompetitor}}</td>
+      <td>{{laporan.item.laporan}}</td>
+      <td>{{laporan.item.fokus_produk}}</td>
+      <td>{{laporan.item.other}}</td>
+      <td ><a href="{% url 'dashboard:detailLaporan' id=laporan.item.id_file %}" class="card-link">Lihat Lebih >>  </a></td>
     </tr>
     {% endfor %}
   </tbody>
@@ -117,7 +117,7 @@
 
 
 
-<div class="container justify-content-center align-items-center">    
+<div class="row justify-content-center align-items-center">    
     <br>
      <br>
     <a href="/dashboard/buatLaporan" class="buttonlaporan">Buat Laporan</a>
