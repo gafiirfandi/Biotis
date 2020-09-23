@@ -118,3 +118,7 @@ color: black;
     background-color: #00AD33;
     color: black;
 }
+
+.canvas-image {
+    margin-bottom: 30px !important;
+}

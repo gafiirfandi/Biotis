@@ -60,48 +60,90 @@ def buatLaporan(request):
         fokus_produk = request.POST['fokus_produk']
         lain_lain = request.POST['lain_lain']
         deskripsi_foto = request.POST['deskripsi_foto']
-        imageDataURL = request.POST['imageDataURL']
+        imageDataURL = request.POST['imageDataURL1']
+        imageDataURL2 = request.POST.get('imageDataURL2', False)
+        imageDataURL3 = request.POST.get('imageDataURL3', False)
+        imageDataURL4 = request.POST.get('imageDataURL4', False)
+        imageDataURL5 = request.POST.get('imageDataURL5', False)
+
         # current_path = pathlib.Path(__file__).parent.absolute()
         current_path = settings.BASE_DIR
         # print(current_path)
+        image_list = []
         image_data = re.sub('^data:image/.+;base64,', '', imageDataURL)
         im1 = Image.open(BytesIO(base64.b64decode(image_data)))
+        image_list.append(im1)
+
+        if imageDataURL2:
+            image_decode = re.sub('^data:image/.+;base64,', '', imageDataURL2)
+            im2 = Image.open(BytesIO(base64.b64decode(image_decode)))
+            image_list.append(im2)
+        if imageDataURL3:
+            image_decode = re.sub('^data:image/.+;base64,', '', imageDataURL3)
+            im3 = Image.open(BytesIO(base64.b64decode(image_decode)))
+            image_list.append(im3)
+        if imageDataURL4:
+            image_decode = re.sub('^data:image/.+;base64,', '', imageDataURL4)
+            im4 = Image.open(BytesIO(base64.b64decode(image_decode)))
+            image_list.append(im4)
+        if imageDataURL5:
+            image_decode = re.sub('^data:image/.+;base64,', '', imageDataURL5)
+            im5 = Image.open(BytesIO(base64.b64decode(image_decode)))
+            image_list.append(im5)
+        
         print(current_path)
 
         laporan_path = '/dashboard/static/img/user' # {email}/{date}/laporan1.jpg
-        # laporan_path = 'img/user'
         email = request.session['email']
 
         cursor = connection.cursor()
-        cursor.execute("SELECT max(id_file) FROM laporan;")
-        id_file = cursor.fetchone()[0]
-
         cursor.execute("SELECT now() AT TIME ZONE 'Asia/Jakarta';")
         waktu = cursor.fetchone()[0]
+        temp_static_path = []
+        for i in range(len(image_list)):
 
-        # print('id_file' + str(id_file))
+            cursor.execute("SELECT max(id_file) FROM laporan;")
+            id_file = cursor.fetchone()[0]
+
+            if id_file is None:
+                id_file = 1
+            else:
+                id_file = id_file + 1 + i
+
+            path = str(current_path) + laporan_path + '/' + email
+            if not(os.path.isdir(path)):
+                os.mkdir(path)
+            path += '/laporan'
+            if not(os.path.isdir(path)):
+                os.mkdir(path)
+            date_today = date.today()
+            path += '/' + str(date_today)
+            if not(os.path.isdir(path)):
+                os.mkdir(path)
+            path += '/laporan' +str(id_file) + '.jpg'
+            image_list[i].save(path)
+            # im1 = im1.save(path)
+            static_path = 'img/user' + '/' + email + '/laporan' + '/' + str(date_today) + '/laporan' +str(id_file) + '.jpg'
+            temp_static_path.append(static_path)
+
+        cursor.execute("SELECT max(id_file) FROM laporan;")
         if id_file is None:
             id_file = 1
         else:
-            id_file += 1
+            id_file = cursor.fetchone()[0] + 1
 
-        path = str(current_path) + laporan_path + '/' + email
-        if not(os.path.isdir(path)):
-            os.mkdir(path)
-        path += '/laporan'
-        if not(os.path.isdir(path)):
-            os.mkdir(path)
-        date_today = date.today()
-        path += '/' + str(date_today)
-        if not(os.path.isdir(path)):
-            os.mkdir(path)
-        path += '/laporan' +str(id_file) + '.jpg'
-        im1 = im1.save(path)
-        static_path = 'img/user' + '/' + email + '/laporan' + '/' + str(date_today) + '/laporan' +str(id_file) + '.jpg'
-
-        cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+static_path+"', '"+str(waktu)+"');")
-        return redirect('dashboard:dashboard')
+        if len(image_list) == 1:
+            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+str(waktu)+"');")    
+        elif len(image_list) == 2:
+            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" +str(waktu)+"');")
+        elif len(image_list) == 3:
+            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, path_foto3, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" + temp_static_path[2] + "', '" +str(waktu)+"');")
+        elif len(image_list) == 4:
+            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, path_foto3, path_foto4, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" + temp_static_path[2] + "', '" + temp_static_path[3] + "', '" +str(waktu)+"');")
+        elif len(image_list) == 5:
+            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, path_foto3, path_foto4, path_foto5, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" + temp_static_path[2] + "', '" + temp_static_path[3] + "', '" + temp_static_path[4] + "', '" +str(waktu)+"');")
         
+        return redirect('dashboard:dashboard')
         
         
     form = buatLaporanForm()

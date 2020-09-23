@@ -39,19 +39,32 @@
                 <img src="{% static data.path_foto %}" alt="First slide">
             </div>
             <div class="carousel-item">
+                {% if data.path_foto2 %}
+                <img src="{% static data.path_foto2 %}" alt="Second slide">
+                {% else %}
                 <img src="http://via.placeholder.com/250x250" alt="Second slide">
+                {% endif %}
             </div>
             <div class="carousel-item">
+                {% if data.path_foto3 %}
+                <img src="{% static data.path_foto3 %}" alt="Third slide">
+                {% else %}
                 <img src="http://via.placeholder.com/250x250" alt="Third slide">
+                {% endif %}
             </div>
             <div class="carousel-item">
+                {% if data.path_foto4 %}
+                <img src="{% static data.path_foto4 %}" alt="Fourth slide">
+                {% else %}
                 <img src="http://via.placeholder.com/250x250" alt="Fourth slide">
+                {% endif %}
             </div>
             <div class="carousel-item">
+                {% if data.path_foto5 %}
+                <img src="{% static data.path_foto5 %}" alt="Fifth slide">
+                {% else %}
                 <img src="http://via.placeholder.com/250x250" alt="Fifth slide">
-            </div>
-            <div class="carousel-item">
-                <img src="http://via.placeholder.com/250x250" alt="Sixth slide">
+                {% endif %}
             </div>
         </div>
 
