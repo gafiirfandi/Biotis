@@ -13,6 +13,7 @@ import re
 import pathlib
 from django.conf import settings
 from datetime import datetime
+import time
 
 
 
@@ -24,45 +25,40 @@ def namedtuplefetchall(cursor):
     return [nt_result(*row) for row in cursor.fetchall()]
 
 def dashboard(request):
-    if 'logged_in' not in request.session or not request.session['logged_in']:
+    timer = time.time()
+    if 'logged_in' not in request.session or not request.session['logged_in']:    
         return redirect('login:loginPage')
     else:
         cursor = connection.cursor()
-        
-        cursor.execute('SELECT path_foto from laporan;')
-        foto = cursor.fetchall()
+        print(time.time() - timer)
+        print('connection built')
+        if request.method == "POST":            
+            print('request called.')
+            cursor.execute('SELECT * from laporan WHERE is_reviewed = \'true\';')
+            print('cursor executed')
+            print(time.time() - timer)
+        else:
+            print('request called.')
+            print(time.time() - timer)
+            cursor.execute('SELECT * from laporan;')
+            print('cursor executed')
+            print(time.time() - timer)
 
-        cursor.execute('SELECT waktu from laporan;')
-        waktu = cursor.fetchall()
+        data = namedtuplefetchall(cursor)
+        print('data fetched')
+        print(time.time() - timer)
 
-        cursor.execute('SELECT kondisi from laporan;')
-        kondisi = cursor.fetchall()
-    
-        cursor.execute('SELECT kompetitor from laporan;')
-        kompetitor = cursor.fetchall()
+        # cursor.execute('SELECT count(*) from laporan;')
+        # print('2nd cursor executed')
+        # print(time.time() - timer)
 
-        cursor.execute('SELECT laporan from laporan;')
-        laporan = cursor.fetchall()
-
-        cursor.execute('SELECT fokus_produk from laporan;')
-        fokus_produk = cursor.fetchall()
-
-        cursor.execute('SELECT other from laporan;')
-        lain_lain = cursor.fetchall()
-
-        cursor.execute('SELECT id_file from laporan;')
-        id_file = cursor.fetchall()
-
-        cursor.execute('SELECT count(*) from laporan;')
-        size = cursor.fetchone()[0]
-
-        data = []
-
-        for i in range(size):
-            data.append({'foto': foto[i][0], 'waktu': waktu[i][0], 'kondisi': kondisi[i][0], 'kompetitor': kompetitor[i][0], 'laporan': laporan[i][0], 'fokus_produk': fokus_produk[i][0], 'lain_lain':lain_lain[i][0], 'id_file': id_file[i][0]})
-        
-                    
+        # size = cursor.fetchone()[0]
+        # print('size fetched and ready to go')
+        # print(time.time() - timer)
+                
+        # return render(request, 'base.html')
         return render(request, 'dashboard.html', {'data': data})
+        # return render(request, 'dashboard.html')
 
 def buatLaporan(request):
 
@@ -118,7 +114,7 @@ def buatLaporan(request):
         
         
     form = buatLaporanForm()
-    print(settings.BASE_DIR)
+    # print(settings.BASE_DIR)
 	
     args = {
         'form': form

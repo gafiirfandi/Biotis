@@ -31,15 +31,18 @@
                     </div>
               </div>
         </div>
+        <form action="{% url 'dashboard:dashboard'%}" method="post">
+        {% csrf_token %}
         <div class="card card1">
               <div class="col-sm ">
                   <div class="card-body ">
                       <h5 class="card-title">49 </h5>
                       <h6 class="card-subtitle mb-2 text-muted karyawan">Laporan Menunggu Review </h6>                
-                      <a href="#" class="card-link">Lihat selengkapnya >>  </a>
+                      <button type="submit" class="card-link" style="background-color: white; border: none; padding: 0;">Lihat selengkapnya >></button>
                     </div>
               </div>
         </div>
+        </form>
       </div>              
     </div>
 
@@ -95,13 +98,13 @@
 
     {% for laporan in data %}
     <tr>
-      <th scope="row"><img class='foto_thumbnail' src={% static laporan.foto %}/></th>
+      <th scope="row"><img class='foto_thumbnail' src={% static laporan.path_foto %}/></th>
       <td>{{laporan.waktu}}</td>
       <td>{{laporan.kondisi}}</td>
       <td>{{laporan.kompetitor}}</td>
       <td>{{laporan.laporan}}</td>
       <td>{{laporan.fokus_produk}}</td>
-      <td>{{laporan.lain_lain}}</td>
+      <td>{{laporan.other}}</td>
       <td ><a href="{% url 'dashboard:detailLaporan' id=laporan.id_file %}" class="card-link">Lihat Lebih >>  </a></td>
     </tr>
     {% endfor %}
