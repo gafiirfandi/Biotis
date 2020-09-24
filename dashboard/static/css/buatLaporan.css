@@ -122,3 +122,82 @@ color: black;
 .canvas-image {
     margin-bottom: 30px !important;
 }
+
+
+@media (max-width : 400px){
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+    .formfield{
+        width: 80%;
+      
+        text-align: center;
+    }
+}
+
+@media (max-width : 500px){
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+    .formfield{
+        width: 100%;
+      
+        text-align: center;
+    }
+}
+
+@media (min-width: 34em) {
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+}
+
+@media (min-width: 48em) {
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+}
+
+@media (min-width: 62em) {
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+}
+
+@media (min-width: 75em) {
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+}
+
+

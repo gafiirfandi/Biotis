@@ -17,15 +17,15 @@
   <div class="container row1">
 
     <div class="p-2 judul1">
-      <h1>Dashboard</h1>
+      <p class="judul1">Dashboard</p>
     </div>
     <div class="p-2 tanggal1" > Selasa,25 agustus 2020</div>
     <div class="p-2 ">
       <div class="row rowCard">
         <div class="card card1">
-              <div class="col-sm ">
+              <div class="col-sm card1space ">
                   <div class="card-body " >
-                      <h5 class="card-title">20 orang </h5>
+                      <h5 class="card-title">20 orang  </h5>
                       <h6 class="card-subtitle mb-2 text-muted karyawan">Karyawan yang belum lapor </h6>         
                       <a href="#" class="card-link">Lihat selengkapnya >>  </a>
                     </div>
@@ -33,8 +33,8 @@
         </div>
         <form action="{% url 'dashboard:dashboard'%}" method="post">
         {% csrf_token %}
-        <div class="card card1">
-              <div class="col-sm ">
+        <div class="card card2">
+              <div class="col-sm card1space ">
                   <div class="card-body ">
                       <h5 class="card-title">49 </h5>
                       <h6 class="card-subtitle mb-2 text-muted karyawan">Laporan Menunggu Review </h6>                
@@ -64,13 +64,21 @@
 
     <div class="d-flex flex-row bd-highlight mb-3">
       <div class="p-2 bd-highlight">
-        <a class="btn btn-primary colorbutton" href="#" role="button">Tanggal Terbaru</a>
+        
+        <a class="btn btn-primary colorbutton" href="#" role="button">
+         
+          <i style="font-size:15px" class="fa" id="ikon1">&#xf017;</i>
+          Tanggal Terbaru</a>
       </div>
       <div class="p-2 bd-highlight ">
-        <a class="btn btn-primary colorbutton" href="#" role="button">Tanggal Tertentu   >></a>
+        <a class="btn btn-primary colorbutton" href="#" role="button">
+          <i style="font-size:15px" class="fa" id="ikon1" >&#xf073;</i>
+          Tanggal Tertentu   >></a>
       </div>
       <div class="p-2 bd-highlight ">
-        <a class="btn btn-primary colorbutton" href="#" role="button">Karyawan    >></a>
+        <a class="btn btn-primary colorbutton" href="#" role="button">
+          <i style='font-size:15px' class='fas' id="karyawan">&#xf406;</i>
+          Karyawan    >></a>
       </div>
     </div>
   </div>
@@ -78,14 +86,15 @@
 <!--Table-->
 <table class="table table-hover table-fixed">
 
+
   <!--Table head-->
   <thead>
     <tr>
       <th>Foto</th>
       <th>Tanggal</th>
+      <th>Laporan Kegiatan</th>
       <th>Kondisi Umum</th>
       <th>Aktivitas Kompetitor</th>
-      <th>Laporan Kegiatan</th>
       <th>Fokus Produk </th>
       <th>Lain-lain</th>
       <th>Penjelasan</th>
@@ -100,11 +109,11 @@
     <tr>
       <th scope="row"><img class='foto_thumbnail' src={% static laporan.item.path_foto %}/></th>
       <td>{{laporan.date}}<br>{{laporan.time}}</td>
-      <td>{{laporan.item.kondisi}}</td>
-      <td>{{laporan.item.kompetitor}}</td>
       <td>{{laporan.item.laporan}}</td>
-      <td>{{laporan.item.fokus_produk}}</td>
-      <td>{{laporan.item.other}}</td>
+      <td class="col_1">{{laporan.item.kondisi}}</td>
+      <td class="col_2">{{laporan.item.kompetitor}}</td>
+      <td class="col_3">{{laporan.item.fokus_produk}}</td>
+      <td class="col_4">{{laporan.item.other}}</td>
       <td ><a href="{% url 'dashboard:detailLaporan' id=laporan.item.id_file %}" class="card-link">Lihat Lebih >>  </a></td>
     </tr>
     {% endfor %}
