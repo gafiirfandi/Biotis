@@ -89,6 +89,16 @@ def editprofile(request):
             cursor.execute("SELECT foto_profile FROM PROFILE WHERE email = '"+email+"';")
             foto_profile = cursor.fetchone()
 
+            cursor.execute("SELECT * FROM profile WHERE email = '"+email+"';")
+            data_user = namedtuplefetchall(cursor)[0]
+
+            form.fields['nama_lengkap'].initial = data_user.nama_lengkap
+            form.fields['no_hp'].initial = data_user.no_hp
+            form.fields['alamat'].initial = data_user.alamat
+            form.fields['jabatan'].initial = data_user.jabatan
+            form.fields['nama_atasan'].initial = data_user.nama_atasan
+
+
             data_url_bool = False
             if foto_profile[0] != None:
                 img = Image.open(foto_profile[0])
