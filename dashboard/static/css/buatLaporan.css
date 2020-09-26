@@ -10,6 +10,12 @@ html,body{
     height:100%;
     width: 100%;
 }
+.list_title{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 100px;
+}
 
 .buatlaporan{
     background: rgba(241, 250, 245, 1);
@@ -138,6 +144,9 @@ color: black;
       
         text-align: center;
     }
+    .canvas-image{
+        width: 100%;
+    }
 }
 
 @media (max-width : 500px){
@@ -154,6 +163,15 @@ color: black;
       
         text-align: center;
     }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+    }
 }
 
 @media (min-width: 34em) {
@@ -164,6 +182,15 @@ color: black;
         width: 300%;
         height: 200%;
         position: relative;
+    }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
     }
 }
 
@@ -176,6 +203,15 @@ color: black;
         height: 200%;
         position: relative;
     }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+    }
 }
 
 @media (min-width: 62em) {
@@ -186,6 +222,15 @@ color: black;
         width: 300%;
         height: 200%;
         position: relative;
+    }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
     }
 }
 
@@ -198,6 +243,34 @@ color: black;
         height: 200%;
         position: relative;
     }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+    }
 }
 
 
+@media (max-width:550px ) {
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+    }
+}

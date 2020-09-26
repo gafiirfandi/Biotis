@@ -15,7 +15,7 @@
 }
 
 .row1{
-    margin-left: 0px;
+    margin-left: -15px;
     margin-right: 0px;
 }
 
@@ -93,17 +93,18 @@
     background:#00AD33 ;
 }
 
-th , td{
-font-family: Rubik;
-font-style: normal;
-font-weight: 500;
-font-size: 14px;
-line-height: 17px;
-/* identical to box height */
-color: #828282;
 
-text-align: center;
-}
+th , td{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+    color: #828282;
+
+    text-align: center;
+    }
 
 /* Page detail Laporan */
 .judulimage{
@@ -214,7 +215,7 @@ color: black;
 	}
 } */
 @media 
-only screen and (max-width: 400px), (max-width: 780px),
+only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
     /* Force table to not be like tables anymore */
@@ -235,13 +236,14 @@ only screen and (max-width: 400px), (max-width: 780px),
         font-family: Rubik;
         font-style: normal;
         font-weight: 500;
-        font-size: 10px;
+
         line-height: 17px;
         /* identical to box height */
         color: #828282;
 
         text-align: center;
         display: block; 
+        font-size: 15px;
         
         
     }
@@ -260,6 +262,7 @@ only screen and (max-width: 400px), (max-width: 780px),
         
         border: 1px solid #ccc;
         margin-top: 20px;
+        border-radius: 20px;
     
     
     }
@@ -268,7 +271,8 @@ only screen and (max-width: 400px), (max-width: 780px),
 		/* Behave  like a "row" */
 		border-style: hidden;
 		position: relative;
-		padding-left: 50%; 
+        padding-left: 50%; 
+        
     }
     td.col_1{
         display:none;
@@ -298,6 +302,10 @@ only screen and (max-width: 400px), (max-width: 780px),
         opacity:0;
         visibility: collapse;       
     } 
+
+    td.col_0{
+        font-size: 15px;
+    }
 	
 	td:before { 
 		/* Now like a table header */
@@ -357,22 +365,20 @@ only screen and (max-width: 400px), (max-width: 780px),
     .card2{
         margin-top: 20px;
     }
-
-
-
-
-
-
-
-
-
     
+    #table-dashboard td{
+        border: none;
+        border-radius: 20px;
+    }
 }
+
+
+
+
+
+
+   
+
 
     
 	
-
-
-
-
-
