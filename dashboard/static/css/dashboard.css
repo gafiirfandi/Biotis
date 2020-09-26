@@ -214,14 +214,14 @@ color: black;
 	}
 } */
 @media 
-only screen and (max-width: 400px),
+only screen and (max-width: 400px), (max-width: 780px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
     /* Force table to not be like tables anymore */
     tbody{
         display: block;
         width: 75%;
-       
+        margin-left:35px ;
         box-shadow: 0 8px 6px -6px white;
     }
     tr{
@@ -343,9 +343,19 @@ only screen and (max-width: 400px),
     }
     .colorbutton{
         font-size: 10px;
+        width: 100px;
+        height: 50;
     }
     .tombolresponsif{
         width: 100%;
+    }
+    
+    .row1{
+        margin-left: -30px;
+        margin-right: 0px;
+    }
+    .card2{
+        margin-top: 20px;
     }
 
 
@@ -361,9 +371,7 @@ only screen and (max-width: 400px),
 
     
 	
-	/*
-	Label the data
-	*/
+
 
 
 
