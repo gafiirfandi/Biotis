@@ -87,10 +87,9 @@
   <thead">
     <tr >
       <th>Foto</th>
-      <th>Nama Karyawan</th>
       <th>Tanggal</th>
-      <th>Laporan Kegiatan</th>
       <th>Kondisi Umum</th>
+      <th>Laporan Kegiatan</th>
       <th>Aktivitas Kompetitor</th>
       <th>Fokus Produk </th>
       <th>Lain-lain</th>
@@ -105,10 +104,9 @@
     {% for laporan in data %}
     <tr>
       <th scope="row"><img class='foto_thumbnail' src={% static laporan.item.path_foto %}/></th>
-      <td class="col_5">{{laporan.item.email}}</td>
       <td>{{laporan.date}}<br>{{laporan.time}}</td>
-      <td class="col_0" >{{laporan.item.laporan}}</td>
       <td class="col_1">{{laporan.item.kondisi}}</td>
+      <td class="col_0" >{{laporan.item.laporan}}</td>
       <td class="col_2">{{laporan.item.kompetitor}}</td>
       <td class="col_3">{{laporan.item.fokus_produk}}</td>
       <td class="col_4">{{laporan.item.other}}</td>

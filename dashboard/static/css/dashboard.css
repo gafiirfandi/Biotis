@@ -183,6 +183,24 @@ color: black;
     border-radius: 10px;
 }
 
+/* table */
+tbody{
+
+    box-shadow: 0 8px 6px -6px white;
+    background-color: white;
+ 
+}
+tr{
+
+    background-color: white;
+    
+}
+.table-hover tbody tr:hover  {
+    background-color: rgb(245,255,250);
+  }
+
+
+
 /*  Responsive table */
 
 /* @media(max-width: 400px){
