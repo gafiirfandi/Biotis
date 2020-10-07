@@ -1,4 +1,6 @@
 # ignoring env
 env/
-__pycache__/
+/__pycache__/
+/pycache/
+
 *.pyc
