@@ -26,18 +26,50 @@ def dashboard(request):
         return redirect('login:loginPage')
     else:
         cursor = connection.cursor()
-        for key, value in request.session.items():
-            print('{} => {}'.format(key, value))
+        searching = False
+        # for key, value in request.session.items():
+        #     print('{} => {}'.format(key, value))
         if request.session['role'] == 'admin':
-            if request.method == "POST":
-                cursor.execute('SELECT * from laporan WHERE is_reviewed = \'false\';')
+
+            action_toggle_tanggal = ""
+            if request.method == "POST" and request.POST['action'] == "searching":
+                search = request.POST['search']
+                cursor.execute("select * from laporan where email SIMILAR TO '%"+search+"%' OR kondisi SIMILAR TO '%"+search+"%' OR kompetitor SIMILAR TO '%"+search+"%' OR laporan SIMILAR TO '%"+search+"%' OR fokus_produk SIMILAR TO '%"+search+"%' OR other SIMILAR TO '%"+search+"%';") 
+                searching = True
+            elif request.method == "POST" and request.POST['action'] == "see-all":            
+                cursor.execute('SELECT * from laporan;')
+                
+            elif request.method == "POST" and request.POST['action'] == "menunggu-review":
+                cursor.execute('SELECT * from laporan WHERE COALESCE(is_reviewed, FALSE) = FALSE;')
+                searching = True
+            elif request.method == "POST" and request.POST['action'] == "sudah-review":            
+                cursor.execute("SELECT * from laporan WHERE COALESCE(is_reviewed, FALSE) = TRUE;") 
+                searching = True
+            elif request.method == "POST" and request.POST['action'] == "tanggal-terbaru":
+                cursor.execute("SELECT * from laporan ORDER BY waktu DESC;")
+                action_toggle_tanggal = "tanggal-terlama"
+                searching = True 
+            elif request.method == "POST" and request.POST['action'] == "tanggal-terlama":
+                cursor.execute("SELECT * from laporan ORDER BY waktu ASC;")
+                action_toggle_tanggal = "tanggal-terbaru"
+                searching = True
             else:
                 cursor.execute('SELECT * from laporan;')
 
             data_query = namedtuplefetchall(cursor)
             cursor.execute('SELECT count(*) from laporan;')
 
+            cursor.execute("SELECT count(*) from laporan WHERE COALESCE(is_reviewed, FALSE) = TRUE;")
+            count_is_reviewed = cursor.fetchone()[0]
+            cursor.execute("SELECT count(*) from laporan WHERE COALESCE(is_reviewed, FALSE) = FALSE;")
+            count_is_not_reviewed = cursor.fetchone()[0]
 
+            email = request.session['email']
+            cursor.execute("SELECT username FROM pengguna WHERE email = '" + email + "';")
+            username = cursor.fetchone()[0]
+
+            cursor.execute("SELECT role FROM profile WHERE email = '" + email + "';")
+            role = cursor.fetchone()[0]
             data = []
             for item in data_query:
                 timestamptz = item[9]
@@ -49,24 +81,37 @@ def dashboard(request):
                 data.append({'item': item, 'time': time, 'date': date})
 
             # print(data)
-            return render(request, 'dashboard.html', {'data': data})
+            return render(request, 'dashboard.html', {'data': data,'toggle_action': action_toggle_tanggal, 'reviewed':count_is_reviewed, 'not_reviewed':count_is_not_reviewed, 'username':username, 'role':role, 'back':searching})
 
         elif request.session['role'] == 'karyawan':
             action_toggle_tanggal = ""
-            if request.method == "POST" and request.POST['action'] == "menunggu-review":            
-                cursor.execute("SELECT * from laporan WHERE is_reviewed = \'false\' AND email = '" + request.session['email'] + "';")
-            
+            if request.method == "POST" and request.POST['action'] == "searching":
+                search = request.POST['search']
+                cursor.execute("select * from laporan where email = '"+request.session['email']+"' AND kondisi SIMILAR TO '%"+search+"%' OR kompetitor SIMILAR TO '%"+search+"%' OR laporan SIMILAR TO '%"+search+"%' OR fokus_produk SIMILAR TO '%"+search+"%' OR other SIMILAR TO '%"+search+"%';") 
+                if search == '':
+                    cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "';")
+                searching = True
+            elif request.method == "POST" and request.POST['action'] == "see-all":            
+                cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "';")
+
+            elif request.method == "POST" and request.POST['action'] == "menunggu-review":            
+                cursor.execute("SELECT * from laporan WHERE COALESCE(is_reviewed, FALSE) = FALSE AND email = '" + request.session['email'] + "';")
+                searching = True
+
             elif request.method == "POST" and request.POST['action'] == "sudah-review":            
-                cursor.execute("SELECT * from laporan WHERE is_reviewed = \'true\' AND email = '" + request.session['email'] + "';")
-            
+                cursor.execute("SELECT * from laporan WHERE COALESCE(is_reviewed, FALSE) = TRUE AND email = '" + request.session['email'] + "';")
+                searching = True
+
             elif request.method == "POST" and request.POST['action'] == "tanggal-terbaru":
                 cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' ORDER BY waktu DESC;")
                 action_toggle_tanggal = "tanggal-terlama"
-            
+                searching = True
+
             elif request.method == "POST" and request.POST['action'] == "tanggal-terlama":
                 cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' ORDER BY waktu ASC;")
                 action_toggle_tanggal = "tanggal-terbaru"
-
+                searching = True
+                
             else:
                 cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "';")
 
@@ -81,18 +126,20 @@ def dashboard(request):
                 # print(date)
                 data.append({'item': item, 'time': time, 'date': date})
 
-            cursor.execute("SELECT count(*) from laporan WHERE email = '" + request.session['email'] + "' AND is_reviewed = 'false';")
+            cursor.execute("SELECT count(*) from laporan WHERE email = '" + request.session['email'] + "' AND COALESCE(is_reviewed, FALSE) = FALSE;;")
             count_is_not_reviewed = cursor.fetchone()[0]
-            cursor.execute("SELECT count(*) from laporan WHERE email = '" + request.session['email'] + "' AND is_reviewed = 'true';")
+            cursor.execute("SELECT count(*) from laporan WHERE email = '" + request.session['email'] + "' AND COALESCE(is_reviewed, FALSE) = TRUE;")
             count_is_reviewed = cursor.fetchone()[0]
 
             print(action_toggle_tanggal, "!!!!!!!")
             email = request.session['email']
             cursor.execute("SELECT username FROM pengguna WHERE email = '" + email + "';")
             username = cursor.fetchone()[0]
-            
 
-            return render(request, 'dashboardkaryawan.html', {'data': data, 'toggle_action': action_toggle_tanggal, 'username': username, "count_is_reviewed": count_is_reviewed, 'count_is_not_reviewed': count_is_not_reviewed})
+            cursor.execute("SELECT role FROM profile WHERE email = '" + email + "';")
+            role = cursor.fetchone()[0]
+
+            return render(request, 'dashboardkaryawan.html', {'data': data, 'toggle_action': action_toggle_tanggal, 'username': username, 'role':role, "count_is_reviewed": count_is_reviewed, 'count_is_not_reviewed': count_is_not_reviewed, 'back':searching})
 
 
 def buatLaporan(request):
@@ -229,5 +276,43 @@ def detailLaporan(request, id):
     role = request.session['role']
 
     return render(request, 'detailLaporan.html', {'data': detail_data, 'username': username, 'date': date, 'time': time, 'role': role})
+
+def searching(request):
+    
+    cursor = connection.cursor()
+    template_a = 'dashboard.html'
+    template_k = 'dashboardkaryawan.html'
+
+    search = request.GET.get('search')
+    cursor.execute("select * from laporan where email SIMILAR TO '%"+search+"%' OR kondisi SIMILAR TO '%"+search+"%' OR kompetitor SIMILAR TO '%"+search+"%' OR laporan SIMILAR TO '%"+search+"%' OR fokus_produk SIMILAR TO '%"+search+"%' OR other SIMILAR TO '%"+search+"%';")
+    data_query = namedtuplefetchall(cursor)
+    data = []
+    for item in data_query:
+        timestamptz = item[9]
+        # print(timestamptz)
+        time = timestamptz.strftime("%H:%M")
+        date = timestamptz.strftime("%A, %d %b %Y")
+        # print(time)
+        # print(date)
+        data.append({'item': item, 'time': time, 'date': date})
+
+    email = request.session['email']
+    cursor.execute("SELECT username FROM pengguna WHERE email = '" + email + "';")
+    username = cursor.fetchone()[0]
+    searching = True
+    cursor.execute("SELECT role FROM profile WHERE email = '" + email + "';")
+    role = cursor.fetchone()[0]
+    if request.session['role'] == 'admin':
+        return render(request, template_a, {'data':data, 'username':username, 'role':role, 'back':searching})
+    elif request.session['role'] == 'karyawan':
+        return render(request, template_k, {'data':data, 'username':username, 'role':role, 'back':searching})
+
+
+
+        
+
+
+        
+
 
 

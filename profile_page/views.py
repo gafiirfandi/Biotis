@@ -80,7 +80,7 @@ def editprofile(request):
                 nama_atasan = cursor.fetchone()[0]
 
             update_sql = "UPDATE profile set nama_lengkap = %s, no_hp = %s, alamat = %s, jabatan = %s, nama_atasan = %s, foto_profile = %s WHERE email = '"+email+"';"
-            record_to_update = [(nama_lengkap, no_hp, alamat, jabatan, nama_atasan, static_path)]
+            record_to_update = [(nama_lengkap, no_hp, alamat, jabatan, nama_atasan, path)]
             cursor.executemany(update_sql, record_to_update)
             
             return redirect("profile:profile")
