@@ -26,7 +26,7 @@ def dashboard(request):
         return redirect('login:loginPage')
     else:
         cursor = connection.cursor()
-        if request.method == "POST":            
+        if request.method == "POST":
             cursor.execute('SELECT * from laporan WHERE is_reviewed = \'false\';')
         else:
             cursor.execute('SELECT * from laporan;')
