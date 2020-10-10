@@ -55,36 +55,36 @@ function capture(){
     snap.addEventListener("click", function() {
         event.preventDefault();
         if(snap.value == "1"){
+            canvas.style.display = "inherit"
             var context = canvas.getContext('2d');
-
             context.drawImage(video, 0, 0, 1280, 720);
             snap.value = "2"
             image_count.splice(0, 0, 1)
         }
         else if(snap.value == "2"){
+            canvas2.style.display = "inherit"
             var context = canvas2.getContext('2d');
-
             context.drawImage(video, 0, 0, 1280, 720);
             snap.value = "3"
             image_count.splice(0, 0, 1)
         }
         else if(snap.value == "3"){
+            canvas3.style.display = "inherit"
             var context = canvas3.getContext('2d');
-
             context.drawImage(video, 0, 0, 1280, 720);
             snap.value = "4"
             image_count.splice(0, 0, 1)
         }
         else if(snap.value == "4"){
+            canvas4.style.display = "inherit"
             var context = canvas4.getContext('2d');
-
             context.drawImage(video, 0, 0, 1280, 720);
             snap.value = "5"
             image_count.splice(0, 0, 1)
         }
         else{
+            canvas5.style.display = "inherit"
             var context = canvas5.getContext('2d');
-
             context.drawImage(video, 0, 0, 1280, 720);
             snap.value = "1"
             image_count.splice(0, 0, 1)
@@ -143,7 +143,6 @@ function capture(){
         else{
             current = parseInt(snap.value) - 1
         }
-        alert(current)
 
         let image64;
         if (current == 1) {

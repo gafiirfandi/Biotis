@@ -101,12 +101,14 @@ def editprofile(request):
 
             data_url_bool = False
             if foto_profile[0] != None:
+                img = Image.open(foto_profile[0])
+                foto_profile = pil2datauri(img)
                 data_url_bool = True
             
                 
 
             
-            return render(request, 'edit_profile.html', {'form':form, 'email':email, 'foto_profile':foto_profile[0], 'data_url':data_url_bool})
+            return render(request, 'edit_profile.html', {'form':form, 'email':email, 'foto_profile':foto_profile, 'data_url':data_url_bool})
 
 def profile(request):
     if 'logged_in' not in request.session or not request.session['logged_in']:
@@ -135,8 +137,10 @@ def profile(request):
         
         data_url_bool = False
         if foto_profile[0] != None:
+            img = Image.open(foto_profile[0])
+            foto_profile = pil2datauri(img)
             data_url_bool = True
     
 
         return render(request, 'profile.html', {'username':username[0], 'email':email, 'nama_lengkap':nama_lengkap[0], 'no_hp':no_hp[0], 
-        'alamat':alamat[0], 'jabatan':jabatan[0], 'nama_atasan':nama_atasan[0], 'role':role[0], 'foto_profile':foto_profile[0], 'data_url':data_url_bool})
+        'alamat':alamat[0], 'jabatan':jabatan[0], 'nama_atasan':nama_atasan[0], 'role':role[0], 'foto_profile':foto_profile, 'data_url':data_url_bool})

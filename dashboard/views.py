@@ -26,28 +26,73 @@ def dashboard(request):
         return redirect('login:loginPage')
     else:
         cursor = connection.cursor()
-        if request.method == "POST":
-            cursor.execute('SELECT * from laporan WHERE is_reviewed = \'false\';')
-        else:
-            cursor.execute('SELECT * from laporan;')
+        for key, value in request.session.items():
+            print('{} => {}'.format(key, value))
+        if request.session['role'] == 'admin':
+            if request.method == "POST":
+                cursor.execute('SELECT * from laporan WHERE is_reviewed = \'false\';')
+            else:
+                cursor.execute('SELECT * from laporan;')
 
-        data_query = namedtuplefetchall(cursor)
-        cursor.execute('SELECT count(*) from laporan;')
+            data_query = namedtuplefetchall(cursor)
+            cursor.execute('SELECT count(*) from laporan;')
 
 
-        data = []
-        for item in data_query:
-            timestamptz = item[9]
-            print(timestamptz)
-            time = timestamptz.strftime("%H:%M")
-            date = timestamptz.strftime("%A, %d %b %Y")
-            print(time)
-            print(date)
-            data.append({'item': item, 'time': time, 'date': date})
+            data = []
+            for item in data_query:
+                timestamptz = item[9]
+                # print(timestamptz)
+                time = timestamptz.strftime("%H:%M")
+                date = timestamptz.strftime("%A, %d %b %Y")
+                # print(time)
+                # print(date)
+                data.append({'item': item, 'time': time, 'date': date})
 
-        print(data)
-        size = cursor.fetchone()[0]
-        return render(request, 'dashboard.html', {'data': data})
+            # print(data)
+            return render(request, 'dashboard.html', {'data': data})
+
+        elif request.session['role'] == 'karyawan':
+            action_toggle_tanggal = ""
+            if request.method == "POST" and request.POST['action'] == "menunggu-review":            
+                cursor.execute("SELECT * from laporan WHERE is_reviewed = \'false\' AND email = '" + request.session['email'] + "';")
+            
+            elif request.method == "POST" and request.POST['action'] == "sudah-review":            
+                cursor.execute("SELECT * from laporan WHERE is_reviewed = \'true\' AND email = '" + request.session['email'] + "';")
+            
+            elif request.method == "POST" and request.POST['action'] == "tanggal-terbaru":
+                cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' ORDER BY waktu DESC;")
+                action_toggle_tanggal = "tanggal-terlama"
+            
+            elif request.method == "POST" and request.POST['action'] == "tanggal-terlama":
+                cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' ORDER BY waktu ASC;")
+                action_toggle_tanggal = "tanggal-terbaru"
+
+            else:
+                cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "';")
+
+            data_query = namedtuplefetchall(cursor)
+            data = []
+            for item in data_query:
+                timestamptz = item[9]
+                # print(timestamptz)
+                time = timestamptz.strftime("%H:%M")
+                date = timestamptz.strftime("%A, %d %b %Y")
+                # print(time)
+                # print(date)
+                data.append({'item': item, 'time': time, 'date': date})
+
+            cursor.execute("SELECT count(*) from laporan WHERE email = '" + request.session['email'] + "' AND is_reviewed = 'false';")
+            count_is_not_reviewed = cursor.fetchone()[0]
+            cursor.execute("SELECT count(*) from laporan WHERE email = '" + request.session['email'] + "' AND is_reviewed = 'true';")
+            count_is_reviewed = cursor.fetchone()[0]
+
+            print(action_toggle_tanggal, "!!!!!!!")
+            email = request.session['email']
+            cursor.execute("SELECT username FROM pengguna WHERE email = '" + email + "';")
+            username = cursor.fetchone()[0]
+            
+
+            return render(request, 'dashboardkaryawan.html', {'data': data, 'toggle_action': action_toggle_tanggal, 'username': username, "count_is_reviewed": count_is_reviewed, 'count_is_not_reviewed': count_is_not_reviewed})
 
 
 def buatLaporan(request):
@@ -181,7 +226,8 @@ def detailLaporan(request, id):
     timestamptz = detail_data[9]
     time = timestamptz.strftime("%H:%M")
     date = timestamptz.strftime("%A, %d %B %Y")
+    role = request.session['role']
 
-    return render(request, 'detailLaporan.html', {'data': detail_data, 'username': username, 'date': date, 'time': time})
+    return render(request, 'detailLaporan.html', {'data': detail_data, 'username': username, 'date': date, 'time': time, 'role': role})
 
 

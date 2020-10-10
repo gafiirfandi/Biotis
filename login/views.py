@@ -77,6 +77,11 @@ def loginPage(request):
 					select = cursor.fetchone()
 					request.session['email'] = select[0]
 					request.session['username'] = username
+
+					cursor.execute("SELECT role FROM PROFILE WHERE email = '" + select[0] + "';")
+					role = cursor.fetchone()
+					request.session['role'] = role[0]
+					
 					
 					cursor.close()
 					return redirect('dashboard:dashboard')

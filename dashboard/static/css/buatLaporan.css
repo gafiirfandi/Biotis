@@ -10,6 +10,12 @@ html,body{
     height:100%;
     width: 100%;
 }
+.list_title{
+    font-family: Rubik;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 100px;
+}
 
 .buatlaporan{
     background: rgba(241, 250, 245, 1);
@@ -121,4 +127,150 @@ color: black;
 
 .canvas-image {
     margin-bottom: 30px !important;
+}
+
+
+@media (max-width : 400px){
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+    .formfield{
+        width: 80%;
+      
+        text-align: center;
+    }
+    .canvas-image{
+        width: 100%;
+    }
+}
+
+@media (max-width : 500px){
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+    .formfield{
+        width: 100%;
+      
+        text-align: center;
+    }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+    }
+}
+
+@media (min-width: 34em) {
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+    }
+}
+
+@media (min-width: 48em) {
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 62em) {
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+    }
+}
+
+@media (min-width: 75em) {
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 36px;
+    }
+}
+
+
+@media (max-width:550px ) {
+    .video-wrap{
+        width: 30%;
+    }
+    #video{
+        width: 300%;
+        height: 200%;
+        position: relative;
+    }
+    .canvas-image{
+        width: 100%;
+    }
+    .list_title{
+        font-family: Rubik;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+    }
 }
