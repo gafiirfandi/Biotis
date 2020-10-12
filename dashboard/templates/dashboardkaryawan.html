@@ -11,6 +11,15 @@
 {% block content %}
 
 <link rel="stylesheet" type=text/css href="{% static 'css/dashboard.css' %}"/>  
+<link rel="stylesheet" type=text/css href="{% static 'css/base.css' %}"/> 
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    
 
   <div class="main dashboardutama">
     
@@ -91,15 +100,38 @@
           </button>
         </form>
       </div>
-      <div class="p-2 bd-highlight ">
-        <button class="btn btn-primary colorbutton" href="#" role="button" id='showDate'>
+      <div class="p-2 bd-highlight d-flex align-items-center">
+        <button class="btn btn-primary colorbutton " href="#" role="button" id=''>
           <i style="font-size:15px" class="fa" id="ikon1" >&#xf073;</i>
-          Tanggal Tertentu   >></button>
-          
+          Tanggal Tertentu   >>
+        </button>
+        <!-- <input type='text' class="form-control" id='datetimepicker4' /> -->
+        <div class='col'>
+          <input type='text' class="form-control" id='datetimepicker4' />
+       </div>
       </div>
-
     </div>
+
   </div>
+
+    
+
+    <script type="text/javascript">
+      $(function() {              
+         // Bootstrap DateTimePicker v4
+         $('#datetimepicker4').datetimepicker({
+               format: 'DD/MM/YYYY'
+         });
+      });      
+  </script>
+
+  <!-- <script type="text/javascript">
+    $(function () {
+        $('#datetimepicker4').datetimepicker();
+    });
+  </script> -->
+
+
   
 <!--Table-->
 <table class="table table-hover table-fixed" id="table-dashboard" cellspacing="0" cellpadding="0" >
@@ -155,4 +187,5 @@
 
 
 </div>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 {% endblock content %}
