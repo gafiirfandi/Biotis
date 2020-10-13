@@ -92,12 +92,21 @@
           </button>
         </form>
       </div>
-      <div class="p-2 bd-highlight ">
-        <button class="btn btn-primary colorbutton" href="#" role="button" id='showDate'>
-          <i style="font-size:15px" class="fa" id="ikon1" >&#xf073;</i>
-          Tanggal Tertentu   >></button>
-          
-      </div>
+      
+      <form method="post" action="{% url 'dashboard:dashboard'%}">
+        {% csrf_token %}
+        <div class="p-2 bd-highlight d-flex align-items-center">
+          <button type="submit" class="btn btn-primary colorbutton " href="#" role="button" id=''>
+            <i style="font-size:15px" class="fa" id="ikon1" >&#xf073;</i>
+            Tanggal Tertentu   >>
+          </button>
+          <!-- <input type='text' class="form-control" id='datetimepicker4' /> -->
+          <div class='col'>
+            <input type='text' name="date" class="form-control" id='datetimepicker4' />
+            <input type="hidden" name="action" value="datepicker" />
+          </div>
+        </div>
+      </form>
       
 
     </div>
