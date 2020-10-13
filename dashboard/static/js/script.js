@@ -9,6 +9,11 @@ const canvas3 = document.getElementById('canvas3');
 const canvas4 = document.getElementById('canvas4');
 const canvas5 = document.getElementById('canvas5');
 const snap = document.getElementById("snap");
+const delete1 = document.getElementById('button-delete-1')
+const delete2 = document.getElementById('button-delete-2')
+const delete3 = document.getElementById('button-delete-3')
+const delete4 = document.getElementById('button-delete-4')
+const delete5 = document.getElementById('button-delete-5')
 const errorMsgElement = document.getElementById('span#errorMsg');
 let image_count = [0, 0, 0, 0, 0]
 
@@ -195,3 +200,212 @@ faceMode.addEventListener("change", function() {
 
 capture()
 
+
+
+delete1.addEventListener("click", function() {
+    event.preventDefault()
+    canvas.style.display = "none"
+    const context1 = canvas.getContext('2d');
+    context1.clearRect(0, 0, canvas.width, canvas.height);
+    snap.value = 1
+
+    if(document.getElementById('imageDataURL2')){
+        console.log('masuk 2');
+        canvas.style.display = "inherit"
+        context1.drawImage(canvas2, 0, 0)
+        const context2 = canvas2.getContext('2d');
+        context2.clearRect(0, 0, canvas2.width, canvas2.height);
+        document.getElementById('imageDataURL1').setAttribute('value', canvas.toDataURL("image/jpeg", 0.5))
+        canvas2.style.display = "none"
+        snap.value = 2
+
+        if(document.getElementById('imageDataURL3')){
+            console.log('masuk 3');
+            canvas2.style.display = "inherit"
+            context2.drawImage(canvas3, 0, 0)
+            const context3 = canvas3.getContext('2d');
+            context3.clearRect(0, 0, canvas3.width, canvas3.height);
+            // document.getElementById('imageDataURL3').remove()
+            document.getElementById('imageDataURL2').setAttribute('value', canvas2.toDataURL("image/jpeg", 0.5))
+            canvas3.style.display = "none"
+            snap.value = 3
+
+            if(document.getElementById('imageDataURL4')){
+                console.log('masuk 4');
+                canvas3.style.display = "inherit"
+                context3.drawImage(canvas4, 0, 0)
+                const context4 = canvas4.getContext('2d');
+                context4.clearRect(0, 0, canvas4.width, canvas4.height);
+                // document.getElementById('imageDataURL3').remove()
+                document.getElementById('imageDataURL3').setAttribute('value', canvas3.toDataURL("image/jpeg", 0.5))
+                canvas4.style.display = "none"
+                snap.value = 4
+                
+                if(document.getElementById('imageDataURL5')){
+                    console.log('masuk 5');
+                    canvas4.style.display = "inherit"
+                    context4.drawImage(canvas5, 0, 0)
+                    const context5 = canvas5.getContext('2d');
+                    context5.clearRect(0, 0, canvas5.width, canvas5.height);
+                    // document.getElementById('imageDataURL3').remove()
+                    document.getElementById('imageDataURL4').setAttribute('value', canvas4.toDataURL("image/jpeg", 0.5))
+                    canvas5.style.display = "none"
+                    snap.value = 5
+                    document.getElementById('imageDataURL5').remove()
+                }
+                else{
+                    console.log('else5');
+                    document.getElementById('imageDataURL4').remove()
+                }
+                
+            }
+            else{
+                console.log('else4')
+                document.getElementById('imageDataURL3').remove()
+            }
+        }
+        else{
+            console.log('else3')
+            document.getElementById('imageDataURL2').remove()
+        }
+    }
+    else{
+        console.log('else2')
+        document.getElementById('imageDataURL1').remove()
+    }
+})
+
+
+delete2.addEventListener("click", function() {
+    event.preventDefault()
+    canvas2.style.display = "none"
+    const context2 = canvas2.getContext('2d');
+    context2.clearRect(0, 0, canvas2.width, canvas2.height);
+    snap.value = 2
+
+    if(document.getElementById('imageDataURL3')){
+        console.log('masuk 2-3');
+        canvas2.style.display = "inherit"
+        context2.drawImage(canvas3, 0, 0)
+        const context3 = canvas3.getContext('2d');
+        context3.clearRect(0, 0, canvas3.width, canvas3.height);
+        // document.getElementById('imageDataURL3').remove()
+        document.getElementById('imageDataURL2').setAttribute('value', canvas2.toDataURL("image/jpeg", 0.5))
+        canvas3.style.display = "none"
+        snap.value = 3
+
+        if(document.getElementById('imageDataURL4')){
+            console.log('masuk 4');
+            canvas3.style.display = "inherit"
+            context3.drawImage(canvas4, 0, 0)
+            const context4 = canvas4.getContext('2d');
+            context4.clearRect(0, 0, canvas4.width, canvas4.height);
+            // document.getElementById('imageDataURL3').remove()
+            document.getElementById('imageDataURL3').setAttribute('value', canvas3.toDataURL("image/jpeg", 0.5))
+            canvas4.style.display = "none"
+            snap.value = 4
+
+            if(document.getElementById('imageDataURL5')){
+                console.log('masuk 5');
+                canvas4.style.display = "inherit"
+                context4.drawImage(canvas5, 0, 0)
+                const context5 = canvas5.getContext('2d');
+                context5.clearRect(0, 0, canvas5.width, canvas5.height);
+                // document.getElementById('imageDataURL3').remove()
+                document.getElementById('imageDataURL4').setAttribute('value', canvas4.toDataURL("image/jpeg", 0.5))
+                canvas5.style.display = "none"
+                snap.value = 5
+                document.getElementById('imageDataURL5').remove()
+            }
+            else{
+                console.log('else5')
+                document.getElementById('imageDataURL4').remove()
+            }
+        }
+        else{
+            console.log('else4')
+            document.getElementById('imageDataURL3').remove()
+        }
+    }
+    else{
+        console.log('else3')
+        document.getElementById('imageDataURL2').remove()
+    }
+})
+
+delete3.addEventListener("click", function() {
+    event.preventDefault()
+    canvas3.style.display = "none"
+    const context3 = canvas3.getContext('2d');
+    context3.clearRect(0, 0, canvas3.width, canvas3.height);
+    snap.value = 3
+
+    if(document.getElementById('imageDataURL4')){
+        console.log('masuk 4');
+        canvas3.style.display = "inherit"
+        context3.drawImage(canvas4, 0, 0)
+        const context4 = canvas4.getContext('2d');
+        context4.clearRect(0, 0, canvas4.width, canvas4.height);
+        // document.getElementById('imageDataURL3').remove()
+        document.getElementById('imageDataURL3').setAttribute('value', canvas3.toDataURL("image/jpeg", 0.5))
+        canvas4.style.display = "none"
+        snap.value = 4
+
+        if(document.getElementById('imageDataURL5')){
+            console.log('masuk 5');
+            canvas4.style.display = "inherit"
+            context4.drawImage(canvas5, 0, 0)
+            const context5 = canvas5.getContext('2d');
+            context5.clearRect(0, 0, canvas5.width, canvas5.height);
+            // document.getElementById('imageDataURL3').remove()
+            document.getElementById('imageDataURL4').setAttribute('value', canvas4.toDataURL("image/jpeg", 0.5))
+            canvas5.style.display = "none"
+            snap.value = 5
+            document.getElementById('imageDataURL5').remove()
+        }
+        else{
+            console.log('else5')
+            document.getElementById('imageDataURL4').remove()
+        }
+    }
+    else{
+        console.log('else4')
+        document.getElementById('imageDataURL3').remove()
+    }
+})
+
+delete4.addEventListener("click", function() {
+    event.preventDefault()
+    canvas4.style.display = "none"
+    const context4 = canvas4.getContext('2d');
+    context4.clearRect(0, 0, canvas4.width, canvas4.height);
+    snap.value = 4
+
+    if(document.getElementById('imageDataURL5')){
+        console.log('masuk 5');
+        canvas4.style.display = "inherit"
+        context4.drawImage(canvas5, 0, 0)
+        const context5 = canvas5.getContext('2d');
+        context5.clearRect(0, 0, canvas5.width, canvas5.height);
+        // document.getElementById('imageDataURL3').remove()
+        document.getElementById('imageDataURL4').setAttribute('value', canvas4.toDataURL("image/jpeg", 0.5))
+        canvas5.style.display = "none"
+        snap.value = 5
+        document.getElementById('imageDataURL5').remove()
+
+    }
+    else{
+        console.log('else5')
+        document.getElementById('imageDataURL4').remove()
+    }
+})
+
+delete5.addEventListener("click", function() {
+    event.preventDefault()
+    canvas5.style.display = "none"
+    const context5 = canvas5.getContext('2d');
+    context5.clearRect(0, 0, canvas5.width, canvas5.height);
+    snap.value = 5
+    document.getElementById('imageDataURL5').remove()
+
+})
