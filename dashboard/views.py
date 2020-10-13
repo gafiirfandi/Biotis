@@ -55,8 +55,12 @@ def dashboard(request):
                 searching = True
 
             elif request.method == "POST" and request.POST['action'] == "datepicker":
+                date = request.POST['date']
                 new_date = date[-4:] + "-" + date[3:5] + "-" + date[0:2]
-                cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' AND waktu::date = '" + new_date + "' ORDER BY waktu ASC;")
+                if date == "":
+                    return redirect('dashboard:dashboard')
+                else:
+                    cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' AND waktu::date = '" + new_date + "' ORDER BY waktu ASC;")
                 
             else:
                 cursor.execute('SELECT * from laporan;')
@@ -118,8 +122,12 @@ def dashboard(request):
                 searching = True
 
             elif request.method == "POST" and request.POST['action'] == "datepicker":
+                date = request.POST['date']
                 new_date = date[-4:] + "-" + date[3:5] + "-" + date[0:2]
-                cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' AND waktu::date = '" + new_date + "' ORDER BY waktu ASC;")
+                if date == "":
+                    return redirect('dashboard:dashboard')
+                else:
+                    cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' AND waktu::date = '" + new_date + "' ORDER BY waktu ASC;")
                 
             else:
                 cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "';")
