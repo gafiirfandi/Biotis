@@ -275,3 +275,18 @@ color: black;
         font-size: 24px;
     }
 }
+
+.buttondelete {
+    color: white;
+    background-color: #b61111;
+    transition: 50ms;
+    border-radius: 10px;
+    padding: 9px;
+    border: none;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+.buttondelete:hover {
+background-color: #b61111;;
+color: black;
+}
