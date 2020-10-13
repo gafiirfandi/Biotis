@@ -284,19 +284,19 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
     /* Force table to not be like tables anymore */
-    tbody{
+    #table-dashboard tbody{
         display: block;
         width: 75%;
         margin-left:35px ;
         box-shadow: 0 8px 6px -6px white;
     }
-    tr{
+    #table-dashboard tr{
         box-shadow: 0 8px 6px -6px grey;
         padding-top: 0 5em;
         background-color: white;
 
     }
-	table, thead, th, td, tr { 
+	#table-dashboard table,#table-dashboard thead,#table-dashboard th,#table-dashboard td,#table-dashboard tr { 
         width: 100%;
         font-family: Rubik;
         font-style: normal;
@@ -317,13 +317,13 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     }
 	
 	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr { 
+	#table-dashboard thead tr { 
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
 	}
 	
-    tr { 
+    #table-dashboard tr { 
         
         border: 1px solid #ccc;
         margin-top: 20px;
@@ -332,7 +332,7 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     
     }
 	
-	td { 
+	#table-dashboard td { 
 		/* Behave  like a "row" */
 		border-style: hidden;
 		position: relative;
@@ -343,28 +343,28 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     .hideresponsive{
         display: none;
     }
-    td.col_1{
+    #table-dashboard td.col_1{
         display:none;
         width:0;
         height:0;
         opacity:0;
         visibility: collapse;       
     } 
-    td.col_2{
+    #table-dashboard td.col_2{
         display:none;
         width:0;
         height:0;
         opacity:0;
         visibility: collapse;       
     } 
-    td.col_3{
+    #table-dashboard td.col_3{
         display:none;
         width:0;
         height:0;
         opacity:0;
         visibility: collapse;       
     } 
-    td.col_4{
+    #table-dashboard td.col_4{
         display:none;
         width:0;
         height:0;
@@ -372,11 +372,11 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
         visibility: collapse;       
     } 
 
-    td.col_0{
+    #table-dashboard td.col_0{
         font-size: 15px;
     }
 	
-	td:before { 
+	#table-dashboard td:before { 
 		/* Now like a table header */
 		position: absolute;
 		/* Top/left values mimic padding */

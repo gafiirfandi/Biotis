@@ -1,193 +1,232 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
-
-
 {% block title %}
-{% endblock title %}
+{% endblock title%}
+{% block content %} 
+<link rel="stylesheet" type=text/css href="{% static 'css/dashboard.css' %}"/>
 
-
-{% block content %}
-
-<link rel="stylesheet" type=text/css href="{% static 'css/dashboard.css' %}"/>  
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
-
-  <div class="main dashboardutama">
-    
+<div class="main dashboardutama">
   <div class="container row1">
-
     <div class="p-2 judul1">
       <p class="judul1">Dashboard</p>
     </div>
-    <div class="p-2 tanggal1" > Selasa,25 agustus 2020</div>
-    <div class="p-2 ">
+    <div class="p-2 tanggal1">Selasa,25 agustus 2020</div>
+    <div class="p-2">
       <div class="row rowCard">
-        <form action="{% url 'dashboard:dashboard'%}" method="post" > 
+        <form action="{% url 'dashboard:dashboard'%}" method="post">
           {% csrf_token %}
-        <div class="card card1">
-          <input type="hidden" name="action" value="sudah-review" />
-              <div class="col-sm card1space ">
-                  <div class="card-body " >
-                      <h5 class="card-title">{{ reviewed }} </h5>
-                      <h6 class="card-subtitle mb-2 text-muted karyawan">Laporan Sudah Review </h6>         
-                      <button type="submit" class="card-link" style="background-color: white; border: none; padding: 0;">Lihat selengkapnya >></button>
-                    </div>
+          <div class="card card1">
+            <input type="hidden" name="action" value="sudah-review" />
+            <div class="col-sm card1space">
+              <div class="card-body">
+                <h5 class="card-title">{{ reviewed }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted karyawan">
+                  Laporan Sudah Review
+                </h6>
+                <button
+                  type="submit"
+                  class="card-link"
+                  style="background-color: white; border: none; padding: 0"
+                >
+                  Lihat selengkapnya >>
+                </button>
               </div>
-        </div>
+            </div>
+          </div>
         </form>
         <form action="{% url 'dashboard:dashboard'%}" method="post">
-        {% csrf_token %}
-        <div class="card card2">
-          <input type="hidden" name="action" value="menunggu-review" />
-              <div class="col-sm card1space ">
-                  <div class="card-body ">
-                      <h5 class="card-title">{{ not_reviewed }} </h5>
-                      <h6 class="card-subtitle mb-2 text-muted karyawan">Laporan Menunggu Review </h6>                
-                      <button type="submit" class="card-link" style="background-color: white; border: none; padding: 0;">Lihat selengkapnya >></button>
-                    </div>
+          {% csrf_token %}
+          <div class="card card2">
+            <input type="hidden" name="action" value="menunggu-review" />
+            <div class="col-sm card1space">
+              <div class="card-body">
+                <h5 class="card-title">{{ not_reviewed }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted karyawan">
+                  Laporan Menunggu Review
+                </h6>
+                <button
+                  type="submit"
+                  class="card-link"
+                  style="background-color: white; border: none; padding: 0"
+                >
+                  Lihat selengkapnya >>
+                </button>
               </div>
-        </div>
+            </div>
+          </div>
         </form>
-      </div>              
+      </div>
     </div>
 
-    <div class="p-2 ">
+    <div class="p-2">
       <form action="{% url 'dashboard:dashboard'%}" method="post">
         {% csrf_token %}
-        <div class="input-group search "  style="width: 50%;">
-          <input type="hidden" name="action" value="searching"/>
-          <input type="text" class="form-control" name="search" placeholder="Search by All">
+        <div class="input-group search" style="width: 50%">
+          <input type="hidden" name="action" value="searching" />
+          <input
+            type="text"
+            class="form-control"
+            name="search"
+            placeholder="Search by All"
+          />
           <div class="input-group-append">
-            <button class="btn btn-secondary" type="submit" style="background: #00AD33;" >
+            <button
+              class="btn btn-secondary"
+              type="submit"
+              style="background: #00ad33"
+            >
               <i class="fa fa-search"></i>
             </button>
-            
           </div>
         </div>
       </form>
       {% if back %}
-        <form action="{% url 'dashboard:dashboard'%}" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="action-see-all" value="see-all" />
-          <button class="btn btn-secondary"  style="background: #00AD33;" > See All </button>
-        </form>            
+      <form action="{% url 'dashboard:dashboard'%}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action-see-all" value="see-all" />
+        <button class="btn btn-secondary" style="background: #00ad33">
+          See All
+        </button>
+      </form>
       {% endif %}
-      
-      
-
     </div>
 
-    <div class="p-2 tanggal2">Urutkan Berdasarkan: </div>
+    <div class="p-2 tanggal2">Urutkan Berdasarkan:</div>
 
-
-   
     <div class="d-flex flex-row bd-highlight mb-3">
       <div class="p-2 bd-highlight">
-        <form method="post" id="formReview" action="{% url 'dashboard:dashboard'%}">
-        {% csrf_token %}
-          
-          <button type="submit" class="btn btn-primary colorbutton" href="#" role="button">
-            <i style="font-size:15px" class="fa" id="ikon1">&#xf017;</i>
+        <form
+          method="post"
+          id="formReview"
+          action="{% url 'dashboard:dashboard'%}"
+        >
+          {% csrf_token %}
+
+          <button
+            type="submit"
+            class="btn btn-primary colorbutton"
+            href="#"
+            role="button"
+          >
+            <i style="font-size: 15px" class="fa" id="ikon1">&#xf017;</i>
             {% if toggle_action == "tanggal-terbaru" or toggle_action == "" %}
             <input type="hidden" name="action" value="tanggal-terbaru" />
-              Tanggal Terbaru
-            {% elif toggle_action == "tanggal-terlama" %}
+            Tanggal Terbaru {% elif toggle_action == "tanggal-terlama" %}
             <input type="hidden" name="action" value="tanggal-terlama" />
-              Tanggal Terlama
-            {% endif %}
+            Tanggal Terlama {% endif %}
           </button>
         </form>
       </div>
-      
+
       <form method="post" action="{% url 'dashboard:dashboard'%}">
         {% csrf_token %}
         <div class="p-2 bd-highlight d-flex align-items-center">
-          <button type="submit" class="btn btn-primary colorbutton " href="#" role="button" id=''>
-            <i style="font-size:15px" class="fa" id="ikon1" >&#xf073;</i>
-            Tanggal Tertentu   >>
+          <button
+            type="submit"
+            class="btn btn-primary colorbutton"
+            href="#"
+            role="button"
+            id=""
+          >
+            <i style="font-size: 15px" class="fa" id="ikon1">&#xf073;</i>
+            Tanggal Tertentu >>
           </button>
           <!-- <input type='text' class="form-control" id='datetimepicker4' /> -->
-          <div class='col'>
-            <input type='text' name="date" class="form-control" id='datetimepicker4' />
+          <div class="col">
+            <input
+              type="text"
+              name="date"
+              class="form-control"
+              id="datetimepicker4"
+            />
             <input type="hidden" name="action" value="datepicker" />
           </div>
         </div>
       </form>
 
       <script type="text/javascript">
-        $(function() {              
-           // Bootstrap DateTimePicker v4
-           $('#datetimepicker4').datetimepicker({
-                 format: 'DD/MM/YYYY'
-           });
-        });      
-    </script>
-      
-
+        $(function () {
+          // Bootstrap DateTimePicker v4
+          $("#datetimepicker4").datetimepicker({
+            format: "DD/MM/YYYY",
+          });
+        });
+      </script>
     </div>
   </div>
-  
-<!--Table-->
-<table class="table table-hover table-fixed" id="table-dashboard" cellspacing="0" cellpadding="0" >
 
+  <!--Table-->
+  <table
+    class="table table-hover table-fixed"
+    id="table-dashboard"
+    cellspacing="0"
+    cellpadding="0"
+  >
+    <!--Table head-->
+    <thead class="threadbaru">
+      <tr>
+        <th class="hideresponsive">Foto</th>
+        <th class="hideresponsive">Nama Karyawan</th>
+        <th class="hideresponsive">Tanggal</th>
+        <th class="hideresponsive">Laporan Kegiatan</th>
+        <th class="hideresponsive">Kondisi Umum</th>
+        <th class="hideresponsive">Aktivitas Kompetitor</th>
+        <th class="hideresponsive">Fokus Produk</th>
+        <th class="hideresponsive">Lain-lain</th>
+        <th class="hideresponsive">Penjelasan</th>
+      </tr>
+    </thead>
+    <!--Table head-->
 
-  <!--Table head-->
-  <thead>
-    <tr >
-      <th class="hideresponsive">Foto</th>
-      <th class="hideresponsive">Nama Karyawan</th>
-      <th class="hideresponsive">Tanggal</th>
-      <th class="hideresponsive">Laporan Kegiatan</th>
-      <th class="hideresponsive">Kondisi Umum</th>
-      <th class="hideresponsive">Aktivitas Kompetitor</th>
-      <th class="hideresponsive">Fokus Produk </th>
-      <th class="hideresponsive">Lain-lain</th>
-      <th class="hideresponsive">Penjelasan</th>
-    </tr>
-  </thead>
-  <!--Table head-->
+    <!--Table body-->
+    <tbody>
+      {% for laporan in data %}
+      <tr>
+        <th scope="row">
+          <img
+            class="foto_thumbnail"
+            src="{%"
+            static
+            laporan.item.path_foto
+            %}
+          />
+        </th>
+        <td class="col_5">{{laporan.item.email}}</td>
+        <td>{{laporan.date}}<br />{{laporan.time}}</td>
+        <td class="col_0">{{laporan.item.laporan}}</td>
+        <td class="col_1">{{laporan.item.kondisi}}</td>
+        <td class="col_2">{{laporan.item.kompetitor}}</td>
+        <td class="col_3">{{laporan.item.fokus_produk}}</td>
+        <td class="col_4">{{laporan.item.other}}</td>
+        <td>
+          <a
+            href="{% url 'dashboard:detailLaporan' id=laporan.item.id_file %}"
+            class="card-link"
+            >Lihat Lebih >>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <!--Table body-->
+  </table>
+  <!--Table-->
 
-  <!--Table body-->
-  <tbody>
-
-    {% for laporan in data %}
-    <tr>
-      <th scope="row"><img class='foto_thumbnail' src={% static laporan.item.path_foto %}/></th>
-      <td class="col_5">{{laporan.item.email}}</td>
-      <td>{{laporan.date}}<br>{{laporan.time}}</td>
-      <td class="col_0" >{{laporan.item.laporan}}</td>
-      <td class="col_1">{{laporan.item.kondisi}}</td>
-      <td class="col_2">{{laporan.item.kompetitor}}</td>
-      <td class="col_3">{{laporan.item.fokus_produk}}</td>
-      <td class="col_4">{{laporan.item.other}}</td>
-      <td ><a href="{% url 'dashboard:detailLaporan' id=laporan.item.id_file %}" class="card-link">Lihat Lebih >>  </a></td>
-    </tr>
-    {% endfor %}
-  </tbody>
-  <!--Table body-->
-
-</table>
-<!--Table-->
-
-
-
-
-<div class="row justify-content-center align-items-center">    
-    <br>
-     <br>
+  <div class="row justify-content-center align-items-center">
+    <br />
+    <br />
     <a href="/dashboard/buatLaporan" class="buttonlaporan">Buat Laporan</a>
-    <br>
-</div>   
-
-
+    <br />
+  </div>
 </div>
-
 
 {% endblock content %}
