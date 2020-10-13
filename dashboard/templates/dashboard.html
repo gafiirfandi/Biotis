@@ -160,7 +160,7 @@
     {% for laporan in data %}
     <tr>
       <th scope="row"><img class='foto_thumbnail' src={% static laporan.item.path_foto %}/></th>
-      <td class="col_5">{{laporan.item.email}}</td>
+      <td class="col_5">{{laporan.item.nama_lengkap}}</td>
       <td>{{laporan.date}}<br>{{laporan.time}}</td>
       <td class="col_0" >{{laporan.item.laporan}}</td>
       <td class="col_1">{{laporan.item.kondisi}}</td>
