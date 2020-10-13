@@ -1,5 +1,7 @@
 'use strict';
 
+console.log(document.getElementById('div-delete-1').style.display, "div delete 1");
+console.log(document.getElementById('button-delete-1').style.display, "button delete 1");
 console.log('yey')
 
 const video = document.getElementById('video');
@@ -179,6 +181,45 @@ function capture(){
             image64URL.hidden = "true"
             document.getElementById("formDiv").appendChild(image64URL)
         }
+
+        
+
+        if(document.getElementById('imageDataURL1')){
+            console.log("masuk div 1");
+            document.getElementById('div-delete-1').style.display = "flex"
+        }
+        else{
+            console.log("ga masuk div 1");
+            document.getElementById('div-delete-1').style.display = "none"
+        }
+        if(document.getElementById('imageDataURL2')){
+            document.getElementById('div-delete-2').style.display = "flex"
+        }
+        else{
+            document.getElementById('div-delete-2').style.display = "none"
+        }
+        if(document.getElementById('imageDataURL3')){
+            document.getElementById('div-delete-3').style.display = "flex"
+        }
+        else{
+            document.getElementById('div-delete-3').style.display = "none"
+        }
+        if(document.getElementById('imageDataURL4')){
+            console.log('masuk div 4');
+            document.getElementById('div-delete-4').style.display = "flex"
+        }
+        else{
+            console.log('ga masuk div 4');
+            document.getElementById('div-delete-4').style.display = "none"
+        }
+        if(document.getElementById('imageDataURL5')){
+            document.getElementById('div-delete-5').style.display = "flex"
+        }
+        else{
+            document.getElementById('div-delete-5').style.display = "none"
+        }
+
+
     });
 }
 
@@ -208,6 +249,7 @@ delete1.addEventListener("click", function() {
     const context1 = canvas.getContext('2d');
     context1.clearRect(0, 0, canvas.width, canvas.height);
     snap.value = 1
+    // document.getElementById('div-delete-1').style.display = "none"
 
     if(document.getElementById('imageDataURL2')){
         console.log('masuk 2');
@@ -252,26 +294,31 @@ delete1.addEventListener("click", function() {
                     canvas5.style.display = "none"
                     snap.value = 5
                     document.getElementById('imageDataURL5').remove()
+                    document.getElementById('div-delete-5').style.display = "none"
                 }
                 else{
                     console.log('else5');
                     document.getElementById('imageDataURL4').remove()
+                    document.getElementById('div-delete-4').style.display = "none"
                 }
                 
             }
             else{
                 console.log('else4')
                 document.getElementById('imageDataURL3').remove()
+                document.getElementById('div-delete-3').style.display = "none"
             }
         }
         else{
             console.log('else3')
             document.getElementById('imageDataURL2').remove()
+            document.getElementById('div-delete-2').style.display = "none"
         }
     }
     else{
         console.log('else2')
         document.getElementById('imageDataURL1').remove()
+        document.getElementById('div-delete-1').style.display = "none"
     }
 })
 
@@ -282,6 +329,7 @@ delete2.addEventListener("click", function() {
     const context2 = canvas2.getContext('2d');
     context2.clearRect(0, 0, canvas2.width, canvas2.height);
     snap.value = 2
+    
 
     if(document.getElementById('imageDataURL3')){
         console.log('masuk 2-3');
@@ -316,20 +364,24 @@ delete2.addEventListener("click", function() {
                 canvas5.style.display = "none"
                 snap.value = 5
                 document.getElementById('imageDataURL5').remove()
+                document.getElementById('div-delete-5').style.display = "none"
             }
             else{
                 console.log('else5')
                 document.getElementById('imageDataURL4').remove()
+                document.getElementById('div-delete-4').style.display = "none"
             }
         }
         else{
             console.log('else4')
             document.getElementById('imageDataURL3').remove()
+            document.getElementById('div-delete-3').style.display = "none"
         }
     }
     else{
         console.log('else3')
         document.getElementById('imageDataURL2').remove()
+        document.getElementById('div-delete-2').style.display = "none"
     }
 })
 
@@ -362,15 +414,18 @@ delete3.addEventListener("click", function() {
             canvas5.style.display = "none"
             snap.value = 5
             document.getElementById('imageDataURL5').remove()
+            document.getElementById('div-delete-5').style.display = "none"
         }
         else{
             console.log('else5')
             document.getElementById('imageDataURL4').remove()
+            document.getElementById('div-delete-4').style.display = "none"
         }
     }
     else{
         console.log('else4')
         document.getElementById('imageDataURL3').remove()
+        document.getElementById('div-delete-3').style.display = "none"
     }
 })
 
@@ -392,11 +447,13 @@ delete4.addEventListener("click", function() {
         canvas5.style.display = "none"
         snap.value = 5
         document.getElementById('imageDataURL5').remove()
+        document.getElementById('div-delete-5').style.display = "none"
 
     }
     else{
         console.log('else5')
         document.getElementById('imageDataURL4').remove()
+        document.getElementById('div-delete-4').style.display = "none"
     }
 })
 
@@ -407,5 +464,6 @@ delete5.addEventListener("click", function() {
     context5.clearRect(0, 0, canvas5.width, canvas5.height);
     snap.value = 5
     document.getElementById('imageDataURL5').remove()
+    document.getElementById('div-delete-5').style.display = "none"
 
 })
