@@ -111,6 +111,10 @@ def dashboard(request):
                 cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' ORDER BY waktu ASC;")
                 action_toggle_tanggal = "tanggal-terbaru"
                 searching = True
+
+            elif request.method == "POST" and request.POST['action'] == "datepicker":
+                new_date = date[-4:] + "-" + date[3:5] + "-" + date[0:2]
+                cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' AND waktu::date = '" + new_date + "' ORDER BY waktu ASC;")
                 
             else:
                 cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "';")

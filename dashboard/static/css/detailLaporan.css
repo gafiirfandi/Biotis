@@ -64,6 +64,10 @@
   position: relative;
 }
 
+.checkbox-disabled{
+  cursor: default;
+}
+
 .checkbox-custom + .checkbox-custom-label:before {
   content: '';
   background: #fff;
