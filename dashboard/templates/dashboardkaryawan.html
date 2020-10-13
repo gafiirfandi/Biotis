@@ -70,13 +70,16 @@
             <button class="btn btn-secondary" type="submit" style="background: #00AD33;" >
               <i class="fa fa-search"></i>
             </button>
-            {% if back %}
-            <input type="hidden" name="action" value="see-all" />
-            <button class="btn btn-secondary" type="submit" style="background: #00AD33;" > See All </button>
-            {% endif %}
           </div>
         </div>
       </form>
+      {% if back %}
+      <form method="post" action="{% url 'dashboard:dashboard'%}">
+      {% csrf_token %}
+          <input type="hidden" name="action" value="see-all" />
+          <button class="btn btn-secondary" type="submit" style="background: #00AD33;" > See All </button>
+      </form>
+      {% endif %}
 
     </div>
 

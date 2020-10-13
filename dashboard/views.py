@@ -33,10 +33,12 @@ def dashboard(request):
 
             action_toggle_tanggal = ""
             if request.method == "POST" and request.POST['action'] == "searching":
+                print("masuk searching")
                 search = request.POST['search']
                 cursor.execute("select * from laporan where email SIMILAR TO '%"+search+"%' OR kondisi SIMILAR TO '%"+search+"%' OR kompetitor SIMILAR TO '%"+search+"%' OR laporan SIMILAR TO '%"+search+"%' OR fokus_produk SIMILAR TO '%"+search+"%' OR other SIMILAR TO '%"+search+"%';") 
                 searching = True
-            elif request.method == "POST" and request.POST['action'] == "see-all":            
+            elif request.method == "POST" and request.POST['action'] == "see-all":
+                print("masuk see-all")          
                 cursor.execute('SELECT * from laporan;')
                 
             elif request.method == "POST" and request.POST['action'] == "menunggu-review":
@@ -55,14 +57,17 @@ def dashboard(request):
                 searching = True
 
             elif request.method == "POST" and request.POST['action'] == "datepicker":
+                print("yay")
+                print("POST:", request.POST['date'])
                 date = request.POST['date']
                 new_date = date[-4:] + "-" + date[3:5] + "-" + date[0:2]
                 if date == "":
                     return redirect('dashboard:dashboard')
                 else:
-                    cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' AND waktu::date = '" + new_date + "' ORDER BY waktu ASC;")
+                    cursor.execute("SELECT * from laporan WHERE waktu::date = '" + new_date + "' ORDER BY waktu ASC;")
                 
             else:
+                print("masuk else")
                 cursor.execute('SELECT * from laporan;')
 
             data_query = namedtuplefetchall(cursor)
@@ -96,7 +101,7 @@ def dashboard(request):
             action_toggle_tanggal = ""
             if request.method == "POST" and request.POST['action'] == "searching":
                 search = request.POST['search']
-                cursor.execute("select * from laporan where email = '"+request.session['email']+"' AND kondisi SIMILAR TO '%"+search+"%' OR kompetitor SIMILAR TO '%"+search+"%' OR laporan SIMILAR TO '%"+search+"%' OR fokus_produk SIMILAR TO '%"+search+"%' OR other SIMILAR TO '%"+search+"%';") 
+                cursor.execute("select * from laporan where email = '"+request.session['email']+"' AND (kondisi SIMILAR TO '%"+search+"%' OR kompetitor SIMILAR TO '%"+search+"%' OR laporan SIMILAR TO '%"+search+"%' OR fokus_produk SIMILAR TO '%"+search+"%' OR other SIMILAR TO '%"+search+"%');") 
                 if search == '':
                     cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "';")
                 searching = True
@@ -133,6 +138,7 @@ def dashboard(request):
                 cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "';")
 
             data_query = namedtuplefetchall(cursor)
+            print(data_query)
             data = []
             for item in data_query:
                 timestamptz = item[9]
