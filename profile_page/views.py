@@ -36,6 +36,16 @@ def editprofile(request):
     else:
         if request.method == 'POST':   
             imageDataURL = request.POST['imageDataURL']
+            extension = ''
+            if 'data:image/png;' in imageDataURL:
+                extension = 'png'
+            elif 'data:image/jpg' in imageDataURL:
+                extension = 'jpg'
+            elif 'data:image/jpeg' in imageDataURL:
+                extension = 'jpg'
+            else:
+                imageDataURL = ''
+    
             current_path = pathlib.Path(__file__).parent.absolute()
             path = ""
             if imageDataURL != "":
@@ -48,8 +58,10 @@ def editprofile(request):
                 path += '/profile'
                 if not(os.path.isdir(path)):
                     os.mkdir(path)
-                path += '/profile.jpg'
+                path += '/profile.'+extension
 
+                if extension == 'png':
+                    im1 = im1.convert('RGB')
 
                 print(im1)
 
