@@ -1,12 +1,21 @@
-body,
-html {
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+body, html {
   margin: 0;
   padding: 0;
+  width: 100%;
   height: 100%;
-  
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
 }
+
+* {
+  box-sizing: inherit;
+}
+
 .user_card {
   width: 350px;
+  height: 450px;
   margin-top: auto;
   margin-bottom: auto;
   background: rgb(244, 244, 244);
@@ -74,7 +83,6 @@ html {
   width: 100%;
   height: 100%;
   background-color: #00AD33;
-  /*background-image: url('');*/
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -86,3 +94,4 @@ canvas {
   display: block;
   vertical-align: bottom;
 }
+
