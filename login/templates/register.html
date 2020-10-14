@@ -13,7 +13,10 @@
 </head>
 <body>
 	<script src="{% static 'js/scripts.js' %}"></script>
-	<div class="container h-100">
+
+	<div id="particles-js"></div>
+	  
+	  <div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
@@ -77,6 +80,14 @@
 			form_fields[field].className += ' form-control'
 		}
 	</script>
+	  
+	</div> <!-- particles.js lib - https://github.com/VincentGarreau/particles.js --> 
+	<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js">
+	</script> <!-- stats.js lib --> <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/particles.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+
+	
 </body>
 </html>
 

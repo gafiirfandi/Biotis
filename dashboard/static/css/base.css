@@ -20,5 +20,18 @@ html,body{
 a {color: #303030;}
 a:hover {color: #303030; text-decoration: none;}
 
+.colorbutton{
+  background: white;
+  color: black;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgb(230, 216, 216);
+  border-radius: 10px;
+}
 
-
+.colorbutton:hover{
+  background: #00AD33;
+  color: white;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgb(230, 216, 216);
+  border-radius: 10px;
+}

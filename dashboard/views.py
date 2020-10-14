@@ -13,6 +13,7 @@ import re
 import pathlib
 from django.conf import settings
 from datetime import datetime
+import calendar
 
 
 def namedtuplefetchall(cursor):
@@ -22,11 +23,15 @@ def namedtuplefetchall(cursor):
     return [nt_result(*row) for row in cursor.fetchall()]
 
 def dashboard(request):
+    my_date = date.today()
+    hari = calendar.day_name[my_date.weekday()]
+    d1 = my_date.strftime("%B %d, %Y")
+    
     if 'logged_in' not in request.session or not request.session['logged_in']:    
         return redirect('login:loginPage')
     else:
         cursor = connection.cursor()
-        searching = False
+        searching = False    
         # for key, value in request.session.items():
         #     print('{} => {}'.format(key, value))
         if request.session['role'] == 'admin':
@@ -57,17 +62,17 @@ def dashboard(request):
                 searching = True
 
             elif request.method == "POST" and request.POST['action'] == "datepicker":
-                print("yay")
-                print("POST:", request.POST['date'])
-                date = request.POST['date']
-                new_date = date[-4:] + "-" + date[3:5] + "-" + date[0:2]
-                if date == "":
+                # print("yay")
+                # print("POST:", request.POST['date'])
+                tanggal = request.POST['date']
+                new_date = tanggal[-4:] + "-" + tanggal[3:5] + "-" + tanggal[0:2]
+                if tanggal == "":
                     return redirect('dashboard:dashboard')
                 else:
                     cursor.execute("SELECT * from laporan WHERE waktu::date = '" + new_date + "' ORDER BY waktu ASC;")
                 
             else:
-                print("masuk else")
+                # print("masuk else")
                 cursor.execute('SELECT * from laporan;')
 
             data_query = namedtuplefetchall(cursor)
@@ -89,13 +94,13 @@ def dashboard(request):
                 timestamptz = item[9]
                 # print(timestamptz)
                 time = timestamptz.strftime("%H:%M")
-                date = timestamptz.strftime("%A, %d %b %Y")
+                timestamp_tanggal = timestamptz.strftime("%A, %d %b %Y")
                 # print(time)
                 # print(date)
-                data.append({'item': item, 'time': time, 'date': date})
+                data.append({'item': item, 'time': time, 'date': timestamp_tanggal})
 
             # print(data)
-            return render(request, 'dashboard.html', {'data': data,'toggle_action': action_toggle_tanggal, 'reviewed':count_is_reviewed, 'not_reviewed':count_is_not_reviewed, 'username':username, 'role':role, 'back':searching})
+            return render(request, 'dashboard.html', {'data': data,'hari':hari,'tanggal':d1,'toggle_action': action_toggle_tanggal, 'reviewed':count_is_reviewed, 'not_reviewed':count_is_not_reviewed, 'username':username, 'role':role, 'back':searching})
 
         elif request.session['role'] == 'karyawan':
             action_toggle_tanggal = ""
@@ -127,12 +132,13 @@ def dashboard(request):
                 searching = True
 
             elif request.method == "POST" and request.POST['action'] == "datepicker":
-                date = request.POST['date']
-                new_date = date[-4:] + "-" + date[3:5] + "-" + date[0:2]
-                if date == "":
+                tanggal = request.POST['date']
+                new_date = tanggal[-4:] + "-" + tanggal[3:5] + "-" + tanggal[0:2]
+                if tanggal == "":
                     return redirect('dashboard:dashboard')
                 else:
                     cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "' AND waktu::date = '" + new_date + "' ORDER BY waktu ASC;")
+                    searching = True
                 
             else:
                 cursor.execute("SELECT * from laporan WHERE email = '" + request.session['email'] + "';")
@@ -144,10 +150,10 @@ def dashboard(request):
                 timestamptz = item[9]
                 # print(timestamptz)
                 time = timestamptz.strftime("%H:%M")
-                date = timestamptz.strftime("%A, %d %b %Y")
+                timestamp_tanggal = timestamptz.strftime("%A, %d %b %Y")
                 # print(time)
                 # print(date)
-                data.append({'item': item, 'time': time, 'date': date})
+                data.append({'item': item, 'time': time, 'date': timestamp_tanggal})
 
             cursor.execute("SELECT count(*) from laporan WHERE email = '" + request.session['email'] + "' AND COALESCE(is_reviewed, FALSE) = FALSE;;")
             count_is_not_reviewed = cursor.fetchone()[0]
@@ -162,7 +168,7 @@ def dashboard(request):
             cursor.execute("SELECT role FROM profile WHERE email = '" + email + "';")
             role = cursor.fetchone()[0]
 
-            return render(request, 'dashboardkaryawan.html', {'data': data, 'toggle_action': action_toggle_tanggal, 'username': username, 'role':role, "count_is_reviewed": count_is_reviewed, 'count_is_not_reviewed': count_is_not_reviewed, 'back':searching})
+            return render(request, 'dashboardkaryawan.html', {'data': data, 'toggle_action': action_toggle_tanggal,'hari':hari,'tanggal':d1, 'username': username, 'role':role, "count_is_reviewed": count_is_reviewed, 'count_is_not_reviewed': count_is_not_reviewed, 'back':searching})
 
 
 def buatLaporan(request):
@@ -274,7 +280,11 @@ def detailLaporan(request, id):
 
     cursor = connection.cursor()
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST['action'] == "hapus":
+        cursor.execute("DELETE FROM laporan WHERE id_file=" + str(id) + ";")
+        return redirect('dashboard:dashboard')
+
+    elif request.method == 'POST' and request.POST['action'] == "review":
         review_action = request.POST.get('checkbox-1', False)
         if review_action == 'on':
             cursor.execute("UPDATE laporan SET is_reviewed = 'true' WHERE id_file='" + str(id) + "';")
