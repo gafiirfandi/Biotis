@@ -1,4 +1,4 @@
-@import "base.css";
+@import url("base.css");
 
 
 .detailLaporanbody{
@@ -165,8 +165,6 @@ color: black;
 .form-control{
     width: 90%;
     max-width: 250px;
-    color: #828282;
-   
 }
 
 .colorbutton{
@@ -185,138 +183,119 @@ color: black;
     border-radius: 10px;
 }
 
-/*  Responsive table */
-
-#table-dashboard  { 
-    /* border-collapse: separate; */
-    /* box-shadow: 0 8px 6px -6px white; */
-    /* background-color: whitesmoke; */
-
- }
-
- #table-dashboard tbody  { 
-
-
-    background-color: white;
-
- }
- #table-dashboard td { 
-    border: none;
-    border: solid 10px whitesmoke;
-    border-style: solid none;
-    padding: 10px;
- }
-  #table-dashboard tr{
-
-    background-color: white;
-    border-radius: 50px;
-    
-} 
-
-    #table-dashboard tr:first-child td:first-child {
-     border-top-left-radius: 10px;
-     border-left-style: solid;
-     border-top-left-radius: 10px; 
-     border-bottom-left-radius: 10px;
-     
-     }
-     
-    #table-dashboard tr:first-child #table-dashboard td:last-child { 
-        border-top-right-radius: 10px; 
-        border-right-style: solid;
-    }
-    #table-dashboard tr:last-child #table-dashboard td:first-child {
-         border-bottom-left-radius: 10px;
-         border-left-style: solid;
-    }
-    #table-dashboard tr:last-child #table-dashboard td:last-child {
-         border-bottom-right-radius: 10px;
-         border-right-style: solid;
-    }
-
-/* #table-dashboard tbody{
+/* table */
+#table-dashboard tbody{
 
     box-shadow: 0 8px 6px -6px white;
     background-color: white;
     border-radius: 10px;
-}  */
-/* #table-dashboard tr{
+ 
+}
+#table-dashboard tr{
 
     background-color: white;
     border-radius: 50px;
     
-} */
-/* #table-dashboard td{
+}
+
+
+
+
+#table-dashboard td{
     border: none;
 
-} */
-/* #table-dashboard tr{
+}
+#table-dashboard tr{
     border: none;
 
-} */
-/* #table-dashboard table { 
+}
+#table-dashboard  { 
     border-collapse: separate; 
     border-spacing: 0 10px; 
-    margin-top: -10px; 
-} */
-/* #table-dashboard td {
+    margin-top: -10px; /* correct offset on first border spacing if desired */
+}
+#table-dashboard td {
     border: solid 10px white;
     border-style: solid none;
     padding: 10px;
     background-color: white;
-}  */
- /* #table-dashboard td:first-child {
+}
+#table-dashboard td:first-child {
     border-left-style: solid;
     border-top-left-radius: 10px; 
     border-bottom-left-radius: 10px;
-} */
-/* #table-dashboard td:last-child {
+}
+#table-dashboard td:last-child {
     border-right-style: solid;
     border-bottom-right-radius: 10px; 
     border-top-right-radius: 10px; 
-} */
-/* #table-dashboard th {
+}
+
+
+#table-dashboard th {
     border: solid 10px white;
     border-style: solid none;
     padding: 10px;
     background-color: white;
-    /* border-radius: 50px; 
-} */
-/* #table-dashboard th:first-child {
+}
+#table-dashboard th:first-child {
     border-left-style: solid;
     border-top-left-radius: 10px; 
     border-bottom-left-radius: 10px;
-    border-radius: 50px;
-} */
-/* #table-dashboard th:last-child {
+}
+#table-dashboard th:last-child {
     border-right-style: solid;
     border-bottom-right-radius: 10px; 
     border-top-right-radius: 10px; 
-    border-radius: 50px;
-
-}  */
-
+}
 /*  Responsive table */
 
-
+/* @media(max-width: 400px){
+	.table thead{
+		display: none;
+	}
+	.table, .table tbody, .table tr, .table td{
+		display: block;
+		width: 100%;
+	}
+	.table tr{
+		margin-bottom:15px;
+	}
+	.table td{
+		text-align: right;
+		padding-left: 50%;
+		text-align: right;
+		position: relative;
+	}
+	.table td::before{
+		content: attr(data-label);
+		position: absolute;
+		left:0;
+		width: 50%;
+		padding-left:15px;
+		font-size:15px;
+		font-weight: bold;
+		text-align: left;
+	}
+} */
 @media 
 only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
     /* Force table to not be like tables anymore */
-    #table-dashboard tbody{
+     tbody{
         display: block;
         width: 75%;
         margin-left:35px ;
-        box-shadow: 0 8px 6px -6px white;
+        /* box-shadow: 0 8px 6px -6px white; */
     }
-    #table-dashboard tr{
+     tr{
         box-shadow: 0 8px 6px -6px grey;
-        /* padding-top: 0 5em; */
-        background-color: white;
+        padding-top: 0 5em;
+        /* background-color: white; */
 
     }
-	#table-dashboard, #table-dashboard thead, #table-dashboard th, #table-dashboard td, #table-dashboard tr { 
+	table, thead, th, td, tr { 
         width: 100%;
         font-family: Rubik;
         font-style: normal;
@@ -337,13 +316,13 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     }
 	
 	/* Hide table headers (but not display: none;, for accessibility) */
-	#table-dashboard thead tr { 
+	 thead tr { 
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
 	}
 	
-    #table-dashboard tr { 
+     tr { 
         
         border: 1px solid #ccc;
         margin-top: 20px;
@@ -352,39 +331,38 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     
     }
 	
-	#table-dashboard td { 
+	 td { 
 		/* Behave  like a "row" */
-        border-style: hidden;
-        position: relative;
-        /* watch this*/
-
+		border-style: hidden;
+		position: relative;
         
     }
-    /* .hideresponsive{
+
+    .hideresponsive{
         display: none;
-    } */
-    td.col_1{
+    }
+     td.col_1{
         display:none;
         width:0;
         height:0;
         opacity:0;
         visibility: collapse;       
     } 
-    td.col_2{
+     td.col_2{
         display:none;
         width:0;
         height:0;
         opacity:0;
         visibility: collapse;       
     } 
-    td.col_3{
+     td.col_3{
         display:none;
         width:0;
         height:0;
         opacity:0;
         visibility: collapse;       
     } 
-    td.col_4{
+     td.col_4{
         display:none;
         width:0;
         height:0;
@@ -392,11 +370,11 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
         visibility: collapse;       
     } 
 
-    td.col_0{
+     td.col_0{
         font-size: 15px;
     }
 	
-	td:before { 
+	 td:before { 
 		/* Now like a table header */
 		position: absolute;
 		/* Top/left values mimic padding */
@@ -408,7 +386,7 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     }
     
     .card-link{
-        font-size: 15px;
+        font-size: 12px;
     }
     .harusresponsiv{
         visibility: hidden;
@@ -455,21 +433,21 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
         margin-top: 20px;
     }
     
-    #table-dashboard td{
+     td{
         border: none;
         border-radius: 20px;
     }
 
-
-    td.selengkapnya{
-        margin-top: -100px;
-    }
-    .form-control{
+    /* .form-control{
         width: 200%;
         max-width: 250px;
         color: #828282;
-        
-       
+             
+    } */
+    .datepickerresponsive{
+        width: 200%;
+        max-width: 250px;
+        color: #828282;
     }
     #search-bar{
         font-size: 12px;

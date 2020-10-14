@@ -248,7 +248,7 @@ def buatLaporan(request):
             temp_static_path.append(static_path)
 
         cursor.execute("SELECT max(id_file) FROM laporan;")
-        if id_file is None:
+        if id_file == 1:
             id_file = 1
         else:
             id_file = cursor.fetchone()[0] + 1
