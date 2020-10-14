@@ -75,6 +75,7 @@
           <input
             type="text"
             class="form-control"
+            id="search-bar"
             name="search"
             placeholder="Search by All"
           />
@@ -207,7 +208,7 @@
         <td class="col_2">{{laporan.item.kompetitor}}</td>
         <td class="col_3">{{laporan.item.fokus_produk}}</td>
         <td class="col_4">{{laporan.item.other}}</td>
-        <td>
+        <td class="selengkapnya">
           <a
             href="{% url 'dashboard:detailLaporan' id=laporan.item.id_file %}"
             class="card-link"
