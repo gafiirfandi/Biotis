@@ -20,7 +20,7 @@
 }
 
 .panel-body {
-  width: 90%;
+  width: 120%;
   max-width: 240px;
   margin: auto;
   background-color: #ffffff;
@@ -33,7 +33,7 @@
 
 .panel-head {
   background-color: #00AD33;
-  width: 90%;
+  width: 120%;
   max-width: 240px;
   padding: 10px 0px;
   margin: auto;
@@ -138,7 +138,7 @@
     width: 100%;
   }
   .reviewBox{
-    margin-top: -100px;
+    
     width: 70%;
     font-size: 15px;
   }

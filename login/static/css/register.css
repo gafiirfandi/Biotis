@@ -1,10 +1,18 @@
-body,
-html {
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
+body, html {
   margin: 0;
   padding: 0;
+  width: 100%;
   height: 100%;
-  background: white !important;
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
 }
+
+* {
+  box-sizing: inherit;
+}
+
 .user_card {
   width: 350px;
   margin-top: auto;
@@ -162,4 +170,10 @@ html {
 canvas {
   display: block;
   vertical-align: bottom;
+
+}
+
+.particles-js-canvas-el{
+  width: 100%;
+  height: 100%;
 }
