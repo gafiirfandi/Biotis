@@ -132,9 +132,17 @@
     </div>
     
     <br>
-    <div class="row justify-content-center align-items-center" id="div-delete-5">    
-      <a href="/dashboard/buatLaporan" class="buttondelete" id="button-delete-5">Hapus Laporan</a>
-    </div>
+    <form
+        method="post"
+        id="formReview"
+        action="{% url 'dashboard:detailLaporan' id=data.id_file%}"
+    >
+    {% csrf_token %}
+      <input type="hidden" name="action" value="hapus" />
+      <div class="row justify-content-center align-items-center" id="div-delete-5">    
+        <button type="submit" class="buttondelete" id="button-delete-5">Hapus Laporan</a>
+      </div>
+    </form>
     <br> 
 
     <div class="container reviewBox">
@@ -150,14 +158,13 @@
               action="{% url 'dashboard:detailLaporan' id=data.id_file%}"
             >
               {% csrf_token %}
+              <input type="hidden" name="action" value="review" />
               <div>
-                {% if data.is_reviewed %} <input checked
-                onchange={document.getElementById('formReview').submit()}
-                id="checkbox-1" class="checkbox-custom" name="checkbox-1"
-                type="checkbox"> {% else %} <input
-                onchange={document.getElementById('formReview').submit()}
-                id="checkbox-1" class="checkbox-custom" name="checkbox-1"
-                type="checkbox"> {% endif %}
+                {% if data.is_reviewed %} 
+                <input checked onchange={document.getElementById('formReview').submit()} id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox"> 
+                {% else %} 
+                <input onchange={document.getElementById('formReview').submit()} id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox"> 
+                {% endif %}
                 <label for="checkbox-1" class="checkbox-custom-label"
                   >Sudah di-review</label
                 >

@@ -62,8 +62,8 @@ def dashboard(request):
                 searching = True
 
             elif request.method == "POST" and request.POST['action'] == "datepicker":
-                print("yay")
-                print("POST:", request.POST['date'])
+                # print("yay")
+                # print("POST:", request.POST['date'])
                 tanggal = request.POST['date']
                 new_date = tanggal[-4:] + "-" + tanggal[3:5] + "-" + tanggal[0:2]
                 if tanggal == "":
@@ -72,7 +72,7 @@ def dashboard(request):
                     cursor.execute("SELECT * from laporan WHERE waktu::date = '" + new_date + "' ORDER BY waktu ASC;")
                 
             else:
-                print("masuk else")
+                # print("masuk else")
                 cursor.execute('SELECT * from laporan;')
 
             data_query = namedtuplefetchall(cursor)
@@ -280,7 +280,11 @@ def detailLaporan(request, id):
 
     cursor = connection.cursor()
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST['action'] == "hapus":
+        cursor.execute("DELETE FROM laporan WHERE id_file=" + str(id) + ";")
+        return redirect('dashboard:dashboard')
+
+    elif request.method == 'POST' and request.POST['action'] == "review":
         review_action = request.POST.get('checkbox-1', False)
         if review_action == 'on':
             cursor.execute("UPDATE laporan SET is_reviewed = 'true' WHERE id_file='" + str(id) + "';")
