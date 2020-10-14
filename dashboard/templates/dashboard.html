@@ -19,8 +19,13 @@
     <div class="p-2 judul1">
       <p class="judul1">Dashboard</p>
     </div>
+<<<<<<< HEAD
     <div class="p-2 tanggal1">Selasa,25 agustus 2020</div>
     <div class="p-2">
+=======
+    <div class="p-2 tanggal1" > {{hari}}, {{tanggal}}</div>
+    <div class="p-2 ">
+>>>>>>> ae1ef731e1a0b177383b4aa3a372044ef7d69b31
       <div class="row rowCard">
         <form action="{% url 'dashboard:dashboard'%}" method="post">
           {% csrf_token %}
@@ -91,6 +96,7 @@
         </div>
       </form>
       {% if back %}
+<<<<<<< HEAD
       <form action="{% url 'dashboard:dashboard'%}" method="post">
         {% csrf_token %}
         <input type="hidden" name="action-see-all" value="see-all" />
@@ -98,6 +104,13 @@
           See All
         </button>
       </form>
+=======
+        <form action="{% url 'dashboard:dashboard'%}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="see-all" />
+          <button class="btn btn-secondary"  style="background: #00AD33;" > See All </button>
+        </form>            
+>>>>>>> ae1ef731e1a0b177383b4aa3a372044ef7d69b31
       {% endif %}
     </div>
 
