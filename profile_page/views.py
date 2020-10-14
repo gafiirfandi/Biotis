@@ -34,24 +34,39 @@ def editprofile(request):
     if 'logged_in' not in request.session or not request.session['logged_in']:
         return redirect('login:loginPage')
     else:
-        if request.method == 'POST':
-
+        if request.method == 'POST':   
             imageDataURL = request.POST['imageDataURL']
-            current_path = pathlib.Path(__file__).parent.absolute()
-            image_data = re.sub('^data:image/.+;base64,', '', imageDataURL)
-            im1 = Image.open(BytesIO(base64.b64decode(image_data)))
-            profile_pic_path = '/static/img/user/'
-            path = str(current_path) + profile_pic_path + email
-            if not(os.path.isdir(path)):
-                os.mkdir(path)
-            path += '/profile'
-            if not(os.path.isdir(path)):
-                os.mkdir(path)
-            path += '/profile.jpg'
-
-            static_path = 'img/user/'+email+'/profile/profile.jpg'
+            extension = ''
+            if 'data:image/png;' in imageDataURL:
+                extension = 'png'
+            elif 'data:image/jpg' in imageDataURL:
+                extension = 'jpg'
+            elif 'data:image/jpeg' in imageDataURL:
+                extension = 'jpg'
+            else:
+                imageDataURL = ''
     
-            im1 = im1.save(path)
+            current_path = pathlib.Path(__file__).parent.absolute()
+            path = ""
+            if imageDataURL != "":
+                image_data = re.sub('^data:image/.+;base64,', '', imageDataURL)
+                im1 = Image.open(BytesIO(base64.b64decode(image_data)))
+                profile_pic_path = '/static/img/user/'
+                path = str(current_path) + profile_pic_path + email
+                if not(os.path.isdir(path)):
+                    os.mkdir(path)
+                path += '/profile'
+                if not(os.path.isdir(path)):
+                    os.mkdir(path)
+                path += '/profile.'+extension
+
+                if extension == 'png':
+                    im1 = im1.convert('RGB')
+
+                print(im1)
+
+                im1 = im1.save(path)
+                
 
             nama_lengkap = request.POST.get("nama_lengkap")
             no_hp = request.POST.get("no_hp")
@@ -78,11 +93,16 @@ def editprofile(request):
             if nama_atasan == "":
                 cursor.execute("SELECT nama_atasan FROM profile where email = '"+email+"';")
                 nama_atasan = cursor.fetchone()[0]
-
-            update_sql = "UPDATE profile set nama_lengkap = %s, no_hp = %s, alamat = %s, jabatan = %s, nama_atasan = %s, foto_profile = %s WHERE email = '"+email+"';"
-            record_to_update = [(nama_lengkap, no_hp, alamat, jabatan, nama_atasan, path)]
-            cursor.executemany(update_sql, record_to_update)
             
+            if path == "":
+                update_sql = "UPDATE profile set nama_lengkap = %s, no_hp = %s, alamat = %s, jabatan = %s, nama_atasan = %s WHERE email = '"+email+"';"
+                record_to_update = [(nama_lengkap, no_hp, alamat, jabatan, nama_atasan)]
+                cursor.executemany(update_sql, record_to_update)
+            else :
+                update_sql = "UPDATE profile set nama_lengkap = %s, no_hp = %s, alamat = %s, jabatan = %s, nama_atasan = %s, foto_profile = %s WHERE email = '"+email+"';"
+                record_to_update = [(nama_lengkap, no_hp, alamat, jabatan, nama_atasan, path)]
+                cursor.executemany(update_sql, record_to_update)
+
             return redirect("profile:profile")
         else:
             form = FormProfile()

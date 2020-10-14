@@ -1,4 +1,4 @@
-@import url("base.css");
+@import "base.css";
 
 
 .detailLaporanbody{
@@ -94,7 +94,7 @@
 }
 
 
-th , td{
+#table-dashboard th ,#table-dashboard td{
     font-family: Rubik;
     font-style: normal;
     font-weight: 500;
@@ -165,6 +165,8 @@ color: black;
 .form-control{
     width: 90%;
     max-width: 250px;
+    color: #828282;
+   
 }
 
 .colorbutton{
@@ -183,6 +185,7 @@ color: black;
     border-radius: 10px;
 }
 
+<<<<<<< HEAD
 /* table */
 #table-dashboard tbody{
 
@@ -248,13 +251,14 @@ color: black;
     border-bottom-right-radius: 10px; 
     border-top-right-radius: 10px; 
 }
+=======
+>>>>>>> 8b8da940a50b13190b83466a3da13549e2ff2bac
 /*  Responsive table */
 
 /* @media(max-width: 400px){
 	.table thead{
 		display: none;
 	}
-
 	.table, .table tbody, .table tr, .table td{
 		display: block;
 		width: 100%;
@@ -292,7 +296,7 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     }
     #table-dashboard tr{
         box-shadow: 0 8px 6px -6px grey;
-        padding-top: 0 5em;
+        /* padding-top: 0 5em; */
         background-color: white;
 
     }
@@ -332,6 +336,7 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     
     }
 	
+<<<<<<< HEAD
 	/* #table-dashboard td { 
 		Behave  like a "row"
 		border-style: hidden;
@@ -341,8 +346,19 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     } */
 
     .hideresponsive{
-        display: none;
+=======
+	#table-dashboard td { 
+		/* Behave  like a "row" */
+        border-style: hidden;
+        position: relative;
+        /* watch this*/
+
+        
     }
+    /* .hideresponsive{
+>>>>>>> 8b8da940a50b13190b83466a3da13549e2ff2bac
+        display: none;
+    } */
     td.col_1{
         display:none;
         width:0;
@@ -388,7 +404,7 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     }
     
     .card-link{
-        font-size: 12px;
+        font-size: 15px;
     }
     .harusresponsiv{
         visibility: hidden;
@@ -439,15 +455,26 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
         border: none;
         border-radius: 20px;
     }
+
+
+    td.selengkapnya{
+        margin-top: -100px;
+    }
+    .form-control{
+        width: 200%;
+        max-width: 250px;
+        color: #828282;
+        
+       
+    }
+    #search-bar{
+        font-size: 12px;
+    }
+    .btn-secondary{
+        height: 84%;
+    }
+
 }
 
 
 
-
-
-
-   
-
-
-    
-	

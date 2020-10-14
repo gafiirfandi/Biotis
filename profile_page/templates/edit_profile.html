@@ -113,9 +113,14 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#wizardPicturePreview').attr('src', e.target.result);
-                    $('#hiddenInput').attr('value', e.target.result);
-                    console.log("ini dia", document.getElementById("hiddenInput").value)
+                    if (e.target.result.includes("data:image/png;") || e.target.result.includes("data:image/jpg;") || e.target.result.includes("data:image/jpeg;")) {
+                        $('#wizardPicturePreview').attr('src', e.target.result);
+                        $('#hiddenInput').attr('value', e.target.result);
+                    } else {
+                        alert("Foto harus berupa jpg/jpeg/png")
+                    }
+
+                    // console.log("ini dia", document.getElementById("hiddenInput").value)
                 }
                 console.log('reader is', reader)
                 console.log('input.files[0]', input.files[0])

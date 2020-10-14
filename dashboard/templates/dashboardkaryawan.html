@@ -28,36 +28,8 @@
     <div class="p-2 judul1">
       <p class="judul1">Dashboard</p>
     </div>
-    <div class="p-2 tanggal1" > Selasa,25 agustus 2020</div>
+    <div class="p-2 tanggal1" > {{hari}}, {{tanggal}}</div>
     <div class="p-2 ">
-      <!-- <div class="row rowCard">
-        <form action="{% url 'dashboard:dashboard' %}" method="post">
-          {% csrf_token %}
-          <div class="card card1">
-                <input type="hidden" name="action" value="sudah-review" />
-                <div class="col-sm card1space ">
-                    <div class="card-body " >
-                        <h5 class="card-title">{{ count_is_reviewed }} orang  </h5>
-                        <h6 class="card-subtitle mb-2 text-muted karyawan">Laporan Sudah  Review </h6>         
-                        <button type="submit" class="card-link" style="background-color: white; border: none; padding: 0;">Lihat selengkapnya >></button>
-                      </div>
-                </div>
-          </div>
-        </form>
-        <form action="{% url 'dashboard:dashboard' %}" method="post">
-        {% csrf_token %}
-        <div class="card card2">
-              <input type="hidden" name="action" value="menunggu-review" />
-              <div class="col-sm card1space ">
-                  <div class="card-body ">
-                      <h5 class="card-title">{{ count_is_not_reviewed}} orang</h5>
-                      <h6 class="card-subtitle mb-2 text-muted karyawan">Laporan Menunggu Review </h6>                
-                      <button type="submit" class="card-link" style="background-color: white; border: none; padding: 0;">Lihat selengkapnya >></button>
-                    </div>
-              </div>
-        </div>
-        </form>
-      </div>               -->
     </div>
 
     <div class="p-2 ">
@@ -139,7 +111,6 @@
   <thead>
     <tr >
       <th class="hideresponsive">Foto</th>
-      <th class="hideresponsive">Nama Karyawan</th>
       <th class="hideresponsive">Tanggal</th>
       <th class="hideresponsive">Laporan Kegiatan</th>
       <th class="hideresponsive">Kondisi Umum</th>
@@ -156,8 +127,7 @@
 
     {% for laporan in data %}
     <tr>
-      <th scope="row"><img class='foto_thumbnail' src={% static laporan.item.path_foto %}/></th>
-      <td class="col_5">{{laporan.item.email}}</td>
+      <th scope="row"><img class='foto_thumbnail' src="{% static laporan.item.path_foto %}"/></th>
       <td>{{laporan.date}}<br>{{laporan.time}}</td>
       <td class="col_0" >{{laporan.item.laporan}}</td>
       <td class="col_1">{{laporan.item.kondisi}}</td>
