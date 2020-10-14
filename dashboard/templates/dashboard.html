@@ -191,13 +191,7 @@
       {% for laporan in data %}
       <tr>
         <th scope="row">
-          <img
-            class="foto_thumbnail"
-            src="{%
-            static
-            laporan.item.path_foto
-            %}"
-          />
+          <img class="foto_thumbnail" src="{% static laporan.item.path_foto %}" />
         </th>
         <td class="col_5">{{laporan.item.email}}</td>
         <td>{{laporan.date}}<br />{{laporan.time}}</td>
