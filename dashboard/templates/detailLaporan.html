@@ -19,8 +19,8 @@
       <h2>{{ username }}</h2>
     </div>
     <div class="p-2 tanggal1">
-      <p>{{time}}</p>
-      <p style="margin-top: -15px">{{date}}</p>
+      <p class="tanggalharini">{{time}}</p>
+      <p class="tanggalharini">{{date}}</p>
     </div>
     <div class="p-2"></div>
     <div class="p-2"></div>
@@ -33,7 +33,7 @@
 
     <div
       id="carouselExampleControls"
-      class="carousel slide"
+      class="carousel slide "
       data-ride="carousel"
     >
       <div class="carousel-inner">
@@ -130,11 +130,17 @@
         </div>
       </div>
     </div>
+    
+    <br>
+    <div class="row justify-content-center align-items-center" id="div-delete-5">    
+      <a href="/dashboard/buatLaporan" class="buttondelete" id="button-delete-5">Hapus Laporan</a>
+    </div>
+    <br> 
 
     <div class="container reviewBox">
       <div class="panel">
         <div class="panel-head">
-          <h3>Status Laporan</h3>
+          <h3 class="statuslaporan">Status Laporan</h3>
         </div>
         <div class="panel-body">
           {% if role == "admin"%}
