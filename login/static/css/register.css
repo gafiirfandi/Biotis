@@ -14,7 +14,7 @@ body, html {
 }
 
 .user_card {
-  width: 350px;
+  width: 80%;
   margin-top: auto;
   margin-bottom: auto;
   background: rgb(244, 244, 244);
