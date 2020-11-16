@@ -95,3 +95,30 @@ canvas {
   vertical-align: bottom;
 }
 
+@media (max-width: 420px) {
+
+
+  .user_card{
+    width: 80%;
+  }
+
+  #form-title{
+    font-size: 7.5vw;
+  }
+
+  .links{
+    font-size: 3.5vw;
+  }
+
+  .login_btn i {
+    font-size: 3.5vw;
+  }
+
+  input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    font-size: 3.5vw;
+  }
+  input:-moz-placeholder, textarea:-moz-placeholder {
+    font-size: 3.5vw;
+  }
+
+}

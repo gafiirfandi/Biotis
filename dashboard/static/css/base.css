@@ -2,36 +2,34 @@
 
 
 html,body{
-  font-family: 'Rubik', sans-serif;
-  height: 100%;
-  width: 100%;
-  background: rgba(241, 250, 245, 1);
+    font-family: 'Rubik', sans-serif;
+    height: 100%;
+    width: 100%;
+    background: rgba(241, 250, 245, 1);
 }
 
 .navbar{
-    background: black;
+    background: white;
 }
 
 ::selection {
     color: white;
     background: #2AA153;
-  }
+}
 
 a {color: #303030;}
 a:hover {color: #303030; text-decoration: none;}
 
-.colorbutton{
-  background: white;
-  color: black;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  border-color: rgb(230, 216, 216);
-  border-radius: 10px;
+.buttonlogout {
+    color: white;
+    background-color: #00AD33;
+    transition: 50ms;
+    border-radius: 12px;
+    padding: 7px;
+    border: none;
 }
 
-.colorbutton:hover{
-  background: #00AD33;
-  color: white;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  border-color: rgb(230, 216, 216);
-  border-radius: 10px;
+.buttonlogout:hover {
+    background-color: #00AD33;
+    color: black;
 }
