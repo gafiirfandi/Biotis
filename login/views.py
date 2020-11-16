@@ -50,7 +50,6 @@ def registerPage(request):
 				cursor.execute("SELECT * from pengguna where username = '"+username+"';")
 				select2 = cursor.fetchone()
 				if (select):
-					messages.error(request, 'Email Already Registered.')
 					return redirect('login:loginPage')
 				elif(select2):
 					messages.error(request, 'Username Already Registered.')
