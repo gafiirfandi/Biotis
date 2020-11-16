@@ -72,7 +72,7 @@ def registerPage(request):
 					)
 					email_send.fail_silently = False
 					email_send.send()
-					return render (request, 'response.html')
+					return redirect('login:verification')
 					# cursor.execute("INSERT INTO pengguna (email, username, password) VALUES"
 					# 				"('"+email+"', '"+username+"', '"+password+"');")
 					# cursor.execute("INSERT INTO profile (email, role) VALUES"
@@ -164,13 +164,12 @@ def activate(request, uidb64, token):
 		request.session["username"] = user_data[1]
 		request.session["role"] = "karyawan"
 		request.session["password1"] = user_data[2]
-		request.session["logged_in"] = True
 		request.session.modified = True
 		cursor.close()
 		user.save()
-		return render (request, 'verification.html')
+		return redirect('login:verified')
 	else:
-		return HttpResponse('Activation link is invalid!')
+		return redirect('login:failed_verified')
 
 def reset(request):
 	if 'logged_in' not in request.session or not request.session['logged_in']:
@@ -200,4 +199,16 @@ def reset(request):
 	else:
 		return redirect('dashboard:dashboard')
 
+def verification(request):
+	if 'logged_in' not in request.session or not request.session['logged_in']:
+		return render(request, 'verification.html')
+	else:
+		return redirect('dashboard:dashboard')
+
+def verified(request):
+	return render(request, 'response.html')
+
+def failed_verified(request):
+	return render(request, 'failed_verified.html')
+	
 
