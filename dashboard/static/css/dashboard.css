@@ -470,5 +470,19 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
 
 }
 
+.input-group{
+    width: 50%;
+}
 
+@media (max-width: 420px) {
+
+    .form-control{
+      width: 100px;
+    }
+
+    .search{
+        width: 100%;
+    }
+  
+}
 

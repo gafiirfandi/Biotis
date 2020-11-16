@@ -40,6 +40,10 @@ body, html {
   color: black;
 }
 
+#response-title{
+  color: black;
+}
+
 .login_btn {
   width: 100%;
   background: rgb(242, 200, 79) !important;
@@ -95,3 +99,54 @@ canvas {
   vertical-align: bottom;
 }
 
+@media (max-width: 420px) {
+
+
+  .user_card{
+    width: 80%;
+  }
+
+  #form-title{
+    font-size: 7.5vw;
+  }
+
+  .links{
+    font-size: 3.5vw;
+  }
+
+  .login_btn i {
+    font-size: 3.5vw;
+  }
+
+  input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    font-size: 3.5vw;
+  }
+  input:-moz-placeholder, textarea:-moz-placeholder {
+    font-size: 3.5vw;
+  }
+
+  #response-title {
+    font-size: 4.5vw;
+  }
+
+}
+
+.responseCard {
+  width: 800px;
+  height: 300px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background: rgb(244, 244, 244);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  text-align: center;
+}

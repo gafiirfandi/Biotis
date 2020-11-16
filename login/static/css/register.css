@@ -31,7 +31,6 @@ body, html {
   border-radius: 5px;
 }
 .form_container {
-  margin-top: 20px;
 }
 
 #form-title {
@@ -172,4 +171,64 @@ canvas {
   vertical-align: bottom;
 
 }
+
+.hint-pw{
+  font-family: 'open sans','tahoma',sans-serif;
+  color: rgba(49,53,59,0.68);
+  font-size: 12px;
+}
+
+.messages{
+  font-family: 'open sans','tahoma',sans-serif;
+  color: rgba(49,53,59,0.68);
+  font-size: 12px;
+}
+
+@media (max-width: 420px) {
+
+  .hint-pw{
+    font-size: 10px;
+  }
+
+  .btn-karyawan i {
+    font-size: 20px;
+  }
+
+  .btn-admin {
+    font-size: 10px;
+  }
+
+  #form-title{
+    font-size: 5.5vw;
+  }
+
+  .links{
+    font-size: 3.5vw;
+  }
+
+  input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    font-size: 3.5vw;
+  }
+  input:-moz-placeholder, textarea:-moz-placeholder {
+    font-size: 3.5vw;
+  }
+
+  .user_card{
+    width: 80%;
+    height: 80%;
+  }
+
+  .errorlist {
+    font-size: 3.5vw;
+  }
+}
+
+.errorlist {
+  padding-left: 20px;
+  margin-top: 10px;
+  justify-content: center;
+  font-family: 'open sans','tahoma',sans-serif;
+  color: rgba(49,53,59,0.68);
+}
+
 
