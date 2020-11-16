@@ -9,5 +9,5 @@ urlpatterns = [
     path('reset/', views.reset, name="reset"),
 	path('', views.loginPage, name="loginPage"),
     path('activate/<uidb64>/<token>/',views.activate, name='activate'),  
-    path('logout/', views.logoutUser, name="logout")
+    path('logout/', views.logoutUser, name="logout"),
 ]

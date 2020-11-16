@@ -73,7 +73,7 @@ def registerPage(request):
 					)
 					email_send.fail_silently = False
 					email_send.send()
-					return HttpResponse('Please confirm your email address to complete the registration')
+					return render (request, 'response.html')
 					# cursor.execute("INSERT INTO pengguna (email, username, password) VALUES"
 					# 				"('"+email+"', '"+username+"', '"+password+"');")
 					# cursor.execute("INSERT INTO profile (email, role) VALUES"
@@ -169,7 +169,7 @@ def activate(request, uidb64, token):
 		request.session.modified = True
 		cursor.close()
 		user.save()
-		return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+		return render (request, 'verification.html')
 	else:
 		return HttpResponse('Activation link is invalid!')
 
@@ -200,3 +200,5 @@ def reset(request):
 
 	else:
 		return redirect('dashboard:dashboard')
+
+

@@ -224,7 +224,6 @@ canvas {
 }
 
 .errorlist {
-  /* color: yellow; */
   padding-left: 20px;
   margin-top: 10px;
   justify-content: center;
@@ -233,39 +232,3 @@ canvas {
 }
 
 
-
-/* @media (max-height: 900px) {
-
-  .hint-pw{
-    font-size: 10px;
-  }
-
-  .btn-karyawan i {
-    font-size: 20px;
-  }
-
-  .btn-admin {
-    font-size: 10px;
-  }
-
-  #form-title{
-    font-size: 5.5vh;
-  }
-
-  .links{
-    font-size: 3.5vh;
-  }
-
-  input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-    font-size: 3.5vh;
-  }
-  input:-moz-placeholder, textarea:-moz-placeholder {
-    font-size: 3.5vh;
-  }
-
-  .user_card{
-    width: 80%;
-    height: 80%;
-  }
-
-} */
