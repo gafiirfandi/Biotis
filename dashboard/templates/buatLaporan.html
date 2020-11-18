@@ -18,8 +18,62 @@
                 {% csrf_token %}
                     
                         {{ form.as_p }}
+
+                        
+                    <div class="d-flex col uploadfile">
+                        <div class='file-input'>
+                            <input type='file'>
+                            <span class='button'>Choose</span>
+                            <span class='label inputlabel' data-js-label>No file selected</label>
+                        </div>
+                        <div class='file-input'>
+                            <input type='file'>
+                            <span class='button'>Choose</span>
+                            <span class='label inputlabel' data-js-label>No file selected</label>
+                        </div>
+                        <div class='file-input'>
+                            <input type='file'>
+                            <span class='button'>Choose</span>
+                            <span class='label inputlabel' data-js-label>No file selected</label>
+                        </div>
+                    </div>
+                   
+                    <script>
+                    
+                    var inputs = document.querySelectorAll('.file-input')
+
+                    for (var i = 0, len = inputs.length; i < len; i++) {
+                        customInput(inputs[i])
+                    }
+
+                    function customInput (el) {
+                        const fileInput = el.querySelector('[type="file"]')
+                        const label = el.querySelector('[data-js-label]')
+                        
+                        fileInput.onchange =
+                        fileInput.onmouseout = function () {
+                            if (!fileInput.value) return
+                            
+                            var value = fileInput.value.replace(/^.*[\\\/]/, '')
+                            el.className += ' -chosen'
+                            var filename = ''
+                            for (var i = 0, len = 20; i < len; i++) {
+                                filename += value[i]
+                            }
+                            label.innerText = filename + '...'
+                        }
+                    }
+
+                    </script>
+
+                          <br>
+
+                          <div class="input-group-prepend" style="margin: auto; justify-content: center;">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                          </div>
+
                         <select name="input_camera" id="input_cam" disabled>
-                            <option value="environment">Rear</option>
+                            <option value="environment">Rear </option>
                             <option value="user" selected>Front</option>
                         </select>
                         <p><span id="errorMsg"></span></p>
