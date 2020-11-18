@@ -459,7 +459,7 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
         font-size: 12px;
     }
     .btn-secondary{
-        height: 84%;
+        /* height: 84%; */
     }
 
     #table-dashboard td:last-child {
@@ -483,6 +483,14 @@ only screen and (max-width: 400px), (max-width: 780px),(max-width:550px ),
     .search{
         width: 100%;
     }
-  
+
+    input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+        font-size: 3.0vw;
+    }
+    
+    input:-moz-placeholder, textarea:-moz-placeholder {
+    font-size: 3.0vw;
+    }
+
 }
 

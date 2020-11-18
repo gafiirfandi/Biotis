@@ -92,10 +92,9 @@
 							
 							{{form.errors}}
 							{% if messages %}
-								<p>Errors</p>
 								<div class="col messages">
 									{% for message in messages %}
-									<p class="{{ message.tags }}">{{ message }}</p>
+									<p class="{{ message.tags }}">Error: {{ message }}</p>
 									{% endfor %}
 								</div>
 							{% endif %}
