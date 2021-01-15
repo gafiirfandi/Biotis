@@ -66,6 +66,58 @@
 
                     </script>
 
+
+
+
+                    
+
+                    <div class="d-flex justify-content-center col uploadfile">
+                        <div class='file-input'>
+                            {% if data.file1 != "NULL" %}
+                            <a href={{data.file1}} download>{{data.file1}}</a>
+                            {% endif %}
+                        </div>
+                        <div class='file-input'>
+                            {% if data.file2 != "NULL" %}
+                            <a href={{data.file2}} download>{{data.file2}}</a>
+                            <br>
+                            {% endif %}
+                        </div>
+                        <div class='file-input'>
+                            {% if data.file3 != "NULL" %}
+                            <a href={{data.file3}} download>{{data.file3}}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <script>
+                    
+                        var inputs = document.querySelectorAll('.uploadfile')
+    
+                        for (var i = 0, len = inputs.length; i < len; i++) {
+                            customInput(inputs[i])
+                        }
+    
+                        function customInput (el) {
+                            const fileInput = el.querySelector('[download]')
+                            const label = el.querySelector('[download]')
+                            
+                            fileInput.onchange =
+                            fileInput.onmouseout = function () {
+                                if (!fileInput.value) return
+                                
+                                var value = fileInput.value.replace(/^.*[/files/]/, '')
+                                el.className += ' -chosen'
+                                var filename = ''
+                                for (var i = 0, len = 20; i < len; i++) {
+                                    filename += value[i]
+                                }
+                                fileInput.innerText = filename + '...'
+                            }
+                        }
+    
+                    </script>
+
                           <br>
 
                           <div class="input-group-prepend" style="margin: auto; justify-content: center;">

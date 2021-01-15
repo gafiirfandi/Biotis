@@ -400,6 +400,9 @@ def searching(request):
     elif request.session['role'] == 'karyawan':
         return render(request, template_k, {'data':data, 'username':username, 'role':role, 'back':searching})
 
+def gantiJabatan(request):
+    return render(request, "gantiJabatan.html")
+
 
 
         

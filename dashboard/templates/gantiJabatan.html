@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% endblock title%}
+{% block content %} 
+<link rel="stylesheet" type=text/css href="{% static 'css/gantiJabatan.css' %}"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="main dashboardutama">
+  <div class="container row1">
+    <div class="p-2 judul1">
+      <p class="judul1">Ganti Jabatan</p>
+    </div>
+
+    <div class="p-2">
+      <form action="{% url 'dashboard:dashboard'%}" method="post">
+        {% csrf_token %}
+        <div class="input-group search" style="width: 50%">
+          <input type="hidden" name="action" value="searching" />
+          <input
+            type="text"
+            class="form-control"
+            id="search-bar"
+            name="search"
+            placeholder="Cari anggota"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-secondary"
+              type="submit"
+              style="background: #00ad33"
+            >
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      {% if back %}
+        <form action="{% url 'dashboard:dashboard'%}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="see-all" />
+          <button class="btn btn-secondary"  style="background: #00AD33;" > See All </button>
+        </form>            
+      {% endif %}
+    </div>
+
+
+  <!--Table-->
+  <table
+    class="table table-hover table-fixed"
+    id="table-dashboard"
+    cellspacing="0"
+    cellpadding="0"
+  >
+    <!--Table head-->
+    <thead class="threadbaru">
+      <tr>
+        <th class="hideresponsive">Foto</th>
+        <th class="hideresponsive">Nama Karyawan</th>
+        <th class="hideresponsive">Tanggal</th>
+        <th class="hideresponsive">Laporan Kegiatan</th>
+        <th class="hideresponsive">Kondisi Umum</th>
+        <th class="hideresponsive">Aktivitas Kompetitor</th>
+        <th class="hideresponsive">Fokus Produk</th>
+        <th class="hideresponsive">Lain-lain</th>
+        <th class="hideresponsive">Penjelasan</th>
+      </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+      {% for laporan in data %}
+      <tr>
+        <th scope="row">
+          <img class="foto_thumbnail" src="{% static laporan.item.path_foto %}" />
+        </th>
+        <td class="col_5">{{laporan.item.email}}</td>
+        <td>{{laporan.date}}<br />{{laporan.time}}</td>
+        <td class="col_0">{{laporan.item.laporan}}</td>
+        <td class="col_1">{{laporan.item.kondisi}}</td>
+        <td class="col_2">{{laporan.item.kompetitor}}</td>
+        <td class="col_3">{{laporan.item.fokus_produk}}</td>
+        <td class="col_4">{{laporan.item.other}}</td>
+        <td class="selengkapnya">
+          <a
+            href="{% url 'dashboard:detailLaporan' id=laporan.item.id_file %}"
+            class="card-link"
+            >Lihat Lebih >>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <!--Table body-->
+  </table>
+  <!--Table-->
+
+</div>
+
+{% endblock content %}
