@@ -14,7 +14,8 @@ import pathlib
 from django.conf import settings
 from datetime import datetime
 import calendar
-
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
 
 def namedtuplefetchall(cursor):
     "Return all rows from a cursor as a namedtuple"
@@ -187,6 +188,28 @@ def buatLaporan(request):
         imageDataURL4 = request.POST.get('imageDataURL4', False)
         imageDataURL5 = request.POST.get('imageDataURL5', False)
 
+        # imageDataURL3 = request.POST.get('file1', False)
+        # imageDataURL4 = request.POST.get('file2', False)
+        # imageDataURL5 = request.POST.get('file3', False)
+        file1 = request.FILES.get('file1', False)
+        file2 = request.FILES.get('file2', False)
+        file3 = request.FILES.get('file3', False)
+        
+        # print(type(file1), "type broww")
+        # print(file1.temporary_file_path)
+        # if file1:
+        #     path = default_storage.save('dashboard/files/' + file1.name, ContentFile(file1.read()))
+        #     tmp_file = os.path.join(settings.BASE_DIR, path)
+        # if file2:
+        #     path = default_storage.save('dashboard/files/' + file2.name, ContentFile(file2.read()))
+        #     tmp_file = os.path.join(settings.BASE_DIR, path)
+        # if file3:
+        #     path = default_storage.save('dashboard/files/' + file3.name, ContentFile(file3.read()))
+        #     tmp_file = os.path.join(settings.BASE_DIR, path)
+
+        
+        # return redirect('dashboard:dashboard')
+
         # current_path = pathlib.Path(__file__).parent.absolute()
         current_path = settings.BASE_DIR
         # print(current_path)
@@ -253,16 +276,53 @@ def buatLaporan(request):
         else:
             id_file = cursor.fetchone()[0] + 1
 
+        num_of_file = 0
+        path1 = None
+        path2 = None
+        path3 = None
+        if file1:
+            num_of_file = 1
+            path1 = settings.BASE_DIR + 'dashboard/files/' + file1.name
+            path = default_storage.save('dashboard/files/' + file1.name, ContentFile(file1.read()))
+            tmp_file = os.path.join(settings.BASE_DIR, path)
+        if file2:
+            num_of_file = 2
+            path2 = settings.BASE_DIR + 'dashboard/files/' + file1.name
+            path = default_storage.save('dashboard/files/' + file2.name, ContentFile(file2.read()))
+            tmp_file = os.path.join(settings.BASE_DIR, path)
+        if file3:
+            num_of_file = 3
+            path3 = default_storage.save('dashboard/files/' + file3.name, ContentFile(file3.read()))
+            tmp_file = os.path.join(settings.BASE_DIR, path)
+        
+        
         if len(image_list) == 1:
-            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+str(waktu)+"');")    
+            # num_of_file == 0: 
+            #     cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+str(waktu)+"');")    
+            # num_of_file == 1: 
+            #     cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu, file1) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+str(waktu)+"', '" + path1 + "');")    
+            # num_of_file == 2: 
+            #     cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu, file1, file2) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+str(waktu)+"', '" + path1 + "');")    
+            # num_of_file == 3: 
+            #     cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu, file1, file2, file3) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+str(waktu)+"', '" + path1 + "');")    
+            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu, file1, file2, file3) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+str(waktu)+"', '" + path1 + "', '" + path2 + "', '" + path3 + "');")
+
         elif len(image_list) == 2:
-            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" +str(waktu)+"');")
+            # num_of_file == 0: 
+            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, waktu, file1, file2, file3) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" +str(waktu)+"', '" + path1 + "', '" + path2 + "', '" + path3 + "');")
+            # num_of_file == 1: 
+            #     cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu, file1) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+str(waktu)+"', '" + path1 + "');")    
+            # num_of_file == 2: 
+            #     cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu, file1) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+str(waktu)+"', '" + path1 + "');")    
+            # num_of_file == 3: 
+            #     cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, waktu, file1) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+str(waktu)+"', '" + path1 + "');")    
+            
         elif len(image_list) == 3:
-            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, path_foto3, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" + temp_static_path[2] + "', '" +str(waktu)+"');")
+            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, path_foto3, waktu, file1, file2, file3) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" + temp_static_path[2] + "', '" +str(waktu)+"', '" + path1 + "', '" + path2 + "', '" + path3 + "');")
         elif len(image_list) == 4:
-            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, path_foto3, path_foto4, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" + temp_static_path[2] + "', '" + temp_static_path[3] + "', '" +str(waktu)+"');")
+            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, path_foto3, path_foto4, waktu, file1, file2, file3) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" + temp_static_path[2] + "', '" + temp_static_path[3] + "', '" +str(waktu)+"', '" + path1 + "', '" + path2 + "', '" + path3 + "');")
         elif len(image_list) == 5:
-            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, path_foto3, path_foto4, path_foto5, waktu) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" + temp_static_path[2] + "', '" + temp_static_path[3] + "', '" + temp_static_path[4] + "', '" +str(waktu)+"');")
+            cursor.execute("INSERT INTO laporan (email, kondisi, kompetitor, laporan, fokus_produk, other, foto_laporan, id_file, path_foto, path_foto2, path_foto3, path_foto4, path_foto5, waktu, file1, file2, file3) VALUES('"+email+"', '"+kondisi_umum+"', '"+aktivitas_kompetitor+"', '"+laporan_kegiatan+"', '"+fokus_produk+"', '"+lain_lain+"', '"+deskripsi_foto+"', '"+str(id_file)+"', '"+temp_static_path[0]+"', '"+ temp_static_path[1] + "', '" + temp_static_path[2] + "', '" + temp_static_path[3] + "', '" + temp_static_path[4] + "', '" +str(waktu)+"', '" + path1 + "', '" + path2 + "', '" + path3 + "');")
         
         return redirect('dashboard:dashboard')
         
@@ -339,6 +399,9 @@ def searching(request):
         return render(request, template_a, {'data':data, 'username':username, 'role':role, 'back':searching})
     elif request.session['role'] == 'karyawan':
         return render(request, template_k, {'data':data, 'username':username, 'role':role, 'back':searching})
+
+def gantiJabatan(request):
+    return render(request, "gantiJabatan.html")
 
 
 

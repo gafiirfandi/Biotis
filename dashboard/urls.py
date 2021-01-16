@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import dashboard, buatLaporan, detailLaporan
+from .views import dashboard, buatLaporan, detailLaporan, gantiJabatan
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -11,5 +11,6 @@ urlpatterns = [
     path('', dashboard, name='dashboard'),
     path('detailLaporan/<int:id>', detailLaporan, name='detailLaporan'),
     path('buatLaporan', buatLaporan, name="buatLaporan"),
+    path('gantiJabatan', gantiJabatan, name="gantiJabatan"),
 ]
 

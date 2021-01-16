@@ -215,7 +215,7 @@ canvas {
 
   .user_card{
     width: 80%;
-    height: 80%;
+    height: 90%;
   }
 
   .errorlist {
@@ -224,11 +224,15 @@ canvas {
 }
 
 .errorlist {
-  padding-left: 20px;
   margin-top: 10px;
   justify-content: center;
   font-family: 'open sans','tahoma',sans-serif;
   color: rgba(49,53,59,0.68);
 }
 
-
+.error{
+  margin-bottom: 0px;
+  margin-top: 5px;
+  text-align: center;
+  display: ;
+}
