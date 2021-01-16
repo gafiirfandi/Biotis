@@ -336,6 +336,7 @@ def buatLaporan(request):
     return render(request, "buatLaporan.html", args)
 
 
+
 def detailLaporan(request, id):
 
     cursor = connection.cursor()
@@ -402,6 +403,35 @@ def searching(request):
 
 def gantiJabatan(request):
     return render(request, "gantiJabatan.html")
+
+def choose_rsm(request):
+	if 'logged_in' in request.session or not request.session['logged_in']:
+		email = request.session['email']
+
+		if request.method == 'POST':
+			return redirect('dashboard:choose_area')
+		else:
+			return render(request,'rsm_area.html')
+	else:
+		return redirect('login:loginPage')
+
+def choose_area(request):
+	if 'logged_in' in request.session or not request.session['logged_in']:
+		cursor = connection.cursor()
+		email = request.session['email']
+
+		cursor.execute("SELECT rsm FROM PROFILE WHERE email = '"+email+"';")
+		rsm = cursor.fetchone()
+
+		if request.method == 'POST':
+			return redirect('dashboard:dashboard')
+		else:
+			return render(request,'area.html', {'rsm':rsm[0]})
+		cursor.close()
+	else:
+		return redirect('login:loginPage')
+
+
 
 
 
