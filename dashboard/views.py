@@ -406,7 +406,8 @@ def gantiJabatan(request):
 
 
         
-
+def ganti_jabatan(request):
+    return render(request, 'ganti_jabatan.html')
 
         
 
