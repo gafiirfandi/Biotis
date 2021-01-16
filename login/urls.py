@@ -6,6 +6,8 @@ app_name = 'login'
 
 urlpatterns = [
     path('register/', views.registerPage, name="register"),
+    path('choose_rsm/', views.choose_rsm, name="choose_rsm"),
+    path('choose_area/', views.choose_area, name="choose_area"),
     path('reset/', views.reset, name="reset"),
     path('verification/', views.verification, name="verification"),
     path('verified/', views.verified, name="verified"),
