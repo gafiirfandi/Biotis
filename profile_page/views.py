@@ -125,9 +125,6 @@ def editprofile(request):
                 foto_profile = pil2datauri(img)
                 data_url_bool = True
             
-                
-
-            
             return render(request, 'edit_profile.html', {'form':form, 'email':email, 'foto_profile':foto_profile, 'data_url':data_url_bool})
 
 def profile(request):
