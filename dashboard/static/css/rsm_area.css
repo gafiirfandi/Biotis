@@ -1,0 +1,151 @@
+.BodyContainer {
+    background: rgba(241, 250, 245, 1);
+    padding-top: 30px;
+    padding-bottom: 60px;
+    min-height: 90vh;
+    padding: 6rem 5rem;
+    text-align: center;
+}
+
+.txt{
+    font-family: Rubik;
+    font-style: normal;
+    text-align: center;
+}
+
+.listCard{
+    display: flex;
+}
+
+.header{
+    text-align: center;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+}
+  
+.CardJawa {
+    position: relative;
+    margin: auto;
+    width: 20vw;
+    height: 26vh;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* padding: 6rem 2rem; */
+}
+
+.CardSumatera {
+    position: relative;
+    margin: auto;
+    width: 20vw;
+    height: 26vh;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* padding: 2rem; */
+}
+
+.CardIndonesiaTimur {
+    position: relative;
+    margin: auto;
+    width: 20vw;
+    height: 26vh;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* padding: 2rem; */
+}
+
+.content{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.picJawa{
+    width: 200px;
+    margin-bottom: 40px;
+}
+
+.picIndonesiaTimur{
+    width: 200px;
+}
+
+.picSumatera{
+    width: 150px;
+}
+
+.namaPulau{
+    /* position: absolute;
+    bottom: 0; */
+    margin-top: 1vw;
+}
+
+  
+@media (max-width: 1200px) {
+    .picJawa{
+        width: 10vw;
+        margin-bottom: 40px;
+    }
+    
+    .picIndonesiaTimur{
+        width: 10vw;
+    }
+    
+    .picSumatera{
+        width: 10vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .listCard{
+        display: inline-block;
+        /* text-align: center; */
+    }
+
+    .picJawa{
+        width: 35vw;
+        margin-bottom: 18px;
+    }
+    
+    .picIndonesiaTimur{
+        width: 28vw;
+    }
+    
+    .picSumatera{
+        width: 21vw;
+    }
+
+    .CardJawa {
+        width: 50vw;
+        height: 20vh;
+        margin-top: 30px;
+    }
+    
+    .CardSumatera {
+        width: 50vw;
+        height: 20vh;
+    }
+    
+    .CardIndonesiaTimur {
+        width: 50vw;
+        height: 20vh;
+        margin-top: 30px;
+    }
+
+    .headertxt{
+        font-size: 9.5vw;
+    }
+
+    .header{
+        padding-top: 0rem;
+    }
+
+    .BodyContainer{
+        padding: 1rem 5rem;
+    }
+}
+
+  

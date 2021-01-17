@@ -430,16 +430,13 @@ def choose_area(request):
 		cursor.close()
 	else:
 		return redirect('login:loginPage')
-
-
-
-
-
         
 def ganti_jabatan(request):
     return render(request, 'ganti_jabatan.html')
 
-        
+def rsm_area(request):
+    return render(request, 'rsm_area.html')
 
-
+def area(request):
+    return render(request, 'area.html')
 

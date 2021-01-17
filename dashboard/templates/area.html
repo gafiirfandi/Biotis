@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/area.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="BodyContainer">
+    <div class="header">
+        <h1 class="headertxt txt">Pilih Area Regional</h1>
+    </div>
+
+    <div class="listCard">
+        <div class="CardSumatera" style="display: table;">
+            <div class="content">
+                <img class="picSumatera" src="{% static 'img/pulau/sumatera.png' %}" alt="" />
+                <h4 class="namaPulau txt">Sumatera</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="listRegional">
+            <a href="" class="areaRegional">Lampung - Bengkulu</a>
+            <a href="" class="areaRegional">Sumatera Bagian Selatan</a>
+            <a href="" class="areaRegional">Sumatera Tengah</a>
+            <a href="" class="areaRegional">Sumatera Utara</a>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}

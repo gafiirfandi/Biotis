@@ -1,0 +1,185 @@
+.BodyContainer {
+    background: rgba(241, 250, 245, 1);
+    padding-top: 30px;
+    padding-bottom: 60px;
+    min-height: 90vh;
+    padding: 5rem 5rem;
+    text-align: center;
+}
+
+.txt{
+    font-family: Rubik;
+    font-style: normal;
+    text-align: center;
+}
+
+.listCard{
+    display: flex;
+}
+
+.header{
+    text-align: center;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+}
+  
+.CardJawa {
+    position: relative;
+    margin: auto;
+    width: 20vw;
+    height: 26vh;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* padding: 6rem 2rem; */
+}
+
+.CardSumatera {
+    position: relative;
+    margin: auto;
+    width: 20vw;
+    height: 26vh;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* padding: 2rem; */
+}
+
+.CardIndonesiaTimur {
+    position: relative;
+    margin: auto;
+    width: 20vw;
+    height: 26vh;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* padding: 2rem; */
+}
+
+.content{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.picJawa{
+    width: 200px;
+    margin-bottom: 40px;
+}
+
+.picIndonesiaTimur{
+    width: 200px;
+}
+
+.picSumatera{
+    width: 150px;
+}
+
+.namaPulau{
+    /* position: absolute;
+    bottom: 0; */
+    margin-top: 1vw;
+}
+
+.listRegional{
+    margin-top: 70px;
+    grid-gap: 5px;
+}
+
+.areaRegional {
+    color: white;
+    background-color: #00AD33;
+    transition: 50ms;
+    padding: 9px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    font-size: 1vw;
+}
+
+.listRegional > .areaRegional{
+    margin: 10px;
+}
+
+.areaRegional:hover {
+background-color: #00AD33;
+color: black;
+}
+
+  
+@media (max-width: 1200px) {
+    .picJawa{
+        width: 10vw;
+        margin-bottom: 40px;
+    }
+    
+    .picIndonesiaTimur{
+        width: 10vw;
+    }
+    
+    .picSumatera{
+        width: 10vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .listCard{
+        display: inline-block;
+        /* text-align: center; */
+    }
+
+    .picJawa{
+        width: 35vw;
+        margin-bottom: 18px;
+    }
+    
+    .picIndonesiaTimur{
+        width: 28vw;
+    }
+    
+    .picSumatera{
+        width: 21vw;
+    }
+
+    .CardJawa {
+        width: 50vw;
+        height: 20vh;
+        margin-top: 30px;
+    }
+    
+    .CardSumatera {
+        width: 50vw;
+        height: 20vh;
+    }
+    
+    .CardIndonesiaTimur {
+        width: 50vw;
+        height: 20vh;
+        margin-top: 30px;
+    }
+
+    .headertxt{
+        font-size: 9.5vw;
+    }
+
+    .listRegional{
+        display: inline-grid;
+        margin-top: 20px;
+    }
+
+    .areaRegional{
+        font-size: 4vw;
+    }
+
+    .header{
+        margin-bottom: 3rem;
+        padding-top: 0rem;
+    }
+    
+    .BodyContainer{
+        padding: 1rem 5rem;
+    }
+}
+
+  

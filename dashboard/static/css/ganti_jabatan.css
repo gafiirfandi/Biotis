@@ -1,7 +1,14 @@
+h1,h3,h4{
+    font-family: Rubik;
+    font-style: normal;
+    text-align: center;
+}
+
 .BodyContainer {
     background: rgba(241, 250, 245, 1);
     padding-top: 30px;
     padding-bottom: 60px;
+    
   }
   
   .judul1 {
@@ -48,6 +55,7 @@
     align-items: center;
     font-family: "Rubik", sans-serif;
     font-size: 14px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
   .imgProfile {
     width: 150px;
@@ -62,6 +70,8 @@
     flex-direction: column;
   }
   .GantiJabatanTitle {
+    font-family: Rubik;
+    font-style: normal;
     text-align: center;
     font-size: 24px;
     font-weight: 400;
@@ -76,6 +86,7 @@
     max-width: 2000px;
     max-height: 500px;
     border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
   .deskripsiarea {
     display: flex;
