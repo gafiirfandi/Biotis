@@ -1,0 +1,295 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% endblock title%}
+{% block content %} 
+<link rel="stylesheet" type=text/css href="{% static 'css/dashboard.css' %}"/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<div class="main dashboardutama">
+
+  <div class="container row1">
+    <div class="p-2 judul1">
+      <p class="judul1">Laporan RSM {{rsm}}</p>
+    </div>
+    <div class="p-2 tanggal1" > {{hari}}, {{tanggal}}</div>
+    <div class="p-2 ">
+      <div class="row rowCard">
+        <form action="{% url 'dashboard:laporan_rsm' pulau=rsm %}" method="post">
+          {% csrf_token %}
+          <div class="card card1">
+            <input type="hidden" name="action" value="sudah-review" />
+            <div class="col-sm card1space">
+              <div class="card-body">
+                <h5 class="card-title">{{ reviewed }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted karyawan">
+                  Laporan Sudah Review
+                </h6>
+                <button
+                  type="submit"
+                  class="card-link"
+                  style="background-color: white; border: none; padding: 0"
+                >
+                  Lihat selengkapnya >>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <form action="{% url 'dashboard:laporan_rsm' pulau=rsm %}" method="post">
+          {% csrf_token %}
+          <div class="card card2">
+            <input type="hidden" name="action" value="menunggu-review" />
+            <div class="col-sm card1space">
+              <div class="card-body">
+                <h5 class="card-title">{{ not_reviewed }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted karyawan">
+                  Laporan Menunggu Review
+                </h6>
+                <button
+                  type="submit"
+                  class="card-link"
+                  style="background-color: white; border: none; padding: 0"
+                >
+                  Lihat selengkapnya >>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+      <div class="p-2">
+        <a href="/dashboard/buatLaporan" class="buttonlaporan">Buat Laporan</a>
+      </div>
+
+    <div class="p-2">
+      <form action="{% url 'dashboard:laporan_rsm' pulau=rsm %}" method="post">
+        {% csrf_token %}
+        <div class="input-group search" style="width: 80%">
+          <input type="hidden" name="action" value="searching" />
+          <input
+            type="text"
+            class="form-control"
+            id="search-bar"
+            name="search"
+            placeholder="Search by All"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-secondary"
+              type="submit"
+              style="background: #00ad33"
+            >
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      {% if back %}
+        <form action="{% url 'dashboard:laporan_rsm' pulau=rsm %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="see-all" />
+          <button class="btn btn-secondary"  style="background: #00AD33;" > See All </button>
+        </form>            
+      {% endif %}
+    </div>
+
+    <div class="p-2 tanggal2">Urutkan Berdasarkan:</div>
+
+    <div class="d-flex flex-row bd-highlight mb-3">
+      <div class="p-2 bd-highlight">
+        <form
+          method="post"
+          id="formReview"
+          action="{% url 'dashboard:laporan_rsm' pulau=rsm %}"
+        >
+          {% csrf_token %}
+
+          <button
+            type="submit"
+            class="btn btn-primary colorbutton"
+            href="#"
+            role="button"
+          >
+            <i style="font-size: 15px" class="fa" id="ikon1">&#xf017;</i>
+            {% if toggle_action == "tanggal-terbaru" %}
+            <input type="hidden" name="action" value="tanggal-terbaru" />
+            Tanggal Terbaru 
+            {% elif toggle_action == "tanggal-terlama" or toggle_action == "" %}
+            <input type="hidden" name="action" value="tanggal-terlama" />
+            Tanggal Terlama 
+            {% endif %}
+          </button>
+        </form>
+      </div>
+
+      <form method="post" action="{% url 'dashboard:laporan_rsm' pulau=rsm %}">
+        {% csrf_token %}
+        <div class="p-2 bd-highlight d-flex align-items-center">
+          <button
+            type="submit"
+            class="btn btn-primary colorbutton"
+            href="#"
+            role="button"
+            id=""
+          >
+            <i style="font-size: 15px" class="fa" id="ikon1">&#xf073;</i>
+            Tanggal Tertentu >>
+          </button>
+          <!-- <input type='text' class="form-control" id='datetimepicker4' /> -->
+          <div class="col">
+            <input
+              type="text"
+              name="date"
+              class="form-control"
+              id="datetimepicker4"
+            />
+            <input type="hidden" name="action" value="datepicker" />
+          </div>
+        </div>
+      </form>
+
+      <script type="text/javascript">
+        $(function () {
+          // Bootstrap DateTimePicker v4
+          $("#datetimepicker4").datetimepicker({
+            format: "DD/MM/YYYY",
+          });
+        });
+      </script>
+    </div>
+  </div>
+
+  <!--Table-->
+  <table
+    class="table table-hover table-fixed"
+    id="table-dashboard"
+    cellspacing="0"
+    cellpadding="0"
+    style="overflow-x:auto;"
+  >
+    <!--Table head-->
+    <thead class="threadbaru">
+      <tr>
+        <th class="hideresponsive">Foto</th>
+        <th class="hideresponsive">Nama Karyawan</th>
+        <th class="hideresponsive">Tanggal</th>
+        <th class="hideresponsive">Laporan Kegiatan</th>
+        <th class="hideresponsive">Kondisi Umum</th>
+        <th class="hideresponsive">Aktivitas Kompetitor</th>
+        <th class="hideresponsive">Fokus Produk</th>
+        <th class="hideresponsive">Lain-lain</th>
+        <th class="hideresponsive">Penjelasan</th>
+      </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+      {% for laporan in data %}
+      <tr>
+        <th scope="row">
+          <img class="foto_thumbnail" src="{% static laporan.item.path_foto %}" />
+        </th>
+        <td class="col_5">{{laporan.item.email}}</td>
+        <td>{{laporan.date}}<br />{{laporan.time|truncatechars:100}}</td>
+        <td class="col_0">{{laporan.item.laporan|truncatechars:50}}</td>
+        <td class="col_1">{{laporan.item.kondisi|truncatechars:100}}</td>
+        <td class="col_2">{{laporan.item.kompetitor|truncatechars:100}}</td>
+        <td class="col_3">{{laporan.item.fokus_produk|truncatechars:20}}</td>
+        <td class="col_4">{{laporan.item.other|truncatechars:100}}</td>
+        <td class="selengkapnya">
+          <a
+            href="{% url 'dashboard:detailLaporan' id=laporan.item.id_file %}"
+            class="card-link"
+            >Lihat Lebih >>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <!--Table body-->
+  </table>
+  <!--Table-->
+
+    <br>
+
+      
+      <br>
+
+    <div class="row pagination justify-content-center">
+    <span class="step-links" style="text-align: center;">
+
+      
+      {% if data.has_previous %}
+      
+        <a href="?page=1+menunggu_review={{ menunggu_review }}+sudah_review={{ sudah_review }}+tanggal_terlama={{ tanggal_terlama }}+tanggal_tertentu={{ tanggal_tertentu }}+search_key={{ search_key }}">
+          <button type="submit" class="btn btn-primary colorbutton" href="#" role="button" style="padding-top:unset;padding-bottom:unset; margin-bottom: 10px;">
+            Halaman pertama
+          </button>
+        </a>
+      <a>  </a>
+        <a href="?page={{ data.previous_page_number }}+menunggu_review={{ menunggu_review }}+sudah_review={{ sudah_review }}+tanggal_terlama={{ tanggal_terlama }}+tanggal_tertentu={{ tanggal_tertentu }}+search_key={{ search_key }}">
+            <i class="fa fa-chevron-circle-left" style="font-size:26px;color:#00AD33;"></i>
+        </a>
+        
+      {% else %}
+        <a>
+          <button type="submit" class="btn btn-primary colorbutton" href="#" role="button" style="padding-top:unset;padding-bottom:unset; margin-bottom: 10px;">
+            Halaman pertama
+          </button>
+        </a>
+      <a>  </a>
+        <a>
+            <i class="fa fa-chevron-circle-left" style="font-size:26px;color:#00AD33;"></i>
+        </a>
+      {% endif %}
+    <a> </a>
+      {% if data.has_next %}
+        <a href="?page={{ data.next_page_number }}+menunggu_review={{ menunggu_review }}+sudah_review={{ sudah_review }}+tanggal_terlama={{ tanggal_terlama }}+tanggal_tertentu={{ tanggal_tertentu }}+search_key={{ search_key }}">
+            <i class="fa fa-chevron-circle-right" style="font-size:26px;color:#00AD33;"></i>
+        </a>
+      <a>  </a>
+        <a href="?page={{ data.paginator.num_pages }}+menunggu_review={{ menunggu_review }}+sudah_review={{ sudah_review }}+tanggal_terlama={{ tanggal_terlama }}+tanggal_tertentu={{ tanggal_tertentu }}+search_key={{ search_key }}">
+          <button type="submit" class="btn btn-primary colorbutton" href="#" role="button" style="padding-top:unset;padding-bottom:unset; margin-bottom: 10px;">
+            Halaman terakhir
+          </button>
+        </a>
+        
+      {% else %}
+        <a>
+            <i class="fa fa-chevron-circle-right" style="font-size:26px;color:#00AD33;"></i>
+        </a>
+      <a>  </a>
+        <a>
+          <button type="submit" class="btn btn-primary colorbutton" href="#" role="button" style="padding-top:unset;padding-bottom:unset; margin-bottom: 10px;">
+            Halaman terakhir
+          </button>
+        </a>
+      {% endif %}
+      
+      <br>
+      <br>
+      
+      <span class="current">
+        Page {{ data.number }} of {{ data.paginator.num_pages }}.
+      </span>
+      
+    </span>
+  </div>
+
+</div>
+
+
+
+
+{% endblock content %}

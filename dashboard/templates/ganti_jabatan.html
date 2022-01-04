@@ -1,0 +1,407 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/ganti_jabatan.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<div class="BodyContainer">
+  <div class="container row1">
+    <div class="p-2 judul1">
+      <p class="judul1"><b>{{ data.email }}</b></p>
+    </div>
+  </div>
+
+  <div class="CardTable">
+    <img src="{% static foto_profile %}" alt="" class="imgProfile" />
+    <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="text-muted">Nama Lengkap</td>
+                <td>:</td>
+                <td>{{ data.nama_lengkap }}</td>
+              </tr>
+              <tr class="BarisDetailProfil">
+                <td class="text-muted">Email</td>
+                <td>:</td>
+                <td class="DetailProfil">{{ data.email }}</td>
+              </tr>
+              <tr>
+                <td class="text-muted">Nomor Handphone</td>
+                <td>:</td>
+                <td>{{ data.no_hp }}</td>
+              </tr>
+
+              <tr>
+                <td class="text-muted">Alamat</td>
+                <td>:</td>
+                <td>{{ data.alamat }}</td>
+              </tr>
+
+              <tr>
+                <td class="text-muted">Jabatan</td>
+                <td>:</td>
+                <td>{{ data.jabatan }}</td>
+              </tr>
+
+              <tr>
+                <td class="text-muted">Nama Atasan</td>
+                <td>:</td>
+                <td>{{ data.nama_atasan }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  </div>
+  <div class="KontenGantiJabatan">
+    <p class="GantiJabatanTitle">Ganti Jabatan</p>
+
+    <form method="post">
+    {% csrf_token %}
+    <div class="CardDaerah sumatera">
+      <div class="row text-center">
+        <div class="col-sm-4 deskripsiarea">
+          <p>RSM Sumatera</p>
+          <div class="form-check">
+            {% if data.role == "rsm" and data.rsm == "sumatera" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="rsm_sumatera"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="rsm_sumatera"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-4 deskripsiarea">
+          <p>Area Manager Lampung</p>
+          <div class="form-check">
+            {% if data.role == "am" and data.area == "lampung bengkulu" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_lampung bengkulu"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_lampung bengkulu"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-4 deskripsiarea">
+          <p>Area Manager Sumatera Selatan</p>
+          <div class="form-check">
+            {% if data.role == "am" and data.area == "sumatera selatan" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_sumatera selatan"
+                  
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_sumatera selatan"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-4 deskripsiarea">
+          <p>Area Manager Sumatera Utara</p>
+          <div class="form-check">
+            {% if data.role == "am" and data.area == "sumatera utara" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_sumatera utara"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_sumatera utara"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-4 deskripsiarea"><p></p></div>
+        <div class="col-sm-4 deskripsiarea ColomKosongNaik">
+          <p>Area Manager Sumatera Tengah</p>
+          <div class="form-check">
+            {% if data.role == "am" and data.area == "sumatera tengah" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_sumatera tengah"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_sumatera tengah"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="CardDaerah Jawa">
+      <div class="row text-center">
+        <div class="col-sm-3 deskripsiarea">
+          <p class="DaerahJawa">RSM Jawa</p>
+          <div class="form-check">
+            {% if data.role == "rsm" and data.rsm == "jawa" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="rsm_jawa"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="rsm_jawa"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-3 deskripsiarea">
+          <p>Area Manager Jawa Timur</p>
+          <div class="form-check">
+            {% if data.role == "am" and data.area == "jawa timur" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_jawa timur"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_jawa timur"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-3 deskripsiarea">
+          <p>Area Manager Jawa Tengah</p>
+          <div class="form-check">
+            {% if data.role == "am" and data.area == "jawa tengah" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_jawa tengah"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_jawa tengah"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-3 deskripsiarea">
+          <p>Area Manager Jawa Barat</p>
+          <div class="form-check">
+            {% if data.role == "am" and data.area == "jawa barat" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_jawa barat"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_jawa barat"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="CardDaerah Kalimantan">
+      <div class="row text-center">
+        <div class="col-sm-3 deskripsiarea">
+          <p>RSM Indonesia Timur</p>
+          <div class="form-check">
+            {% if data.role == "rsm" and data.rsm == "indonesia timur" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="rsm_indonesia timur"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="rsm_indonesia timur"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-3 deskripsiarea">
+          <p>Area Manager Sulawesi</p>
+          <div class="form-check">
+            {% if data.role == "am" and data.area == "sulawesi" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_sulawesi"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_sulawesi"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-3 deskripsiarea">
+          <p>Area Manager Kalimantan</p>
+          <div class="form-check">
+            {% if data.role == "am" and data.area == "kalimantan" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_kalimantan"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="am_kalimantan"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-sm-3 deskripsiarea">
+          <p class="DaerahJawa">Karyawan</p>
+          <div class="form-check">
+            {% if data.role == "karyawan" %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="karyawan"
+                  id="flexRadioDefault1"
+                  checked
+                />
+            {% else %}
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="jabatan"
+                  value="karyawan"
+                  id="flexRadioDefault1"
+                />
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <button type="submit" class="btn btn-success mt-1 fontButton">
+        Ganti Jabatan
+      </button>
+    </div>
+    <!--<input type="hidden" name="success" id="isSuccess" value="{{ success }}">-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    {% if success == "True" %}
+        <script>
+            swal("Selamat!", "Anda berhasil mengganti jabatan!", "success");
+        </script>
+    {% endif %}
+    
+    <script>
+        let isSuccess = document.getElementById("isSuccess")
+        if(isSuccess == "True") swal("Good job!", "You clicked the button!", "success");
+        // function myFunction() {
+        //     swal("Good job!", "You clicked the button!", "success");
+        // }
+    </script>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

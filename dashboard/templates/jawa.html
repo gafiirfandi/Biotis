@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/area.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="BodyContainer">
+    <div class="header">
+        <h1 class="headertxt txt">Pilih Area Regional</h1>
+    </div>
+    
+    {% if role == "admin" %}
+
+    <div class="pulauCard">
+        <a href="{% url 'dashboard:laporan_rsm' pulau='jawa' %}">
+        <div class="CardJawa" style="display: table;">
+            <div class="content">
+                <img class="picJawa" src="{% static 'img/pulau/jawa.png' %}" alt="" />
+                <h4 class="namaPulau txt">Jawa</h4>
+            </div>
+        </div>
+        </a>
+    </div>
+    <form action="{% url 'dashboard:jawa' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+    
+    <div class="listRegional">
+        <button name="action" type="submit" value="jawa_timur" class="areaRegional">Jawa Timur</button>        
+        <button name="action" type="submit" value="jawa_tengah" class="areaRegional">Jawa Tengah</button>
+        <button name="action" type="submit" value="jawa_barat" class="areaRegional">Jawa Barat</button>
+        </div>
+    </form>
+    {% elif role == "rsm" %}
+    
+    <div class="listCard">
+        <div class="CardJawa" style="display: table;">
+            <div class="content">
+               <img class="picJawa" src="{% static 'img/pulau/jawa.png' %}" alt="" />
+                <h4 class="namaPulau txt">Jawa</h4>
+            </div>
+        </div>
+    </div>
+
+    <form action="{% url 'dashboard:jawa' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="listRegional">
+        <button name="action" type="submit" value="jawa_timur" class="areaRegional">Jawa Timur</button>        
+        <button name="action" type="submit" value="jawa_tengah" class="areaRegional">Jawa Tengah</button>
+        <button name="action" type="submit" value="jawa_barat" class="areaRegional">Jawa Barat</button>
+        </div>
+    </form>
+    
+    {% elif role == "am" %}
+    
+    <div class="listCard">
+        <div class="CardJawa" style="display: table;">
+            <div class="content">
+                <img class="picJawa" src="{% static 'img/pulau/jawa.png' %}" alt="" />
+                <h4 class="namaPulau txt">Jawa</h4>
+            </div>
+        </div>
+    </div>
+
+    <form action="{% url 'dashboard:jawa' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="listRegional">
+        <button name="action" type="submit" value="jawa_timur" class="areaRegional">Jawa Timur</button>        
+        <button name="action" type="submit" value="jawa_tengah" class="areaRegional">Jawa Tengah</button>
+        <button name="action" type="submit" value="jawa_barat" class="areaRegional">Jawa Barat</button>
+        </div>
+    </form>
+    
+    {% endif %}
+</div>
+
+
+{% endblock content %}

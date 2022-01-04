@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/buatLaporan.css' %}">
+
+<div class="main buatlaporan">
+
+    <div class="container justify-content-center align-items-center">
+        <h1 class="list_title">Buat Laporan</h1>
+            <div class="row justify-content-center formfield">
+                <form method="POST" action="{% url 'dashboard:buatLaporan' %}" enctype="multipart/form-data" id="formDiv">
+                {% csrf_token %}
+                    
+                        {{ form.as_p }}
+
+                        
+                    <div class="d-flex col uploadfile">
+                        <div class='file-input'>
+                            <input type='file' name="file1">
+                            <span class='button'>Choose</span>
+                            <span class='label inputlabel' data-js-label>No file selected</label>
+                        </div>
+                        <div class='file-input'>
+                            <input type='file' name="file2">
+                            <span class='button'>Choose</span>
+                            <span class='label inputlabel' data-js-label>No file selected</label>
+                        </div>
+                        <div class='file-input'>
+                            <input type='file' name="file3">
+                            <span class='button'>Choose</span>
+                            <span class='label inputlabel' data-js-label>No file selected</label>
+                        </div>
+                    </div>
+                   
+                    <script>
+                    
+                    var inputs = document.querySelectorAll('.file-input')
+
+                    for (var i = 0, len = inputs.length; i < len; i++) {
+                        customInput(inputs[i])
+                    }
+
+                    function customInput (el) {
+                        const fileInput = el.querySelector('[type="file"]')
+                        const label = el.querySelector('[data-js-label]')
+                        
+                        fileInput.onchange =
+                        fileInput.onmouseout = function () {
+                            if (!fileInput.value) return
+                            
+                            var value = fileInput.value.replace(/^.*[\\\/]/, '')
+                            el.className += ' -chosen'
+                            var filename = ''
+                            for (var i = 0, len = 20; i < len; i++) {
+                                filename += value[i]
+                            }
+                            label.innerText = filename + '...'
+                        }
+                    }
+
+                    </script>
+
+                          <br>
+
+
+                        <select name="input_camera" id="input_cam" disabled>
+                            <option value="environment">Rear </option>
+                            <option value="user" selected>Front</option>
+                        </select>
+                        <p><span id="errorMsg"></span></p>
+                        <!-- Stream video via webcam -->
+                        <div class="video-wrap">
+                            <video id="video" playsinline autoplay></video>
+                        </div>
+                        
+                        <br>
+                        <!-- Trigger canvas web API -->
+                        <div class="wrapper">
+                            <div class="controller">
+                                <button type="button" class="buttonlaporan" id="snap" value="1" >Ambil Foto</button>
+                            </div>
+                        </div>
+
+                        <!-- Webcam video snapshot -->
+                            <canvas id="canvas" class="canvas-image" name="image" width="1280" height="720" style="display: none; margin-top: 30px;"></canvas>
+                            <div class="row justify-content-center align-items-center" id="div-delete-1" style="display: none;">    
+                                <a href="/dashboard/buatLaporan" class="buttondelete" id="button-delete-1">X</a>
+                            </div> 
+                        
+                            <canvas id="canvas2" class="canvas-image" width="1280" height="720" style="display: none; margin-top: 30px;"></canvas>
+                            <div class="row justify-content-center align-items-center" id="div-delete-2" style="display: none;">    
+                                <a href="/dashboard/buatLaporan" class="buttondelete" id="button-delete-2">X</a>
+                            </div> 
+                            
+                            <canvas id="canvas3" name="image" class="canvas-image" width="1280" height="720" style="display: none; margin-top: 30px;"></canvas>
+                            <div class="row justify-content-center align-items-center" id="div-delete-3" style="display: none;">    
+                                <a href="/dashboard/buatLaporan" class="buttondelete" id="button-delete-3">X</a>
+                            </div> 
+                    
+                            <canvas id="canvas4" name="image" width="1280" class="canvas-image" height="720" style="display: none; margin-top: 30px;"></canvas>
+                            <div class="row justify-content-center align-items-center" id="div-delete-4" style="display: none;">    
+                                <a href="/dashboard/buatLaporan" class="buttondelete" id="button-delete-4">X</a>
+                            </div> 
+                    
+                            <canvas id="canvas5" name="image" width="1280" class="canvas-image" height="720" style="display: none; margin-top: 30px;"></canvas>
+                            <div class="row justify-content-center align-items-center" id="div-delete-5" style="display: none;">    
+                                <a href="/dashboard/buatLaporan" class="buttondelete" id="button-delete-5">X</a>
+                            </div> 
+                        
+                        
+
+                    <br>
+                    <div class="container justify-content-center align-items-center">
+                        <div class="wrapper">
+                            <input type="submit" value="Buat Laporan" name="tombol" class="buttonlaporan" style="margin-top: 10px;">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+{% endblock content %}

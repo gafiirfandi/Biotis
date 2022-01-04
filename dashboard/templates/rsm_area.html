@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/rsm_area.css' %}" />
+<!--<link-->
+<!--      rel="stylesheet"-->
+<!--      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+<!--      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"-->
+<!--      crossorigin="anonymous"-->
+<!--    />-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<div class="BodyContainer">
+    <div class="header">
+        <h1 class="headertxt txt">Pilih Area Pulau</h1>
+    </div>
+        <div class="listCard">
+        
+            <a href="{% url 'dashboard:sumatera' %}">
+                <div class="CardSumatera" style="display: table;">
+                        <div class="content">
+                            <img class="picSumatera" src="{% static 'img/pulau/sumatera.png' %}" alt="" />
+                            <h4 class="namaPulau txt">Sumatera</h4>
+                        </div>
+                </div>
+            </a>
+        
+            <a href="{% url 'dashboard:jawa' %}">
+                <div class="CardJawa" style="display: table;">
+                    <div class="content">
+                        <img class="picJawa" src="{% static 'img/pulau/jawa.png' %}" alt="" />
+                        <h4 class="namaPulau txt">Jawa</h4>
+                    </div>
+                </div>
+            </a>
+        
+            <a href="{% url 'dashboard:timur' %}">
+                <div class="CardIndonesiaTimur" style="display: table;">
+                    <div class="content">
+                        <img class="picIndonesiaTimur" src="{% static 'img/pulau/indonesiatimur.jpg' %}" alt="" />
+                        <h4 class="namaPulau txt">Indonesia Timur</h4>
+                    </div>
+                </div>
+            </a>
+           
+            
+        </div>
+    
+</div>
+
+
+{% endblock content %}

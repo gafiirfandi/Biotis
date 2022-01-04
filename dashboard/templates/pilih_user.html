@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% endblock title%}
+{% block content %}
+
+<link rel="stylesheet" type=text/css href="{% static 'css/pilih_user.css' %}"/>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<div class="main dashboardutama">
+
+  <div class="container row1">
+    <div class="p-2 judul1">
+      <p class="judul1">Ganti Jabatan</p>
+    </div>
+
+    <div class="p-2 ">
+    </div>
+
+    <div class="searchbar">
+      <form method="post">
+        {% csrf_token %}
+        <div class="input-group search" style="width: 100%">
+          <input type="hidden" name="action" value="searching" />
+          <input
+            type="text"
+            class="form-control"
+            id="search-bar"
+            name="search_keyword"
+            placeholder="Cari Anggota"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-secondary"
+              type="submit"
+              style="background: #00ad33"
+            >
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <!--Table-->
+  <table
+    class="table table-hover table-fixed"
+    id="table-dashboard"
+    cellspacing="0"
+    cellpadding="0"
+    style="overflow-x:auto;"
+  >
+    <!--Table head-->
+    <thead class="threadbaru">
+      <tr>
+        <th class="hideresponsive">Foto</th>
+        <th class="hideresponsive">Nama Lengkap</th>
+        <th class="hideresponsive">Email</th>
+        <th class="hideresponsive">Nomor Handphone</th>
+        <th class="hideresponsive">Jabatan</th>
+        <th class="hideresponsive"></th>
+        
+      </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+      {% for user in data %}
+      <tr>
+        <th scope="row">
+          {% if user.foto_profile %}
+            <img class="foto_thumbnail" src="{% static user.foto_profile %}" />
+          {% else %}
+          <img src="{% static 'img/person.svg' %}" class="foto_thumbnail">
+          {% endif %}
+        </th>
+        <td class="col_5">{{user.pengguna.nama_lengkap}}</td>
+        <td class="col_0">{{user.pengguna.email}}</td>
+        <td class="col_1">{{user.pengguna.no_hp}}</td>
+        <td class="col_2">{{user.pengguna.role}}</td>
+        <td class="selengkapnya">
+          <a
+            href="{% url 'dashboard:ganti_jabatan' email=user.pengguna.email %}"
+            class="card-link"
+            >Ganti Jabatan
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <!--Table body-->
+  </table>
+  <!--Table-->
+      
+      <br>
+
+    <div class="row pagination justify-content-center">
+    <span class="step-links" style="text-align: center;">
+
+      
+      {% if data.has_previous %}
+      
+        <a href="?page=1+search_keyword={{ search_keyword }}">
+          <button type="submit" class="btn btn-primary colorbutton" href="#" role="button" style="padding-top:unset;padding-bottom:unset; margin-bottom: 10px;">
+            Halaman pertama
+          </button>
+        </a>
+      <a>  </a>
+        <a href="?page={{ data.previous_page_number }}+search_keyword={{ search_keyword }}">
+            <i class="fa fa-chevron-circle-left" style="font-size:26px;color:#00AD33;"></i>
+        </a>
+        
+      {% else %}
+        <a>
+          <button type="submit" class="btn btn-primary colorbutton" href="#" role="button" style="padding-top:unset;padding-bottom:unset; margin-bottom: 10px;">
+            Halaman pertama
+          </button>
+        </a>
+      <a>  </a>
+        <a>
+            <i class="fa fa-chevron-circle-left" style="font-size:26px;color:#00AD33;"></i>
+        </a>
+      {% endif %}
+    <a> </a>
+      {% if data.has_next %}
+        <a href="?page={{ data.next_page_number }}+search_keyword={{ search_keyword }}">
+            <i class="fa fa-chevron-circle-right" style="font-size:26px;color:#00AD33;"></i>
+        </a>
+      <a>  </a>
+        <a href="?page={{ data.paginator.num_pages }}+search_keyword={{ search_keyword }}">
+          <button type="submit" class="btn btn-primary colorbutton" href="#" role="button" style="padding-top:unset;padding-bottom:unset; margin-bottom: 10px;">
+            Halaman terakhir
+          </button>
+        </a>
+        
+      {% else %}
+        <a>
+            <i class="fa fa-chevron-circle-right" style="font-size:26px;color:#00AD33;"></i>
+        </a>
+      <a>  </a>
+        <a>
+          <button type="submit" class="btn btn-primary colorbutton" href="#" role="button" style="padding-top:unset;padding-bottom:unset; margin-bottom: 10px;">
+            Halaman terakhir
+          </button>
+        </a>
+      {% endif %}
+      
+      <br>
+      <br>
+      
+      <span class="current">
+        Halaman {{ data.number }} dari {{ data.paginator.num_pages }}.
+      </span>
+      
+    </span>
+  </div>
+
+</div>
+
+
+
+
+{% endblock content %}

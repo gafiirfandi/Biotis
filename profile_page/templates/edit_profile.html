@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+{% block jquery %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock jquery %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+<link rel="stylesheet" href="{% static 'css/editprofile.css' %}">
+
+        <div class="col-md-12 pageeditprofile">
+
+            <div class="row justify-content-center">
+                <div class="p-2 judul1">
+                    <h1>Edit Profile</h1>
+                </div>   
+            </div>
+        
+            <form method="POST" class="post-form" action="{% url 'profile:edit' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="container ">
+                <div class="picture-container">
+                    <div class="picture">
+                        {% if data_url %}
+                        <img src="{{ foto_profile }}" class="picture-src" id="wizardPicturePreview" title="">
+                        {% else %}
+                        <img src="{% static 'img/person.svg' %}" class="picture-src" id="wizardPicturePreview" title="">
+                        {% endif %}
+                        <input type="file" id="wizard-picture" class="">
+                    </div>
+                    <h6 class="">Choose Picture</h6>
+            
+                </div>
+
+                <div class = "formDiv">
+                    <input type="text" name="imageDataURL" id="hiddenInput" value="" hidden>
+        
+                </div>
+
+                <div class="container justify-content-center align-items-center tempattable">
+                    <div class="table-responsive">
+                        <table class="table  table-hover">
+                                                <tr class="box">
+                                                    <td class="text-muted">Nama Lengkap</td>
+                                                    <td>:</td>
+                                                    <td >{{ form.nama_lengkap }}</td>
+                                                </tr>
+                                                <tr class="box">
+                                                    <td class="text-muted">Nomor HP</td>
+                                                    <td>:</td>
+                                                    <td >{{ form.no_hp }}</td>
+                                                </tr>
+                                                <tr class="box">
+                                                    <td class="text-muted">Alamat</td>
+                                                    <td>:</td>
+                                                    <td >{{ form.alamat }}</td>
+                                                </tr>
+                                                <tr class="box">
+                                                    <td class="text-muted">Jabatan</td>
+                                                    <td>:</td>
+                                                    <td > {{ form.jabatan }}</td>
+                                                </tr>
+
+                                                <tr class="box">
+                                                    <td class="text-muted">Nama Atasan</td>
+                                                    <td>:</td>
+                                                    <td >{{ form.nama_atasan }}</td>
+                                                </tr>
+
+                        </table>
+                    </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <button type="submit" class="btn btn-success mt-1">Submit</button>
+                        </div>
+                </div>    
+            </form>
+        </div>
+     </form>
+     </div>
+
+
+    <script type="text/javascript">
+
+        var email = "{{email}}"
+
+        var image = document.getElementById("wizard-picture");
+
+        console.log()
+
+        $(document).ready(function(){
+          // Prepare the preview for profile picture
+            $("#wizard-picture").change(function(){
+                readURL(this);
+                
+            });
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    if (e.target.result.includes("data:image/png;") || e.target.result.includes("data:image/jpg;") || e.target.result.includes("data:image/jpeg;")) {
+                        $('#wizardPicturePreview').attr('src', e.target.result);
+                        $('#hiddenInput').attr('value', e.target.result);
+                    } else {
+                        alert("Foto harus berupa jpg/jpeg/png")
+                    }
+
+                    // console.log("ini dia", document.getElementById("hiddenInput").value)
+                }
+                console.log('reader is', reader)
+                console.log('input.files[0]', input.files[0])
+                reader.readAsDataURL(input.files[0]);
+
+            }
+
+        }
+
+    </script>
+   
+</body>
+</html>
+{% endblock content %}

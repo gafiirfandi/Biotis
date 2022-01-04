@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/area.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="BodyContainer">
+  
+       <div class="BagianJudul">
+          <h1 class="judulHD">Pilih Area Regional</h1>
+        </div>
+
+
+    <div class="listCard">
+        {% if rsm == "sumatera" %}
+        <div class="CardSumatera" style="display: table;">
+            <div class="content">
+                <img class="picSumatera" src="{% static 'img/pulau/sumatera.png' %}" alt="" />
+                <h4 class="namaPulau txt">Sumatera</h4>
+            </div>
+        </div>
+        
+        {% elif rsm == "jawa" %}
+        <div class="CardJawa" style="display: table;">
+            <div class="content">
+                <img class="picJawa" src="{% static 'img/pulau/jawa.png' %}" alt="" />
+                <h4 class="namaPulau txt">Jawa</h4>
+            </div>
+        </div>
+        {% elif rsm == "indonesia timur" %}
+        <div class="CardIndonesiaTimur" style="display: table;">
+            <div class="content">
+               <img class="picIndonesiaTimur" src="{% static 'img/pulau/indonesiatimur.jpg' %}" alt="" />
+                <h4 class="namaPulau txt">Indonesia Timur</h4>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <form action="{% url 'login:choose_area' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="listRegional">
+            {% if rsm == "sumatera" %}
+            <div class="ButtonAndRadio">
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-warning areaRegional"
+                >
+                  Lampung - Bengkulu
+                </button>
+              </div>
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="action"
+                  value="lampung_bengkulu"
+                  id="flexRadioDefault1"
+                />
+              </div>
+            </div>
+            <div class="ButtonAndRadio">
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-warning areaRegional"
+                >
+                  Sumatera Bagian Selatan
+                </button>
+              </div>
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="action"
+                  value="sumatera_selatan"
+                  id="flexRadioDefault1"
+                />
+              </div>
+            </div>
+
+            <div class="ButtonAndRadio">
+              <button
+                type="button"
+                class="btn btn-warning areaRegional"
+              >
+                Sumatera Tengah
+              </button>
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="action"
+                  value="sumatera_tengah"
+                  id="flexRadioDefault1"
+                />
+              </div>
+            </div>
+            <div class="ButtonAndRadio">
+              <button
+                type="button"
+                class="btn btn-warning areaRegional"
+              >
+                Sumatera Utara
+              </button>
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="action"
+                  value="sumatera_utara"
+                  id="flexRadioDefault1"
+                />
+              </div>
+            </div>
+            {% elif rsm == "jawa" %}
+             <div class="ButtonAndRadio">
+              <button
+                type="button"
+                class="btn btn-warning areaRegional"
+              >
+                Jawa Timur
+              </button>
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="action"
+                  value="jawa_timur"
+                  id="flexRadioDefault1"
+                />
+              </div>
+            </div>
+
+            <div class="ButtonAndRadio">
+              <button
+                type="button"
+                class="btn btn-warning areaRegional"
+              >
+                Jawa Tengah
+              </button>
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="action"
+                  value="jawa_tengah"
+                  id="flexRadioDefault1"
+                />
+              </div>
+            </div>
+
+            <div class="ButtonAndRadio">
+              <button
+                type="button"
+                class="btn btn-warning areaRegional"
+              >
+                Jawa Barat
+              </button>
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="action"
+                  value="jawa_barat"
+                  id="flexRadioDefault1"
+                />
+              </div>
+            </div>
+            {% elif rsm == "indonesia timur" %}
+             <div class="ButtonAndRadio">
+                 <div>
+                     <button
+                type="button"
+                class="btn btn-warning areaRegional"
+              >
+                Sulawesi
+              </button>
+                 </div>
+              
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="action"
+                  value="sulawesi"
+                  id="flexRadioDefault1"
+                />
+              </div>
+            </div>
+
+            <div class="ButtonAndRadio">
+              <button
+                type="button"
+                class="btn btn-warning areaRegional"
+              >
+                Kalimantan
+              </button>
+              <div>
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="action"
+                  value="kalimantan"
+                  id="flexRadioDefault1"
+                />
+              </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="ButtonSubmit">
+          <button type="submit" class="btn btn-success PilihArea">
+            Pilih Area
+          </button>
+          
+        </div>
+    </form>
+    
+    </div>
+
+
+
+
+{% endblock content %}

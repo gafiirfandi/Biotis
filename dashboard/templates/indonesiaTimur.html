@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/area.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="BodyContainer">
+    <div class="header">
+        <h1 class="headertxt txt">Pilih Area Regional</h1>
+    </div>
+    
+    {% if role == "admin" %}
+    <form action="{% url 'dashboard:timur' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="pulauCard">
+        <a href="{% url 'dashboard:laporan_rsm' pulau='indonesia timur' %}" type="submit" value="timur">
+        <div class="CardIndonesiaTimur" style="display: table;">
+            <div class="content">
+                <img class="picIndonesiaTimur" src="{% static 'img/pulau/indonesiatimur.jpg' %}" alt="" />
+                <h4 class="namaPulau txt">Indonesia Timur</h4>
+            </div>
+        </div>
+        </a>
+    </div>
+
+    
+    <div class="listRegional">
+        <button name="action" type="submit" value="sulawesi" class="areaRegional">Sulawesi</button>        
+        <button name="action" type="submit" value="kalimantan" class="areaRegional">Kalimantan</button>
+        </div>
+    </form>
+    {% elif role == "rsm" %}
+    
+    <div class="listCard">
+        <div class="CardIndonesiaTimur" style="display: table;">
+            <div class="content">
+                <img class="picIndonesiaTimur" src="{% static 'img/pulau/indonesiatimur.jpg' %}" alt="" />
+                <h4 class="namaPulau txt">Indonesia Timur</h4>
+            </div>
+        </div>
+    </div>
+
+    <form action="{% url 'dashboard:timur' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="listRegional">
+        <button name="action" type="submit" value="sulawesi" class="areaRegional">Sulawesi</button>        
+        <button name="action" type="submit" value="kalimantan" class="areaRegional">Kalimantan</button>
+        </div>
+    </form>
+    {% elif role == "am" %}
+    
+    <div class="listCard">
+        <div class="CardIndonesiaTimur" style="display: table;">
+            <div class="content">
+                <img class="picIndonesiaTimur" src="{% static 'img/pulau/indonesiatimur.jpg' %}" alt="" />
+                <h4 class="namaPulau txt">Indonesia Timur</h4>
+            </div>
+        </div>
+    </div>
+
+    <form action="{% url 'dashboard:timur' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="listRegional">
+        <button name="action" type="submit" value="sulawesi" class="areaRegional">Sulawesi</button>        
+        <button name="action" type="submit" value="kalimantan" class="areaRegional">Kalimantan</button>
+        </div>
+    </form>
+    {% endif %}
+    
+</div>
+
+
+{% endblock content %}

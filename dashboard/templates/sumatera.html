@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/area.css' %}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+
+<div class="BodyContainer">
+    <div class="header">
+        <h1 class="headertxt txt">Pilih Area Regional</h1>
+    </div>
+    
+    {% if role == "admin" %}
+    <div class="pulauCard">
+        <a href="{% url 'dashboard:laporan_rsm' pulau='sumatera' %}">
+        <div class="CardSumatera" style="display: table;">
+            <div class="content">
+                <img class="picSumatera" src="{% static 'img/pulau/sumatera.png' %}" alt="" />
+                <h4 class="namaPulau txt">Sumatera</h4>
+            </div>
+        </div>
+        </a>
+    </div>
+    <form action="{% url 'dashboard:sumatera' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+    
+    <div class="listRegional">
+        <button name="action" type="submit" value="lampung_bengkulu" class="areaRegional">Lampung - Bengkulu</button>        
+        <button name="action" type="submit" value="sumatera_selatan" class="areaRegional">Sumatera Bagian Selatan</button>
+        <button name="action" type="submit" value="sumatera_tengah" class="areaRegional">Sumatera Tengah</button>
+        <button name="action" type="submit" value="sumatera_utara" class="areaRegional">Sumatera Utara</button>
+    </div>
+    </form>
+    {% elif role == "rsm" %}
+    <div class="listCard">
+        <div class="CardSumatera" style="display: table;">
+            <div class="content">
+                <img class="picSumatera" src="{% static 'img/pulau/sumatera.png' %}" alt="" />
+                <h4 class="namaPulau txt">Sumatera</h4>
+            </div>
+        </div>
+    </div>
+    <form action="{% url 'dashboard:sumatera' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+    
+    <div class="listRegional">
+        <button name="action" type="submit" value="lampung_bengkulu" class="areaRegional">Lampung - Bengkulu</button>        
+        <button name="action" type="submit" value="sumatera_selatan" class="areaRegional">Sumatera Bagian Selatan</button>
+        <button name="action" type="submit" value="sumatera_tengah" class="areaRegional">Sumatera Tengah</button>
+        <button name="action" type="submit" value="sumatera_utara" class="areaRegional">Sumatera Utara</button>
+    </div>
+    </form>
+    {% elif role == "am" %}
+    <div class="listCard">
+        <div class="CardSumatera" style="display: table;">
+            <div class="content">
+                <img class="picSumatera" src="{% static 'img/pulau/sumatera.png' %}" alt="" />
+                <h4 class="namaPulau txt">Sumatera</h4>
+            </div>
+        </div>
+    </div>
+    <form action="{% url 'dashboard:sumatera' %}" method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+    
+    <div class="listRegional">
+        <button name="action" type="submit" value="lampung_bengkulu" class="areaRegional">Lampung - Bengkulu</button>        
+        <button name="action" type="submit" value="sumatera_selatan" class="areaRegional">Sumatera Bagian Selatan</button>
+        <button name="action" type="submit" value="sumatera_tengah" class="areaRegional">Sumatera Tengah</button>
+        <button name="action" type="submit" value="sumatera_utara" class="areaRegional">Sumatera Utara</button>
+    </div>
+    </form>
+    {% endif %}
+    
+</div>
+
+{% endblock content %}
