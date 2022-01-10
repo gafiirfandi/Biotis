@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/biotisst/public_html/
-    - /bin/cp -r /home/biotisst/repositories/Biotis/* $DEPLOYPATH
+    - export DEPLOYPATH=/home/biotisst/public_html
+    - /bin/cp -R /home/biotisst/repositories/Biotis/* $DEPLOYPATH
